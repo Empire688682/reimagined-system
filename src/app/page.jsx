@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Hero from './component/Hero/Hero';
 
 const page = () => {
   return (
-    <div className=''>
-      PAGE
+    <div className='relative w-full'>
+      <Hero/>
     </div>
   )
 }
