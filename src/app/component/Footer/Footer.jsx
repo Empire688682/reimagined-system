@@ -1,5 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -9,6 +12,14 @@ const Footer = () => {
         <div className='flex flex-col justify-center md:justify-start items-center md:items-start'>
           <Image src='/ayinla-logo.png' alt='Footer Logo' width={100} height={100} className='mb-4' />
           <p className='text-gray-300 text-sm'>Providing you with movie sets from where you want.</p>
+          <div className='mt-4'>
+            <h4 className='text-lg font-semibold mb-3'>Follow Us:</h4>
+            <div className='flex gap-4'>
+            <FaInstagram className='cursor-pointer hover:text-white transition'/>
+            <FaLinkedinIn className='cursor-pointer hover:text-white transition'/>
+            <FaTwitter className='cursor-pointer hover:text-white transition'/>
+            </div>
+          </div>
         </div>
         
         {/* About */}
