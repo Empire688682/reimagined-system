@@ -25,9 +25,9 @@ const Footer = () => {
         <div className='flex flex-col justify-center md:justify-start items-center md:items-start'>
           <h3 className='text-lg font-semibold mb-3'>Categories</h3>
           <ul className='space-y-2 text-gray-300 text-sm flex flex-col justify-center md:justify-start items-center md:items-start'>
-            <li className='cursor-pointer hover:text-white transition'>Real Estate</li>
-            <li className='cursor-pointer hover:text-white transition'>Rentals</li>
-            <li className='cursor-pointer hover:text-white transition'>Commercial Properties</li>
+            <li className='cursor-pointer hover:text-white transition'>Book a space</li>
+            <li className='cursor-pointer hover:text-white transition'>List a space</li>
+            <li className='cursor-pointer hover:text-white transition'>Etc</li>
           </ul>
         </div>
         
