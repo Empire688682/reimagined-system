@@ -5,7 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 const Hero = () => {
     return (
-<div className="relative w-full min-h-screen flex items-center justify-flex-start">
+        <div className="relative w-full min-h-screen flex items-center justify-flex-start">
             <Image
                 priority={true} fill
                 src="/ayinla-hero-img.png"
