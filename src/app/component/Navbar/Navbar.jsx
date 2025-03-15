@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     return (
-        <section className='p-3 md:p-6 absolute top-0 left-0 right-0 z-10'>
+        <Navbar className='p-3 md:p-6 absolute top-0 left-0 right-0 z-10 border-b border-[#23396A]'>
             {/* Desktop Navbar */}
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
@@ -135,7 +135,7 @@ const Navbar = () => {
                     )
                 }
             </div>
-        </section>
+        </Navbar>
     )
 }
 
