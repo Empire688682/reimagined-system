@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { FaArrowRight } from 'react-icons/fa';
 
 const CurrentListings = () => {
@@ -13,10 +13,15 @@ const CurrentListings = () => {
       {/* Grid Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {Array.from({ length: 4 }).map((_, index) => (
-          <div key={index} className="bg-white shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
             {/* Image Wrapper */}
             <div className="relative w-full h-56">
-              <Image src="/current-listing-img-1.png" alt="Property Image" fill className="object-cover" />
+              <Image 
+                src="/current-listing-img-1.png" 
+                alt="Property Image" 
+                fill
+                style={{ objectFit: "cover" }}
+              />
             </div>
 
             {/* Content */}

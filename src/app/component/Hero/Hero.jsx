@@ -1,11 +1,11 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 
 const Hero = () => {
     return (
-        <div className="relative w-full min-h-screen flex items-center justify-flex-start">
+<div className="relative w-full min-h-screen flex items-center justify-flex-start">
             <Image
                 priority={true} fill
                 src="/ayinla-hero-img.png"

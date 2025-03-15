@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const BestProps = () => {
   return (
@@ -7,28 +7,30 @@ const BestProps = () => {
       {/* Container */}
       <div className='grid grid-cols-1 md:py-16 md:grid-cols-2 gap-12 items-center'>
         {/* Left Side - Images (Hidden on Small Screens) */}
-        <div className='hidden md:grid grid-cols-2 gap-4 relative w-full h-[400px]'>
-          <div className='relative w-full h-full mb-16'>
+        <div className='hidden md:grid grid-cols-2 gap-4 relative w-full'>
+          <div className='relative w-full h-[400px]'>
             <Image 
               src='/best-prop-frame-1.png' 
               alt='Hero Image' 
-              layout='fill' 
-              objectFit='cover' 
+              fill
+              style={{ objectFit: "cover" }} 
             />
           </div>
-          <div className='relative w-full h-full my-16'>
+          <div className='relative w-full h-[400px]'>
             <Image 
               src='/best-prop-frame-2.png' 
               alt='Hero Image' 
-              layout='fill' 
-              objectFit='cover' 
+              fill
+              style={{ objectFit: "cover" }} 
             />
           </div>
         </div>
         
         {/* Right Side - Text Content */}
         <div className='text-[#23396A] text-center md:text-left'>
-          <h1 className='text-3xl md:text-4xl font-bold mb-4 text-gray-700'>We Provide You with the Best Property</h1>
+          <h1 className='text-3xl md:text-4xl font-bold mb-4 text-gray-700'>
+            We Provide You with the Best Property
+          </h1>
           <p className='text-lg text-gray-600 mb-6'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, sunt hic modi at sit quos! 
             Minima in quasi doloremque fuga aut voluptatum?
