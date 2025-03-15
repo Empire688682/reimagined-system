@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 
