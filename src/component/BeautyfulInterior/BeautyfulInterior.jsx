@@ -49,8 +49,8 @@ const BeautyfulInterior = () => {
               {/* Image Wrapper */}
               <div className="relative w-full h-56">
                 <Image
-                  src={property.images?.[0] || "/default-property.jpg"} // Fallback image
-                  alt={property.title || "Property Image"}
+                  src={property.images?.[0]}
+                  alt={property.title}
                   fill
                   style={{ objectFit: "cover" }}
                   className="transition-transform transform hover:scale-105 rounded-lg"
@@ -60,16 +60,16 @@ const BeautyfulInterior = () => {
               {/* Content */}
               <div className="p-4 text-[#23396A]">
                 <h2 className="font-semibold mb-2">
-                  {property.title || "No Title Available"}
+                  {property.title}
                 </h2>
                 <p className="text-gray-500 mb-3">
-                  {property.location || "Location not specified"}
+                  {property.location}
                 </p>
 
                 {/* Price & Details */}
                 <div className="flex justify-between items-center">
                   <p className="font-bold text-[#23396A]">
-                    #{property.price?.toLocaleString() || "N/A"}
+                    #{property.price?.toLocaleString()}
                   </p>
                   <span
                     className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline"
