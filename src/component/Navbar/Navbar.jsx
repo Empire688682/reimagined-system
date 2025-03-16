@@ -33,12 +33,12 @@ const Navbar = () => {
 
                 {/* Nav Links */}
                 <ul className='flex gap-8'>
-                    <Link href="/" className='text-white cursor-pointer' onClick={() => setIsOpen(false)}>Home</Link>
-                    <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(1)}>
+                    <Link href="/" className='text-white cursor-pointer text-[14px]' onClick={() => setIsOpen(false)}>Home</Link>
+                    <li className='flex relative items-center text-white cursor-pointer text-[14px]' onClick={() => handleSubMenu(1)}>
                         Property List
                         <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[1] ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu[1] && (
-                            <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                            <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black text-[13px]'>
                                 <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                     Properties
                                 </Link>
@@ -49,26 +49,26 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className='flex relative items-center text-white cursor-pointer' onClick={() => { handleSubMenu(2); }}>
+                    <li className='flex relative text-[14px] items-center text-white cursor-pointer' onClick={() => { handleSubMenu(2); }}>
                         Booking List
                         <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu[2] && (
-                            <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                            <div className='absolute text-[13px] top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
                                 <Link href="/booking" className="text-xs cursor-pointer font-semibold">Booking</Link>
                                 <hr className="text-gray-300" />
                                 <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
                             </div>
                         )}
                     </li>
-                    <li className='text-white cursor-pointer'>About Us</li>
-                    <li className='text-white cursor-pointer'>FAQ'S</li>
-                    <li className='text-white cursor-pointer'>Contact Information</li>
+                    <li className='text-white cursor-pointer text-[14px]'>About Us</li>
+                    <li className='text-white cursor-pointer text-[14px]'>FAQ'S</li>
+                    <li className='text-white cursor-pointer text-[14px]'>Contact Information</li>
                 </ul>
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-sm">Sign In</button>
-                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-sm">Sign Up</button>
+                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]">Sign In</button>
+                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]">Sign Up</button>
                 </div>
             </div>
 
@@ -83,12 +83,12 @@ const Navbar = () => {
                 {isOpen && (
                     <div className='absolute top-14 left-0 py-4 w-full h-[80vh] bg-blue-600 flex flex-col justify-center items-center z-10'>
                         <ul className='flex flex-col gap-8'>
-                            <Link href="/" className='text-white cursor-pointer' onClick={() => setIsOpen(false)}>Home</Link>
+                            <Link href="/" className='text-white text-[14px] cursor-pointer' onClick={() => setIsOpen(false)}>Home</Link>
                             <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(1)}>
                                 Property List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[1] ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu[1] && (
-                                    <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                                    <div className='absolute text-[13px] top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
                                         <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                             Properties
                                         </Link>
@@ -99,24 +99,24 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </li>
-                            <li className='flex relative items-center text-white cursor-pointer' onClick={() => { handleSubMenu(2); setIsOpen(false); }}>
+                            <li className='flex relative items-center text-[14px] text-white cursor-pointer' onClick={() =>handleSubMenu(2)}>
                                 Booking List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu[2] && (
-                                    <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                                    <div className='absolute text-[13px] top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
                                         <Link href="/booking" className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>Booking</Link>
                                         <hr className="text-gray-300" />
                                         <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
                                     </div>
                                 )}
                             </li>
-                            <li className='text-white cursor-pointer'>About Us</li>
-                            <li className='text-white cursor-pointer'>FAQ'S</li>
-                            <li className='text-white cursor-pointer'>Contact Information</li>
+                            <li className='text-white cursor-pointer text-[14px]'>About Us</li>
+                            <li className='text-white cursor-pointer text-[14px]'>FAQ'S</li>
+                            <li className='text-white cursor-pointer text-[14px]'>Contact Information</li>
                         </ul>
                         <div className='mt-4 flex gap-3'>
-                            <button className="px-8 py-3 text-white cursor-pointer bg-[#23396A] sm:text-xl">Sign In</button>
-                            <button className="px-8 py-3 cursor-pointer bg-white text-[#23396A] sm:text-xl">Sign Up</button>
+                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]">Sign In</button>
+                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]">Sign Up</button>
                         </div>
                     </div>
                 )}
