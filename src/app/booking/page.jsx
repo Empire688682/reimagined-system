@@ -1,10 +1,15 @@
 import React from 'react';
-import BookingPage from '../component/BookingPage/BookingPage';
+import BookingHero from '../component/BookingHero/BookingHero';
+import BookingTopLocation from '../component/BookingTopLocation/BookingTopLocation';
+import Footer from '../component/Footer/Footer';
 
 const Page = () => {
   return (
     <div>
-      <BookingPage/>
+      <BookingHero/>
+      <BookingTopLocation/>
+      {/*Footer*/}
+      <Footer/>
     </div>
   )
 }
