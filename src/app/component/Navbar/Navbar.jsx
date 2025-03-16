@@ -26,13 +26,13 @@ const Navbar = () => {
         <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 md:py-3 py-2 absolute top-0 left-0 right-0 z-10 border-b border-gray-400 transition-all duration-300 ${navbarBg}`}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
-                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer">
+                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer" onClick={()=>setIsOpen(false)}>
                     <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
 
                 {/* Nav Links */}
                 <ul className='flex gap-8'>
-                    <li className='text-white cursor-pointer'>Home</li>
+                    <Link href="/" className='text-white cursor-pointer' onClick={()=>setIsOpen(false)}>Home</Link>
                     <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(1)}>
                         Property List
                         <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[1] ? 'rotate-[180deg]' : ''}`} />
@@ -48,17 +48,17 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(2)}>
-                        Booking List
-                        <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
-                        {openSubMenu[2] && (
-                            <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
-                                <Link href="/booking" className="text-xs cursor-pointer font-semibold" onClick={()=>setIsOpen(false)}>Booking</Link>
-                                <hr className="text-gray-300" />
-                                <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
-                            </div>
-                        )}
-                    </li>
+                    <li className='flex relative items-center text-white cursor-pointer' onClick={() => {handleSubMenu(2); setIsOpen(false);}}>
+                                Booking List
+                                <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
+                                {openSubMenu[2] && (
+                                    <div className='absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                                        <Link href="/booking" className="text-xs cursor-pointer font-semibold" onClick={()=>setIsOpen(false)}>Booking</Link>
+                                        <hr className="text-gray-300" />
+                                        <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
+                                    </div>
+                                )}
+                            </li>
                     <li className='text-white cursor-pointer'>About Us</li>
                     <li className='text-white cursor-pointer'>FAQ'S</li>
                     <li className='text-white cursor-pointer'>Contact Information</li>
@@ -73,7 +73,7 @@ const Navbar = () => {
 
             {/* Mobile Navbar */}
             <div className='flex md:hidden justify-between items-center'>
-                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer">
+                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer" onClick={()=>setIsOpen(false)}>
                     <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
                 <div onClick={() => setIsOpen(!isOpen)}>
@@ -98,7 +98,7 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </li>
-                            <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(2)}>
+                            <li className='flex relative items-center text-white cursor-pointer' onClick={() => {handleSubMenu(2); setIsOpen(false);}}>
                                 Booking List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu[2] && (

@@ -7,3 +7,8 @@
   --hell-bg: #ff5733; /* Your custom color */
 }
 
+* {
+  box-sizing: border-box;
+  font-family:'Lucida faxe', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
