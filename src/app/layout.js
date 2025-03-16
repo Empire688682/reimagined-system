@@ -1,6 +1,6 @@
 
-import { AppProvider } from "./component/Context";
-import Navbar from "./component/Navbar/Navbar";
+import { AppProvider } from "@/component/Context";
+import Navbar from "@/component/Navbar/Navbar";
 import "./globals.css";
 
 export const metadata = {

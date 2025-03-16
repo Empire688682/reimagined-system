@@ -1,6 +1,6 @@
 import React from 'react'
-import BeautyfulInterior from '../component/BeautyfulInterior/BeautyfulInterior'
-import Footer from '../component/Footer/Footer'
+import BeautyfulInterior from '@/component/BeautyfulInterior/BeautyfulInterior'
+import Footer from '@/component/Footer/Footer'
 
 const Page = () => {
   return (
