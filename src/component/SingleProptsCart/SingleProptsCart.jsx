@@ -1,135 +1,138 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from "react-icons/fa";
+import { useGlobalContext } from "../Context";
 
-const SingleProptsCart = ({ data }) => {
+const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, amenities, relatedProperties, data }) => {
+  const { route } = useGlobalContext();
+
   return (
-    <div className=' md:p-16 p-4 mt-20'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-9'>
-        <div className='w-[100%] flex flex-col gap-3 '>
-          <div className='w-[100%] relative h-[300px]'>
+    <div className="md:p-16 p-4 mt-20">
+      {/* Property Details */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
+        {/* Image Gallery */}
+        <div className="w-full flex flex-col gap-3">
+          <div className="w-full relative h-[300px]">
             <Image
-              src="/property-1.png"
-              alt='Property Img'
+              src={images?.[0]}
+              alt={title || "Property Image"}
               fill
               style={{ objectFit: "cover" }}
             />
           </div>
-          <div className='grid grid-cols-3 gap-2'>
-            {
-              Array.from({ length: 3 }).map((_, id) => (
-                <div key={id} className='relative h-[50px] w-[100%]'>
-                  <Image
-                    key={id}
-                    src="/property-2.png"
-                    alt='Property Img'
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              ))
-            }
+          <div className="grid grid-cols-3 gap-2">
+            {images?.map((img, id) => (
+              <div key={id} className="relative h-[50px] w-full">
+                <Image src={img} alt="Property Img" fill style={{ objectFit: "cover" }} />
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* Property Info */}
         <div>
-          <p className='text-sm text-[#23396A] pb-4'>Rent * Furnished</p>
-          <h1 className='md:text-3xl sm:text-2xl text-2xl font-semibold pb-3'>Luxurious Mansion, with outdoor space</h1>
-          <p className='flex gap-4 text-gray-500 pb-3'><span>Lagos</span> <span>Lekki</span></p>
-          <div className='flex gap-4 pb-3 items-center'>
-            <p className='md:text-3xl text-2xl font-semibold'>#2, 876,</p>
-            <span className='text-gray-500 text-sm line-through'>#4,876</span>
-            <span className='text-sm text-red-500'>50%Off</span>
+          <p className="text-sm text-[#23396A] pb-4">Rent * Furnished</p>
+          <h1 className="md:text-3xl sm:text-2xl text-2xl font-semibold pb-3">
+            {title}
+          </h1>
+          <p className="flex gap-4 text-gray-500 pb-3">
+            {location && <span>{location}</span>}
+          </p>
+
+          <div className="flex gap-4 pb-3 items-center">
+            <p className="md:text-3xl text-2xl font-semibold">
+              #{price?.toLocaleString()}
+            </p>
+            {oldPrice && <span className="text-gray-500 text-sm line-through">#{oldPrice?.toLocaleString()}</span>}
+            {discount && <span className="text-sm text-red-500">{discount}% Off</span>}
           </div>
-          <div className='flex gap-4 items-center pb-4'>
-            <p className='py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-1xl'>7 Bed</p>
-            <p className='py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-1xl'>7 Bathroom</p>
-            <p className='py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-1xl'>987 Sq feet</p>
+
+          {/* Amenities Summary */}
+          <div className="flex gap-4 items-center pb-4">
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.beds} Bed</p>
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.bathrooms} Bathroom</p>
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.size} Sq feet</p>
           </div>
-          <button className='bg-[#23396A] text-sm md:text-1xl cursor-pointer py-3 px-6 text-white'>Book Now</button>
+
+          <button className="bg-[#23396A] text-sm md:text-xl cursor-pointer py-3 px-6 text-white">
+            Book Now
+          </button>
         </div>
       </div>
-      <div className='mt-15 border border-gray-200 text-gray-400 p-6 flex flex-col gap-6'>
-        <div className='flex gap-4 items-center justify-start flex-wrap'>
-          <p className='py-3 text-[10px] md:text-[15px] px-6 bg-[#23396A] border border-[#23396A] text-white'>Overview</p>
-          <p className='py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400'>Gallery</p>
-          <p className='py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400'>Location</p>
-          <p className='py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400'>Agent</p>
+
+      {/* Tabs Section */}
+      <div className="mt-15 border border-gray-200 text-gray-400 p-6 flex flex-col gap-6">
+        <div className="flex gap-4 items-center justify-start flex-wrap">
+          <p className="py-3 text-[10px] md:text-[15px] px-6 bg-[#23396A] border border-[#23396A] text-white">
+            Overview
+          </p>
+          <p className="py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400">Gallery</p>
+          <p className="py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400">Location</p>
+          <p className="py-3 text-[10px] md:text-[15px] px-6 border border-[#23396A] text-gray-400">Agent</p>
         </div>
+
+        {/* About Property */}
         <div>
-          <h2 id='overview' className='text-lg font-semibold pb-3 text-gray-700'>About Property</h2>
-          <p className='text-gray-500 text-[13px] md:text-[15px]'>
-            This stunning property offers a perfect blend of comfort and elegance, featuring modern architecture and thoughtfully designed interiors. Located in a prime neighborhood, it boasts spacious rooms, ample natural light, and high-end finishes. The property includes state-of-the-art amenities, a serene outdoor space, and easy access to essential facilities such as schools, shopping centers, and transportation. Whether you're looking for a dream home or a lucrative investment, this property promises an exceptional living experience.
+          <h2 className="text-lg font-semibold pb-3 text-gray-700">About Property</h2>
+          <p className="text-gray-500 text-[13px] md:text-[15px]">
+            {data.description}
           </p>
         </div>
+
+        {/* Amenities */}
         <div>
-          <h2 id='overview' className='text-lg font-semibold pb-3 text-gray-700'>Property Amenities</h2>
-          <div>
-            <p className='text-gray-500 text-[15px] md:text-[15px] pb-3'>
-              UNIT
-            </p>
-            <div className='flex gap-4 items-center justify-start flex-wrap'>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500'>Air Conditioning</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Fireplace</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Diswasher</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Balcony</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Cooling Fan</p>
+          <h2 className="text-lg font-semibold pb-3 text-gray-700">Property Amenities</h2>
+          {amenities?.length > 0 ? (
+            <div className="flex gap-4 items-center justify-start flex-wrap">
+              {amenities.map((amenity, index) => (
+                <p key={index} className="py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400">
+                  {amenity}
+                </p>
+              ))}
             </div>
-          </div>
-          <div className='mt-6'>
-            <p className='text-gray-500 text-[15px] md:text-[15px] pb-3'>
-              BuILDING
-            </p>
-            <div className='flex gap-4 items-center justify-start flex-wrap'>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500'>Bussiness Center</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Outdoor Space</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Gym</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Swimming Pool</p>
-              <p className='py-3 text-[10px] md:text-[15px] px-6 border border-gray-500 text-gray-400'>Free WiFi</p>
-            </div>
-          </div>
+          ) : (
+            <p className="text-gray-500">No amenities listed.</p>
+          )}
         </div>
       </div>
-      <div className='mt-15 border border-gray-200 text-gray-700 p-6 flex flex-col gap-6'>
-        <h2 className='text-lg font-semibold'>Gallery</h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-          {Array.from({ length: 6 }).map((_, id) => (
+
+      {/* Gallery Section */}
+      <div className="mt-15 border border-gray-200 text-gray-700 p-6 flex flex-col gap-6">
+        <h2 className="text-lg font-semibold">Gallery</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+          {images?.map((img, id) => (
             <div key={id} className="relative w-full h-56 overflow-hidden">
-              <Image
-                src="/property-3.png"
-                alt="Property Image"
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              <Image src={img} alt="Gallery Image" fill style={{ objectFit: "cover" }} />
             </div>
           ))}
         </div>
       </div>
-      <div className='mt-15 p-6 flex flex-col gap-6'>
-        <h2 className='text-2xl font-semibold text-center'>You may also like</h2>
-        {/* Grid Layout */}
+
+      {/* Related Properties Section */}
+      <div className="mt-15 p-6 flex flex-col gap-6">
+        <h2 className="text-2xl font-semibold text-center">You may also like</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
-              {/* Image Wrapper */}
+          {relatedProperties?.map((property) => (
+            <div key={property.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
               <div className="relative w-full h-56">
                 <Image
-                  src="/current-listing-img-1.png"
+                  src={property.images?.[0]}
                   alt="Property Image"
                   fill
                   style={{ objectFit: "cover" }}
-                  className='transition-transform transform hover:scale-105 rounded-lg'
+                  className="transition-transform transform hover:scale-105 rounded-lg"
                 />
               </div>
-
-              {/* Content */}
               <div className="p-4 text-[#23396A]">
-                <h2 className=" font-semibold mb-2">The Queen Inside - Type-3</h2>
-                <p className="text-gray-500 mb-3">Kogi Lokoja</p>
-
-                {/* Price & Details */}
+                <h2 className="font-semibold mb-2">{property.title}</h2>
+                <p className="text-gray-500 mb-3">{property.location}</p>
                 <div className="flex justify-between items-center">
-                  <p className="text-1xl font-bold text-[#23396A]">#989K</p>
-                  <span className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline">
+                  <p className="text-1xl font-bold text-[#23396A]">#{property.price?.toLocaleString()}</p>
+                  <span
+                    className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline"
+                    onClick={() => route.push(`/properties/${property.id}`)}
+                  >
                     Details <FaArrowRight />
                   </span>
                 </div>
@@ -137,15 +140,15 @@ const SingleProptsCart = ({ data }) => {
             </div>
           ))}
         </div>
-        <div className='flex md:justify-end mb-8 justify-center mt-10'>
-          <span className="flex items-center gap-2 bg-[#F1F9FF] px-4 py-2 text-gray-700 cursor-pointer font-semibold border border-[#23396A] rounded-sm"
-            onClick={() => setIndex(index + 4)}>
-            Explore more <FaArrowRight />
+        <div className="flex md:justify-end mb-8 justify-center mt-10">
+          <span className="flex items-center gap-2 bg-[#23396A] px-4 py-2 text-gray-700 cursor-pointer rounded-sm text-white"
+            onClick={() => route.push("/properties")}>
+            Explore All Listings <FaArrowRight />
           </span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SingleProptsCart
+export default SingleProptsCart;

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
-import allFaqs from '../FAQs';
+import { allFaqs } from '../Data';
 
 
 const BookingFAQ = () => {
