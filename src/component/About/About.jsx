@@ -8,11 +8,11 @@ const About = () => {
             <div className='grid grid-cols-1 md:py-16 md:grid-cols-2 gap-12 items-start'>
                 {/* Left Side - Text Content */}
                 <div className='text-[#23396A] text-center md:text-left'>
-                    <h1 className='text-3xl md:text-4xl font-bold mb-4 text-gray-700'>About Us</h1>
-                    <h2 className='text-2xl md:text-2xl font-semibold mb-4 text-gray-700'>
+                    <h1 className='text-2xl md:text-3xl font-bold mb-4 text-gray-700'>About Us</h1>
+                    <h2 className='text-1xl md:text-2xl font-semibold mb-4 text-gray-700'>
                         Helping Property Owners Earn and Filmmakers Find the Perfect Location
                     </h2>
-                    <p className='text-lg text-gray-600 mb-6'>
+                    <p className='text-gray-600 mb-0 md:mb-6'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, sunt hic modi at sit quos!
                         Minima in quasi doloremque fuga aut voluptatum?
                     </p>

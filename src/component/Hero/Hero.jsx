@@ -14,14 +14,14 @@ const Hero = () => {
             />
             <div className="relative text-white text-flex-start pr-6 pl-6 pb-20 gap-3 flex flex-col mt-45 md:mt-70">
                 <p>Exclusive Real Estate Platform</p>
-                <h1 className="text-4xl md:text-6xl font-bold md:w-[60%]">Find the Perfect Location Monitize Your Space</h1>
-                <p className="text-lg md:text-xl mt-4 md:w-[80%]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore magnam dolores, reiciendis enim quos consequatur, perferendis exercitationem soluta quis culpa doloribus ducimus quam qui, sapiente neque quae eaque laboriosam dolore!</p>
+                <h1 className="text-3xl md:text-4xl font-bold md:w-[60%]">Find the Perfect Location Monitize Your Space</h1>
+                <p className="text-1xl md:text-xl mt-4 md:w-[80%]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore magnam dolores, reiciendis enim quos consequatur, perferendis exercitationem soluta quis culpa doloribus ducimus quam qui, sapiente neque quae eaque laboriosam dolore!</p>
                 <div className="flex gap-4">
-                    <button className="mt-6 px-6 flex items-center py-3 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer">
+                    <button className="mt-6 px-6 text-sm flex items-center py-3 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer">
                         List Your Property
                         <AiOutlineHome className='ml-2 text-[22px]' />
                     </button>
-                    <button className="mt-6 px-6 flex items-center py-3 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white text-black cursor-pointer">
+                    <button className="mt-6 px-6 flex text-sm items-center py-3 bg-white border border-gray-300 hover:bg-blue-600 hover:text-white text-black cursor-pointer">
                         Find a Location
                         <IoLocationOutline className='ml-2 text-[22px]' />
                     </button>

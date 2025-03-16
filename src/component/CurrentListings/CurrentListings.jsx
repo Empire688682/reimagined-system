@@ -11,7 +11,7 @@ const CurrentListings = () => {
   return (
     <section className="max-w-7xl mx-auto p-6">
       {/* Title */}
-      <h1 className="text-3xl font-bold text-[#23396A] text-center mb-8">
+      <h1 className="text-2xl font-bold text-[#23396A] text-center mb-8">
         Real Estate Current Listings
       </h1>
 

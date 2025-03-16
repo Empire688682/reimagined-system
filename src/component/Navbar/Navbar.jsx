@@ -10,7 +10,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [openSubMenu, setOpenSubMenu] = useState({});
 
-    const pathname = usePathname(); // Get current route
+    // Get current route
+    const pathname = usePathname();
 
     // Change navbar background color based on route
     const navbarBg = pathname !== "/" ? "bg-[#23396A]" : "bg-transparent";
@@ -26,7 +27,7 @@ const Navbar = () => {
         <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 md:py-3 py-2 absolute top-0 left-0 right-0 z-10 border-b border-gray-400 transition-all duration-300 ${navbarBg}`}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
-                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer" onClick={() => setIsOpen(false)}>
+                <Link href="/" className="relative w-[80px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
                     <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
 
@@ -64,16 +65,16 @@ const Navbar = () => {
                     <li className='text-white cursor-pointer'>Contact Information</li>
                 </ul>
 
-                {/* Buttons */}
+                {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-8 py-3 text-white cursor-pointer bg-[#23396A] sm:text-xl">Sign In</button>
-                    <button className="px-8 py-3 cursor-pointer bg-white text-[#23396A] sm:text-xl">Sign Up</button>
+                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-sm">Sign In</button>
+                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-sm">Sign Up</button>
                 </div>
             </div>
 
             {/* Mobile Navbar */}
             <div className='flex md:hidden justify-between items-center'>
-                <Link href="/" className="relative w-[100px] h-[50px] cursor-pointer" onClick={() => setIsOpen(false)}>
+                <Link href="/" className="relative w-[60px] h-[60px] cursor-pointer" onClick={() => setIsOpen(false)}>
                     <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
                 <div onClick={() => setIsOpen(!isOpen)}>

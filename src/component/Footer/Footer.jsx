@@ -11,14 +11,14 @@ const Footer = () => {
           <Image 
             src="/ayinla-logo.png" 
             alt="Footer Logo" 
-            width={100} 
-            height={100} 
+            width={60} 
+            height={60} 
             priority 
             className="mb-4"
           />
           <p className="text-gray-300 text-sm">Providing you with movie sets from where you want.</p>
           <div className="mt-4">
-            <h4 className="text-lg font-semibold mb-3">Follow Us:</h4>
+            <h4 className="text-[15px] font-semibold mb-3">Follow Us:</h4>
             <div className="flex gap-4">
               <FaInstagram className="cursor-pointer hover:text-gray-300 transition" />
               <FaLinkedinIn className="cursor-pointer hover:text-gray-300 transition" />
@@ -29,7 +29,7 @@ const Footer = () => {
         
         {/* About */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-lg font-semibold mb-3">About</h3>
+          <h3 className="text-[15px] font-semibold mb-3">About</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li className="cursor-pointer hover:text-white transition">About Us</li>
             <li className="cursor-pointer hover:text-white transition">Features</li>
@@ -39,7 +39,7 @@ const Footer = () => {
         
         {/* Categories */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-lg font-semibold mb-3">Categories</h3>
+          <h3 className="text-[15px] font-semibold mb-3">Categories</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li className="cursor-pointer hover:text-white transition">Book a space</li>
             <li className="cursor-pointer hover:text-white transition">List a space</li>
@@ -49,7 +49,7 @@ const Footer = () => {
         
         {/* Newsletter */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-lg font-semibold mb-3">Newsletter</h3>
+          <h3 className="text-[15px] font-semibold mb-3">Newsletter</h3>
           <p className="text-gray-300 text-sm mb-4">Don't miss important information from us.</p>
           <div className="flex items-center bg-white overflow-hidden rounded-lg">
             <input 

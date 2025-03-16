@@ -28,10 +28,10 @@ const BestProps = () => {
         
         {/* Right Side - Text Content */}
         <div className='text-[#23396A] text-center md:text-left'>
-          <h1 className='text-3xl md:text-4xl font-bold mb-4 text-gray-700'>
+          <h1 className='text-2xl md:text-3xl font-bold mb-4 text-gray-700'>
             We Provide You with the Best Property
           </h1>
-          <p className='text-lg text-gray-600 mb-6'>
+          <p className='text-gray-600 mb-6'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, sunt hic modi at sit quos! 
             Minima in quasi doloremque fuga aut voluptatum?
           </p>
@@ -39,11 +39,11 @@ const BestProps = () => {
           {/* Stats */}
           <div className='flex flex-col md:flex-row gap-6 md:gap-8 justify-center md:justify-start'>
             <div>
-              <h2 className='text-4xl font-bold text-[#23396A]'>1K+</h2>
+              <h2 className='text-2xl md:text-3xl font-bold text-[#23396A]'>1K+</h2>
               <p className='text-gray-600'>Property List</p>
             </div>
             <div>
-              <h2 className='text-4xl font-bold text-[#23396A]'>3K+</h2>
+              <h2 className='text-2xl md:text-3xl font-bold text-[#23396A]'>3K+</h2>
               <p className='text-gray-600'>Satisfied Customers</p>
             </div>
           </div>
