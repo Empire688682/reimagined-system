@@ -22,7 +22,7 @@ const Page = () => {
       setLoading(false);
     };
 
-    const relatedProperties = allPropts.slice(0,6).map((property)=>property);
+    const relatedProperties = allPropts.slice(0,4).map((property)=>property);
     setRelatedProps(relatedProperties || [])
 
     fetchProptsData();

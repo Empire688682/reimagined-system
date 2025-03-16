@@ -32,7 +32,7 @@ const BeautyfulInterior = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full p-2 text-black outline-none"
           />
-          <p className="hover:bg-blue-600 flex items-center gap-2 bg-[#23396A] transition cursor-pointer text-white px-6 py-2">
+          <p className="flex items-center gap-2 bg-[#23396A] transition cursor-pointer text-white px-6 py-2">
             Filter <CiFilter className="text-2xl" />
           </p>
         </div>
