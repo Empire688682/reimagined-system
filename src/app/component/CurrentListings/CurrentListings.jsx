@@ -13,7 +13,7 @@ const CurrentListings = () => {
       {/* Grid Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {Array.from({ length: 4 }).map((_, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
             {/* Image Wrapper */}
             <div className="relative w-full h-56">
               <Image 
@@ -21,17 +21,18 @@ const CurrentListings = () => {
                 alt="Property Image" 
                 fill
                 style={{ objectFit: "cover" }}
+                className='transition-transform transform hover:scale-105 rounded-lg'
               />
             </div>
 
             {/* Content */}
             <div className="p-4 text-[#23396A]">
               <h2 className="text-xl font-semibold mb-2">Property Name</h2>
-              <p className="text-gray-500 mb-3">Location</p>
+              <p className="text-gray-500 mb-3">Kogi Lokoja</p>
 
               {/* Price & Details */}
               <div className="flex justify-between items-center">
-                <p className="text-3xl font-bold text-[#23396A]">#989K</p>
+                <p className="text-2xl md:text-3xl font-bold text-[#23396A]">#989K</p>
                 <span className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline">
                   Details <FaArrowRight />
                 </span>

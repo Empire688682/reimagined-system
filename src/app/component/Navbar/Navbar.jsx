@@ -12,10 +12,10 @@ const Navbar = () => {
     const pathname = usePathname(); // Get current route
 
     // Change navbar background color based on route
-    const navbarBg = pathname === "/booking" ? "bg-[#23396A]" : "bg-transparent";
+    const navbarBg = pathname !== "/" ? "bg-[#23396A]" : "bg-transparent";
 
     // Change logo base on route
-    const logo = pathname === "/booking" ? "/ayinla-logo.png" : "/colored-ayinla-logo.png";
+    const logo = pathname !== "/" ? "/ayinla-logo.png" : "/colored-ayinla-logo.png";
 
     const handleSubMenu = (id) => {
         setOpenSubMenu((prev) => ({ ...prev, [id]: !prev[id] }));
