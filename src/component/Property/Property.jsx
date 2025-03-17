@@ -43,33 +43,35 @@ const Property = () => {
                     </div>
                     {/** Col two */}
                     <div className='relative w-full min-h-[300px]'>
-                        <div className='flex gap-4'>
+                        <div className='flex flex-col gap-5'>
+                        <div className='flex gap-3'>
                             <FaLayerGroup className='text-2xl' />
                             <div className='flex flex-2 flex-col gap-3'>
                                 <h2 className='font-semibold'>Sign Up As A Host</h2>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
                             </div>
                         </div>
-                        <div className='flex gap-4'>
+                        <div className='flex gap-3'>
                             <FaLayerGroup className='text-2xl' />
                             <div className='flex flex-2 flex-col gap-3'>
                                 <h2 className='font-semibold'>Sign Up As A Host</h2>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
                             </div>
                         </div>
-                        <div className='flex gap-4'>
+                        <div className='flex gap-3'>
                             <FaLayerGroup className='text-2xl' />
                             <div className='flex flex-2 flex-col gap-3'>
                                 <h2 className='font-semibold'>Sign Up As A Host</h2>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
                             </div>
                         </div>
-                        <div className='flex gap-4'>
+                        <div className='flex gap-3'>
                             <FaLayerGroup className='text-2xl' />
                             <div className='flex flex-2 flex-col gap-3'>
                                 <h2 className='font-semibold'>Sign Up As A Host</h2>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
