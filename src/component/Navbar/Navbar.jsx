@@ -92,6 +92,9 @@ const Navbar = () => {
                                         <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                             Properties
                                         </Link>
+                                        <Link href="/property" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                            Property
+                                        </Link>
                                         <hr className="text-gray-300" />
                                         <span className="text-xs cursor-pointer font-semibold">List Your Property</span>
                                         <hr className="text-gray-300" />

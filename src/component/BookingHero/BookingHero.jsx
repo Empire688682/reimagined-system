@@ -22,7 +22,7 @@ const BookingHero = () => {
                 
                 {/* Left Section - Takes 2/3 on Large Screens */}
                 <div className="col-span-1 lg:col-span-2 flex flex-col items-center text-center md:text-left md:items-start min-w-[300px] max-w-[700px]">
-                    <h1 className="text-4xl md:text-6xl font-bold">
+                    <h1 className="text-2xl md:text-4xl font-bold">
                         Find the Location that Matches Your Vision Here
                     </h1>
 
@@ -59,7 +59,7 @@ const BookingHero = () => {
                 {/* Right Section - Moves to Bottom Right on Large Screens */}
                 <div className="col-span-1 justify-self-center flex flex-col lg:justify-end lg:items-end w-full max-w-[350px] mt-10 md:mt-0">
                     <div className="bg-white p-6 rounded-lg shadow-lg text-[#23396A] flex flex-col md:items-start items-center">
-                        <p className="text-2xl font-bold text-center md:text-left">
+                        <p className="text-lg font-bold text-center md:text-left">
                             1K+ People Got Their Desired Locations
                         </p>
 
