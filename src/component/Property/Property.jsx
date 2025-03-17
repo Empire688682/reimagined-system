@@ -4,7 +4,7 @@ import { FaLayerGroup } from "react-icons/fa6";
 
 const Property = () => {
     return (
-        <section className="relative w-full min-h-screen md:pb-20 pt-15 md:px-16">
+        <section className="relative w-full min-h-screen md:pb-20 pt-15">
             <div className="relative w-full min-h-[90vh] flex items-center md:items-end justify-center md:justify-start md:pb-20">
                 {/* Background Image */}
                 <Image
@@ -15,7 +15,7 @@ const Property = () => {
                     style={{ objectFit: "cover" }}
                     className="absolute z-[-1] top-0 left-0 w-full h-full"
                 />
-                <div className='flex flex-col gap-5'>
+                <div className='flex flex-col gap-5 md:px-16 px-6 text-center'>
                     <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
                         Earn Money For Listing Your Space
                     </h1>
