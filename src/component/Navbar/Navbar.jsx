@@ -42,6 +42,9 @@ const Navbar = () => {
                                 <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                     Properties
                                 </Link>
+                                <Link href="/property" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                    Property
+                                </Link>
                                 <hr className="text-gray-300" />
                                 <span className="text-xs cursor-pointer font-semibold">List Your Property</span>
                                 <hr className="text-gray-300" />
@@ -102,7 +105,7 @@ const Navbar = () => {
                                     </div>
                                 )}
                             </li>
-                            <li className='flex relative items-center text-[14px] text-white cursor-pointer' onClick={() =>handleSubMenu(2)}>
+                            <li className='flex relative items-center text-[14px] text-white cursor-pointer' onClick={() => handleSubMenu(2)}>
                                 Booking List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu[2] ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu[2] && (
