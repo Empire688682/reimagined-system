@@ -199,5 +199,19 @@ export const allFaqs = [
     }
   ];
   
-   
+  const listings = [
+    { id: "#001", date: "Jan 6, 2022", status: "Paid", customer: "Olivia Rhye", property: "2 Bedroom Apartment", image: "/Muzamal-Hussain.png" },
+    { id: "#002", date: "Jan 6, 2022", status: "Paid", customer: "Phoenix Baker", property: "Outdoor Tent House", image: "/Muzamal-Hussain.png" },
+    { id: "#003", date: "Jan 6, 2022", status: "Paid", customer: "Lara Steiner", property: "Beach House with Pool", image: "/Muzamal-Hussain.png" },
+    { id: "#004", date: "Jan 5, 2022", status: "Cancelled", customer: "Demi Wilkinson", property: "6 Bedroom Mansion", image: "/Muzamal-Hussain.png" },
+    { id: "#005", date: "Jan 5, 2022", status: "Paid", customer: "Candice Wu", property: "Large Hall for Filming", image: "/Muzamal-Hussain.png" },
+    { id: "#006", date: "Jan 5, 2022", status: "Paid", customer: "Natal Craig", property: "Duplex - 4 Rooms", image: "/Muzamal-Hussain.png" },
+    { id: "#007", date: "Jan 4, 2022", status: "Cancelled", customer: "Drew Cano", property: "Large Hall for Filming", image: "/Muzamal-Hussain.png" },
+    { id: "#008", date: "Jan 4, 2022", status: "Paid", customer: "Orlando Diggs", property: "Large Swimming Pool", image: "/Muzamal-Hussain.png" },
+    { id: "#009", date: "Jan 3, 2022", status: "Paid", customer: "Andi Lane", property: "8 Bedroom Mansion", image: "/Muzamal-Hussain.png" },
+    { id: "#010", date: "Jan 3, 2022", status: "Paid", customer: "Kate Morrison", property: "Indoor Tent House", image: "/Muzamal-Hussain.png" }
+];
+
+export default listings;
+
   
