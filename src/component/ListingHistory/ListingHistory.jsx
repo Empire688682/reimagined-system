@@ -23,7 +23,7 @@ const ListingHistory = () => {
                 <LoadingSpinner />
             )
             :
-            <div className="max-w-7xl mx-auto px-6 mt-24 pb-30">
+            <div className="max-w-7xl mx-auto px-6 mt-24 md:mt-30 pb-15">
             <h1 className="text-center text-xl font-semibold mb-4">Listing History</h1>
             <div className="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table className="w-full border border-gray-200 rounded-lg">
