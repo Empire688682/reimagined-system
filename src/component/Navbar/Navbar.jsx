@@ -15,16 +15,16 @@ const Navbar = () => {
 
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflow = "hidden"; 
+            document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
-    
+
         return () => {
             document.body.style.overflow = "auto";
         };
     }, [isOpen]);
-    
+
 
     // Change navbar background color based on route
     const navbarBg = pathname !== "/" ? "bg-[#23396A]" : "bg-transparent";
@@ -60,15 +60,15 @@ const Navbar = () => {
                         <IoIosArrowDown className={`ml-1 ${isHompage ? "text-black" : "text-white"} text-[20px] transition-transform ${openSubMenu === 1 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 1 && (
                             <div className={`absolute -z top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white ${isHompage ? "text-black" : "text-white"} text-[13px]'`}>
-                                <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                <Link href="/properties" passHref className="text-xs text-black cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                     Properties
                                 </Link>
                                 <hr className="text-gray-300" />
-                                <Link href="/property" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                <Link href="/property" passHref className="text-xs text-black cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                     Property
                                 </Link>
                                 <hr className="text-gray-300" />
-                                <Link href="/listing-history" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                <Link href="/listing-history" passHref className="text-xs cursor-pointer font-semibold text-black" onClick={() => setIsOpen(false)}>
                                     Listing history
                                 </Link>
                                 <hr className="text-gray-300" />
@@ -81,9 +81,9 @@ const Navbar = () => {
                         <IoIosArrowDown className={`ml-1 ${isHompage ? "text-black" : "text-white"} text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 2 && (
                             <div className={`absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white ${isHompage ? "text-black" : "text-white"} text-[13px]'`}>
-                                <Link href="/booking" className="text-xs cursor-pointer font-semibold">Booking</Link>
+                                <Link href="/booking" className="text-xs text-black cursor-pointer font-semibold">Booking</Link>
                                 <hr className="text-gray-300" />
-                                <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
+                                <span className="text-xs text-black cursor-pointer font-semibold">Booking Status</span>
                             </div>
                         )}
                     </li>
@@ -108,14 +108,14 @@ const Navbar = () => {
                     <IoMenuOutline className={`text-4xl ${isHompage ? "text-black" : "text-white"} cursor-pointer`} />
                 </div>
                 {isOpen && (
-                    <div className='absolute top-14 left-0 py-4 w-full min-h-screen bg-blue-200 flex flex-col justify-center items-center z-10'>
+                    <div className='absolute top-14 left-0 py-4 w-full min-h-screen bg-blue-400 flex flex-col justify-center items-center z-10'>
                         <ul className='flex flex-col gap-8'>
                             <Link href="/" className='text-white text-[14px] cursor-pointer' onClick={() => setIsOpen(false)}>Home</Link>
                             <li className='flex relative items-center text-white cursor-pointer' onClick={() => handleSubMenu(1)}>
                                 Property List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 1 ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu === 1 && (
-                                    <div className="absolute top-[100%] z-20 w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black">
+                                    <div className={`absolute top-[100%] z-20 w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white  ${isHompage ? "text-black" : "text-white"}`}>
                                         <Link href="/properties" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
                                             Properties
                                         </Link>
@@ -136,7 +136,7 @@ const Navbar = () => {
                                 Booking List
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu === 2 && (
-                                    <div className='absolute text-[13px] top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white text-black'>
+                                    <div className={`absolute top-[100%] z-20 w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white  ${isHompage ? "text-black" : "text-white"}`}>
                                         <Link href="/booking" className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>Booking</Link>
                                         <hr className="text-gray-300" />
                                         <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
