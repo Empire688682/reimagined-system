@@ -4,8 +4,12 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { CiFilter } from "react-icons/ci";
 import { useGlobalContext } from "../Context";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaBed } from "react-icons/fa";
+import { FaToilet } from "react-icons/fa";
+import { MdSquareFoot } from "react-icons/md";
 
-const BeautyfulInterior = () => {
+const allPropts = () => {
   const [index, setIndex] = useState(8);
   const [searchQuery, setSearchQuery] = useState("");
   const { route, allPropts } = useGlobalContext();
@@ -42,10 +46,7 @@ const BeautyfulInterior = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredProperties.length > 0 ? (
           filteredProperties.map((property) => (
-            <div
-              key={property.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
-            >
+            <div key={property.id} className="shadow-lg rounded-lg overflow-hidden" onClick={() => route.push(`/properties/${property.id}`)}>
               {/* Image Wrapper */}
               <div className="relative w-full h-56">
                 <Image
@@ -59,24 +60,30 @@ const BeautyfulInterior = () => {
 
               {/* Content */}
               <div className="p-4 text-[#23396A]">
-                <h2 className="font-semibold mb-2">
-                  {property.title}
-                </h2>
-                <p className="text-gray-500 mb-3">
-                  {property.location}
-                </p>
-
+                <div className="flex items-center gap-2 mb-2">
+                  <FaLocationDot />
+                  <p className="text-[#23396A]">{property.location}</p>
+                </div>
+                <h2 className="font-semibold md:text-lg text-1xl mb-2">{property.title}</h2>
+                <div className="flex items-center gap-4 my-3 text-gray-400">
+                  <div className="flex items-center gap-1  border border-gray-300 px-1">
+                    <FaBed />
+                    <p className="text-sm">{property.beds}</p>
+                  </div>
+                  <div className="flex items-center gap-1 border border-gray-300 px-1">
+                    <FaToilet />
+                    <p className="text-sm">{property.bathrooms}</p>
+                  </div>
+                  <div className="flex items-center gap-1 border border-gray-300 px-1">
+                    <MdSquareFoot />
+                    <p className="text-sm">{property.size}</p>
+                  </div>
+                </div>
                 {/* Price & Details */}
                 <div className="flex justify-between items-center">
-                  <p className="font-bold text-[#23396A]">
+                  <p className="text-1xl font-bold text-[#23396A]">
                     #{property.price?.toLocaleString()}
                   </p>
-                  <span
-                    className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline"
-                    onClick={() => route.push(`/properties/${property.id}`)}
-                  >
-                    Details <FaArrowRight />
-                  </span>
                 </div>
               </div>
             </div>
@@ -103,4 +110,4 @@ const BeautyfulInterior = () => {
   );
 };
 
-export default BeautyfulInterior;
+export default allPropts;

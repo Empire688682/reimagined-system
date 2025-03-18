@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaBed } from "react-icons/fa";
+import { FaToilet } from "react-icons/fa";
+import { MdSquareFoot } from "react-icons/md";
 
 const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, amenities, relatedProperties, data }) => {
   const { route } = useGlobalContext();
@@ -33,7 +37,7 @@ const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, 
         {/* Property Info */}
         <div>
           <p className="text-sm text-[#23396A] pb-4">Rent * Furnished</p>
-          <h1 className="md:text-3xl sm:text-2xl text-2xl font-semibold pb-3">
+          <h1 className="md:text-2xl sm:text-2xl text-1xl font-semibold pb-3">
             {title}
           </h1>
           <p className="flex gap-4 text-gray-500 pb-3">
@@ -41,21 +45,21 @@ const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, 
           </p>
 
           <div className="flex gap-4 pb-3 items-center">
-            <p className="md:text-3xl text-2xl font-semibold">
+            <p className="md:text-2xl text-1xl font-semibold">
               #{price?.toLocaleString()}
             </p>
             {oldPrice && <span className="text-gray-500 text-sm line-through">#{oldPrice?.toLocaleString()}</span>}
-            {discount && <span className="text-sm text-red-500">{discount}% Off</span>}
+            {discount && <span className="text-sm text-red-500">{discount}</span>}
           </div>
 
           {/* Amenities Summary */}
           <div className="flex gap-4 items-center pb-4">
-            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.beds} Bed</p>
-            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.bathrooms} Bathroom</p>
-            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm md:text-xl">{data.size} Sq feet</p>
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.beds} Bed</p>
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.bathrooms} Bathroom</p>
+            <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.size}</p>
           </div>
 
-          <button className="bg-[#23396A] text-sm md:text-xl cursor-pointer py-3 px-6 text-white">
+          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white">
             Book Now
           </button>
         </div>
@@ -114,27 +118,44 @@ const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, 
         <h2 className="text-2xl font-semibold text-center">You may also like</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {relatedProperties?.map((property) => (
-            <div key={property.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div key={property.id} className="shadow-lg rounded-lg overflow-hidden" onClick={() => route.push(`/properties/${property.id}`)}>
+              {/* Image Wrapper */}
               <div className="relative w-full h-56">
                 <Image
                   src={property.images?.[0]}
-                  alt="Property Image"
+                  alt={property.title}
                   fill
                   style={{ objectFit: "cover" }}
                   className="transition-transform transform hover:scale-105 rounded-lg"
                 />
               </div>
+
+              {/* Content */}
               <div className="p-4 text-[#23396A]">
-                <h2 className="font-semibold mb-2">{property.title}</h2>
-                <p className="text-gray-500 mb-3">{property.location}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <FaLocationDot />
+                  <p className="text-[#23396A]">{property.location}</p>
+                </div>
+                <h2 className="font-semibold md:text-lg text-1xl mb-2">{property.title}</h2>
+                <div className="flex items-center gap-4 my-3 text-gray-400">
+                  <div className="flex items-center gap-1  border border-gray-300 px-1">
+                    <FaBed />
+                    <p className="text-sm">{property.beds}</p>
+                  </div>
+                  <div className="flex items-center gap-1 border border-gray-300 px-1">
+                    <FaToilet />
+                    <p className="text-sm">{property.bathrooms}</p>
+                  </div>
+                  <div className="flex items-center gap-1 border border-gray-300 px-1">
+                    <MdSquareFoot />
+                    <p className="text-sm">{property.size}</p>
+                  </div>
+                </div>
+                {/* Price & Details */}
                 <div className="flex justify-between items-center">
-                  <p className="text-1xl font-bold text-[#23396A]">#{property.price?.toLocaleString()}</p>
-                  <span
-                    className="flex items-center gap-2 text-gray-700 cursor-pointer hover:underline"
-                    onClick={() => route.push(`/properties/${property.id}`)}
-                  >
-                    Details <FaArrowRight />
-                  </span>
+                  <p className="text-1xl font-bold text-[#23396A]">
+                    #{property.price?.toLocaleString()}
+                  </p>
                 </div>
               </div>
             </div>

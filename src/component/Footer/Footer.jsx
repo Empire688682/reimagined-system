@@ -4,8 +4,8 @@ import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#23396A] text-white py-12 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[#23396A] md:bg-[#F1F9FF] md:p-16 text-white py-12 px-6">
+      <div className="max-w-7xl md:bg-[#23396A] md:rounded-2xl md:p-8 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Logo & Description */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
           <Image 
@@ -17,50 +17,38 @@ const Footer = () => {
             className="mb-4"
           />
           <p className="text-gray-300 text-sm">Providing you with movie sets from where you want.</p>
-          <div className="mt-4">
-            <h4 className="text-[15px] font-semibold mb-3">Follow Us:</h4>
-            <div className="flex gap-4">
-              <FaInstagram className="cursor-pointer hover:text-gray-300 transition" />
-              <FaLinkedinIn className="cursor-pointer hover:text-gray-300 transition" />
-              <FaTwitter className="cursor-pointer hover:text-gray-300 transition" />
-            </div>
-          </div>
         </div>
         
-        {/* About */}
+        {/* Main Pages */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-[15px] font-semibold mb-3">About</h3>
+          <h3 className="text-[15px] font-semibold mb-3">Main Pages</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li className="cursor-pointer hover:text-white transition">About Us</li>
-            <li className="cursor-pointer hover:text-white transition">Features</li>
-            <li className="cursor-pointer hover:text-white transition">FAQ</li>
+            <li className="cursor-pointer hover:text-white transition">Home</li>
+            <li className="cursor-pointer hover:text-white transition">Contact</li>
+            <li className="cursor-pointer hover:text-white transition">About</li>
+            <li className="cursor-pointer hover:text-white transition">How It Works</li>
           </ul>
         </div>
         
-        {/* Categories */}
+        {/* Other Pages */}
         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-[15px] font-semibold mb-3">Categories</h3>
+          <h3 className="text-[15px] font-semibold mb-3">Other Pages</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li className="cursor-pointer hover:text-white transition">Book a space</li>
-            <li className="cursor-pointer hover:text-white transition">List a space</li>
-            <li className="cursor-pointer hover:text-white transition">Etc</li>
+            <li className="cursor-pointer hover:text-white transition">Properties</li>
+            <li className="cursor-pointer hover:text-white transition">Agent</li>
+            <li className="cursor-pointer hover:text-white transition">Blogs</li>
           </ul>
         </div>
         
-        {/* Newsletter */}
-        <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
-          <h3 className="text-[15px] font-semibold mb-3">Newsletter</h3>
-          <p className="text-gray-300 text-sm mb-4">Don't miss important information from us.</p>
-          <div className="flex items-center bg-white overflow-hidden rounded-lg">
-            <input 
-              type="email" 
-              placeholder="Email Address" 
-              className="w-full p-2 text-black outline-none"
-            />
-            <button className="bg-blue-600 hover:bg-blue-700 transition cursor-pointer text-white px-4 py-2">
-              Subscribe
-            </button>
-          </div>
+         {/* Follow Us */}
+         <div className="flex flex-col justify-center md:justify-start items-center md:items-start">
+          <h3 className="text-[15px] font-semibold mb-3">Follow Us</h3>
+          <ul className="space-y-2 text-gray-300 text-sm">
+            <li className="cursor-pointer hover:text-white transition">LinkedIn</li>
+            <li className="cursor-pointer hover:text-white transition">Instagram</li>
+            <li className="cursor-pointer hover:text-white transition">Facebook</li>
+            <li className="cursor-pointer hover:text-white transition">Twitter</li>
+          </ul>
         </div>
       </div>
       

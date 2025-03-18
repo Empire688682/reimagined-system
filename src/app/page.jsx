@@ -1,30 +1,32 @@
 import React from 'react';
 import Hero from '@/component/Hero/Hero';
-import BestProps from '@/component/BestProps/BestProps';
+import Services from '@/component/Services/Services';
 import Footer from '@/component/Footer/Footer';
 import Image from "next/image";
 import About from '@/component/About/About';
-import CurrentListings from '@/component/CurrentListings/CurrentListings';
+import Properties from '@/component/Properties/Properties';
+import Features from '@/component/Features/Features';
+import Journey from '@/component/Journey/Journey';
 
 const Page = () => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full bg-[#F1F9FF]">
       <Hero />
-      <BestProps />
-      
+      <Services />
+      <Properties />
       {/* Background Image Section */}
-      <div className="relative w-full min-h-[80vh] flex items-center justify-start">
+      <div className="relative w-full min-h-[80vh] flex items-center justify-start mb-8">
         <Image
           priority
-          src="/hero-img-2.png"
-          alt="Hero Image"
+          src="/banner.png"
+          alt="Hero Banner"
           fill
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          style={{objectFit:"cover"}}
         />
       </div>
 
-      <About />
-      <CurrentListings />
+      <Features />
+      <Journey />
       <Footer />
     </div>
   );

@@ -24,7 +24,7 @@ const About = () => {
                         <Image
                             src='/best-prop-frame-1.png'
                             alt='Hero Image'
-                            width={300} // Adjusted width for better scaling
+                            width={300}
                             height={400}
                             style={{ objectFit: "cover" }}
                         />
@@ -33,7 +33,7 @@ const About = () => {
                         <Image
                             src='/best-prop-frame-2.png'
                             alt='Hero Image'
-                            width={300} // Adjusted width
+                            width={300}
                             height={400}
                             style={{ objectFit: "cover" }}
                         />
