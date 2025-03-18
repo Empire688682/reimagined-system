@@ -5,6 +5,7 @@ import { IoMdArrowDown, IoMdCheckmark } from "react-icons/io";
 import Image from "next/image";
 import listings from "../Data";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { IoReturnDownBack } from "react-icons/io5";
 
 const ListingHistory = () => {
     const [allListing, setAllListing] = useState([]);
@@ -26,7 +27,7 @@ const ListingHistory = () => {
             <div className="max-w-7xl mx-auto px-6 mt-24 md:mt-30 pb-15">
             <h1 className="text-center text-xl font-semibold mb-4">Listing History</h1>
             <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-                <table className="w-full border border-gray-200 rounded-lg">
+                <table className="w-full m-w-[500px] border border-gray-200 rounded-lg">
                     {/* Table Header */}
                     <thead className="bg-gray-100 text-gray-700">
                         <tr>
@@ -60,7 +61,9 @@ const ListingHistory = () => {
                                             ? "bg-red-100 text-red-600 border border-red-500"
                                             : "bg-green-100 text-green-600 border border-green-500"
                                         }`}>
-                                        <IoMdCheckmark className="mr-1" />
+                                        {
+                                            listing.status === "Paid" ? <IoMdCheckmark className="mr-2" /> : <IoReturnDownBack className="mr-2 text-lg" /> 
+                                        }
                                         {listing.status}
                                     </div>
                                 </td>
