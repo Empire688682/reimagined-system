@@ -1,8 +1,11 @@
+"use client"
 import React from 'react';
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
+import { useGlobalContext } from '../Context';
 
 const Hero = () => {
+    const {route} = useGlobalContext()
     return (
         <div className="w-full min-h-screen text-center max-w-7xl mx-auto pb-10">
             <div className="relative text-white text-flex-start pr-6 pl-6 pb-10 gap-3 flex flex-col pt-30">
@@ -34,7 +37,7 @@ const Hero = () => {
                 />
 
                 {/* Search Box */}
-                <div className="absolute top-[-12px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md">
+                <div className="absolute top-[-12px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md" onClick={()=>route.push("/properties")}>
                     <input type="text" placeholder='Search Location' className="outline-none px-2" />
                     <div className='bg-[#23396A] w-7 h-7 flex items-center justify-center rounded-full'>
                         <CiSearch className="text-gray-500 font-bold text-white" />

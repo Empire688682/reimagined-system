@@ -15,7 +15,7 @@ const Page = () => {
       <Services />
       <Properties />
       {/* Background Image Section */}
-      <div className="relative w-full min-h-[80vh] flex items-center justify-start mb-8">
+      <div className="relative w-full min-h-[300px] flex items-center justify-start mb-8">
         <Image
           priority
           src="/banner.png"

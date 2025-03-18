@@ -7,7 +7,7 @@ const Journey = () => {
         <section className="max-w-7xl mx-auto px-6 py-6 md:p-16">
             <div className='grid grid-cols-1 md:items-center md:grid-cols-2 gap-10'>
                 {/** Col one */}
-                <div className='w-full hidden md:block'>
+                <div className='w-full  md:block'>
                     <div className='grid grid-cols-2 gap-5'>
                         <div className='min-h-[400px] relative overflow-hidden rounded-lg w-full'>
                             <Image

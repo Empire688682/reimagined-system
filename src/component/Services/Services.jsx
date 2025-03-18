@@ -52,7 +52,7 @@ const Services = () => {
             ))
           }
         </div>
-        <div className='relative min-h-[300px] h-full md:block hidden w-full'>
+        <div className='relative min-h-[300px] h-full md:block w-full'>
           <Image
             priority={true}
             fill
