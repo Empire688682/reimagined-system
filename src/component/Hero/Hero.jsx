@@ -37,8 +37,17 @@ const Hero = () => {
                 />
 
                 {/* Search Box */}
-                <div className="absolute top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md" onClick={()=>route.push("/properties")}>
-                    <input type="text" placeholder='Search Location' className="outline-none px-2" />
+                {
+                    //<div className="absolute top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md" onClick={()=>route.push("/properties")}>
+                    //<input type="text" placeholder='Search Location' className="outline-none px-2" />
+                    //<div className='bg-[#23396A] w-7 h-7 flex items-center justify-center rounded-full'>
+                    //    <CiSearch className="text-gray-500 font-bold text-white" />
+                   // </div>
+                //</div>
+                }
+                {/**Place Holder */}
+                <div className="absolute cursor-pointer top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]" onClick={()=>route.push("/properties")}>
+                    <p className=" text-start pr-2 flex-2">Search Location</p>
                     <div className='bg-[#23396A] w-7 h-7 flex items-center justify-center rounded-full'>
                         <CiSearch className="text-gray-500 font-bold text-white" />
                     </div>
