@@ -1,5 +1,11 @@
 import React from 'react';
-import Image from "next/image";
+import { FiCommand } from "react-icons/fi";
+import { FaMagic } from "react-icons/fa";
+import { FaLayerGroup } from "react-icons/fa";
+import { GiStarsStack } from "react-icons/gi";
+import { TiBookmark } from "react-icons/ti";
+import { HiOutlineCube } from "react-icons/hi2";
+
 
 const Features = () => {
     return (
@@ -14,22 +20,17 @@ const Features = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Feature Boxes */}
                 {[
-                    { img: "/personalized-icon.png", title: "Personalized Search" },
-                    { img: "/premium-icon.png", title: "Premium Listings" },
-                    { img: "/Vector-icon.png", title: "Expert Guidance" },
-                    { img: "/seamless-icon.png", title: "Seamless Process" },
-                    { img: "/trusted-icon.png", title: "Trusted Expertise" },
-                    { img: "/tailored-con.png", title: "Tailored Solutions" }
+                    { icon: <FiCommand />, title: "Personalized Search" },
+                    { icon: <FaMagic />, title: "Premium Listings" },
+                    { icon: <FaLayerGroup />, title: "Expert Guidance" },
+                     { icon: <GiStarsStack />, title: "Seamless Process" },
+                    { icon: <TiBookmark />, title: "Trusted Expertise" },
+                    { icon: <HiOutlineCube />, title: "Tailored Solutions" }
                 ].map((feature, index) => (
                     <div key={index} className='shadow-lg border border-gray-200 border-1 p-4 bg-white flex flex-col gap-4 md:items-start items-center'>
-                        <Image
-                            src={feature.img}
-                            alt={feature.title}
-                            width={40}
-                            height={40}
-                            className="transition-transform transform hover:scale-105"
-                            style={{ objectFit: "cover" }}
-                        />
+                        <div className="text-[#23396A] text-3xl">
+                            {feature.icon}  {/* Dynamically render the icon */}
+                        </div>
                         <div className='flex flex-col items-center justify-center gap-3 text-center'>
                             <h2 className='text-[#23396A] md:text-lg'>{feature.title}</h2>
                             <p className='text-gray-600'>At HomeQuest Reality, we understand that every client has unique needs</p>

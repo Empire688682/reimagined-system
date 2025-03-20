@@ -1,8 +1,10 @@
+"use client";
 import React from 'react';
 import Image from "next/image";
-import { FaLayerGroup } from "react-icons/fa6";
+import { useGlobalContext } from '../Context';
 
 const Journey = () => {
+    const {route} = useGlobalContext();
     return (
         <section className="max-w-7xl mx-auto px-6 py-6 md:p-16">
             <div className='grid grid-cols-1 md:items-center md:grid-cols-2 gap-10'>
@@ -46,7 +48,7 @@ const Journey = () => {
                         Your journey to finding the perfect movie starts with Ayinla Film. We are a platform that connects you with the best movie sets from where you want.
                     </h2>
                     <p className='text-[#23396A] text-sm pb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis dolorem soluta quibusdam officiis iure id, sunt, non odio nam ipsum accusamus nihil!</p>
-                    <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white">
+                    <button onClick={()=>route("/listing-history")} className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white">
                         Book Now
                     </button>
                 </div>
