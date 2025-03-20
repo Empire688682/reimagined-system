@@ -18,18 +18,16 @@ const statesAndCities = {
 // Define available job roles
 const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
 
-
 const Signup = () => {
     const { route } = useGlobalContext();
     const [formCategory, setFormCategory] = useState("Create Account");
     const [errorMsg, setErrorMsg] = useState("");
+
     // State to manage user input
     const [formData, setFormData] = useState({
-        //must datas
         name: "",
         email: "",
         password: "",
-        //Skip datas
         firstName: "",
         lastName: "",
         phone: "",
@@ -61,142 +59,71 @@ const Signup = () => {
     const handleCondition = () => {
         const { password } = formData;
         setFormCondition({
-            length: password.length >= 8,
-            character: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+            length: password.length >= 8, // Checks if password is at least 8 characters long
+            character: /[!@#$%^&*(),.?":{}|<>]/.test(password), // Checks if password contains a special character
         });
     };
-
-    console.log(formData);
 
     // Runs password validation whenever password state changes
     useEffect(() => {
         handleCondition();
     }, [formData.password]);
 
-    // Handles form submission with validation checks
+    // Handles form submission for initial account creation
     const handleCreateAcctFormSubmission = (e) => {
         e.preventDefault();
-
         const { name, email } = formData;
 
+        // Validate required fields
         if (!name.trim()) {
             setErrorMsg("Name is required");
-            setTimeout(() => {
-                setErrorMsg("");
-            }, 2000);
+            setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
         if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
             setErrorMsg("Please enter a valid email address");
-            setTimeout(() => {
-                setErrorMsg("");
-            }, 2000);
+            setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
         if (!formCondition.length || !formCondition.character) {
             setErrorMsg("Password must be at least 8 characters with a special character");
-            setTimeout(() => {
-                setErrorMsg("");
-            }, 2000);
+            setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
-        setFormCategory("Personal Details");
+
+        setFormCategory("Personal Details"); // Move to personal details form
         console.log("Form submitted successfully", formData);
-        alert("User push to Personal section");
+        alert("User pushed to Personal section");
     };
 
+    // Handles full form submission with additional details
     const handleFullFormSubmission = (e) => {
         e.preventDefault();
 
-        const {
-            name,
-            email,
-            firstName,
-            lastName,
-            phone,
-            state,
-            city,
-            job,
-        } = formData;
+        const { name, email, firstName, lastName, phone, state, city, job } = formData;
 
-        if (!name.trim()) {
-            setErrorMsg("Name is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
+        // Validate required fields
+        if (!name.trim() || !email.trim() || !/\S+@\S+\.\S+/.test(email) ||
+            !formCondition.length || !formCondition.character ||
+            !firstName.trim() || !lastName.trim() || !state.trim() || !city.trim() ||
+            !phone.trim() || !job.trim()) {
+            setErrorMsg("All fields are required");
+            setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
-        if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
-            setErrorMsg("Please enter a valid email address");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!formCondition.length || !formCondition.character) {
-            setErrorMsg("Password must be at least 8 characters with a special character");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!firstName.trim()) {
-            setErrorMsg("firstName is required");
-            return;
-        }
-        if (!lastName.trim()) {
-            setErrorMsg("lastName is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!state.trim()) {
-            setErrorMsg("state is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!city.trim()) {
-            setErrorMsg("city is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!phone.trim()) {
-            setErrorMsg("phone is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        if (!job.trim()) {
-            setErrorMsg("job is required");
-            setTimeout(() => {
-                setErrorMsg("")
-            }, 2000);
-            return;
-        }
-        route.push("/")
+
         console.log("Form submitted successfully", formData);
         alert("User registered with full details successfully");
-        setTimeout(() => {
-            route.push("/");
-        }, 2000);
-    }
+        setTimeout(() => route.push("/"), 2000);
+    };
 
+    // Handles skipping personal details
     const handleSkipClick = (e) => {
         e.preventDefault();
         console.log("Form submitted successfully", formData);
         alert("User registered with half details");
-        setTimeout(() => {
-            route.push("/");
-        }, 2000);
-    }
-
-
+        setTimeout(() => route.push("/"), 2000);
+    };
 
     return (
         <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
@@ -205,7 +132,7 @@ const Signup = () => {
                 <Image src="/colored-ayinla-logo.png" alt="Ayinla Logo" priority width={60} height={60} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory === "Create Account" ? "Create an Account" : "Personal Details"}</h1>
 
-                <form className="flex min-w-[300px] flex-col gap-4">
+                <form onSubmit={handleFullFormSubmission} className="flex min-w-[300px] max-w-[400px] flex-col gap-4">
                     {
                         formCategory === "Create Account" ?
                             <div className="flex flex-col w-full gap-4">
@@ -309,7 +236,7 @@ const Signup = () => {
                             <p className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md" onClick={handleCreateAcctFormSubmission}>
                                 Get Started
                             </p> :
-                            <button type="submit" onClick={handleFullFormSubmission} className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
+                            <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
                                 Proceed
                             </button>
                     }
@@ -326,6 +253,19 @@ const Signup = () => {
                     }
 
                 </form>
+                {
+                    formCategory === "Create Account" && <div className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100">
+                        <Image
+                            src="/google-icon.png"
+                            alt="Google Logo"
+                            width={24}
+                            height={24}
+                            className="mr-2"
+                        />
+                        <span className="text-gray-700 text-sm font-medium">Sign up with Google</span>
+                    </div>
+                }
+
             </div>
         </div>
     );

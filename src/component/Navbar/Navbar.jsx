@@ -96,7 +96,7 @@ const Navbar = () => {
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]">Sign In</button>
+                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]" onClick={()=>{route.push("/signin"); setIsOpen(false)}}>Sign In</button>
                     <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
                 </div>
             </div>
@@ -151,7 +151,7 @@ const Navbar = () => {
                         </ul>
                         {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>
-                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]">Sign In</button>
+                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={()=>{route.push("/signin"); setIsOpen(false)}}>Sign In</button>
                             <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
                         </div>
                     </div>
