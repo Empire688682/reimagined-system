@@ -30,7 +30,7 @@ const BookingFAQ = () => {
       {/* Content goes here */}
       <div className='grid grid-cols-1 md:grid-cols-2 justify-between gap-4'>
         <div className='text-[#23396A] text-center md:text-left md:w-[50%] w-full'>
-          <h1 className='text-2xl md:text-3xl font-bold'>General FAQs</h1>
+          <h1 className='text-2xl md:text-2xl font-bold'>General FAQs</h1>
         </div>
         {/* Questions and Answers */}
         <div className='text-[#23396A] w-full flex flex-col gap-7'>

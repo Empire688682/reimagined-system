@@ -12,7 +12,7 @@ const BookingHero = () => {
             <Image
                 priority={true}
                 fill
-                src="/property-1.png"
+                src="/booking-hero-img.png"
                 alt="Hero Image"
                 className="absolute z-[-1] top-0 left-0 w-full h-full object-cover"
             />

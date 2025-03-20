@@ -1,8 +1,11 @@
+"use client";
 import React from 'react';
 import Image from "next/image";
 import { FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { useGlobalContext } from '../Context';
 
 const Footer = () => {
+  const {route} = useGlobalContext();
   return (
     <footer className="bg-[#23396A] md:bg-[#F1F9FF] md:p-16 text-white py-12 px-6">
       <div className="max-w-7xl md:bg-[#23396A] md:rounded-2xl md:p-8 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -23,10 +26,10 @@ const Footer = () => {
         <div className="flex flex-col justify-center md:justify-start items-center text-center md:text-start md:items-start">
           <h3 className="text-[15px] font-semibold mb-3">Main Pages</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li className="cursor-pointer hover:text-white transition">Home</li>
-            <li className="cursor-pointer hover:text-white transition">Contact</li>
-            <li className="cursor-pointer hover:text-white transition">About</li>
-            <li className="cursor-pointer hover:text-white transition">How It Works</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={()=>route.push("/")}>Home</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={()=>route.push("/")}>Contact</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={()=>route.push("/")}>About</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={()=>route.push("/")}>How It Works</li>
           </ul>
         </div>
         

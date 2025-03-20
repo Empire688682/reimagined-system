@@ -15,8 +15,8 @@ const BookingTopLocation = () => {
     <section className='bg-[#F1F9FF] md:p-16 p-4'>
       {/* Section Header */}
       <div className='flex justify-between items-center'>
-        <p className='md:text-2xl text-1xl sm:text-1xl font-bold'>Top Locations</p>
-        <span className='md:text-2xl text-1xl cursor-pointer sm:text-1xl font-bold'>More Listing</span>
+        <p className='md:text-lg text-base sm:text-1xl font-bold'>Top Locations</p>
+        <span className='md:text-lg text-base cursor-pointer sm:text-1xl font-bold'>More Listing</span>
       </div>
       
       {/* Grid Layout for Property Listings */}
@@ -46,7 +46,7 @@ const BookingTopLocation = () => {
               </div>
               
               {/* Property Title */}
-              <h2 className="font-semibold md:text-lg text-1xl mb-2">{property.title}</h2>
+              <h2 className="font-semibold text-1xl mb-2">{property.title}</h2>
               
               {/* Property Details (Beds, Bathrooms, Size) */}
               <div className="flex items-center gap-4 my-3 text-gray-400">
