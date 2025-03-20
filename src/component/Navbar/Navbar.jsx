@@ -5,8 +5,10 @@ import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import Link from 'next/link';
+import { useGlobalContext } from '../Context';
 
 const Navbar = () => {
+    const {route} = useGlobalContext();
     const [isOpen, setIsOpen] = useState(false);
     const [openSubMenu, setOpenSubMenu] = useState({});
 
@@ -72,7 +74,7 @@ const Navbar = () => {
                                     Listing history
                                 </Link>
                                 <hr className="text-gray-300" />
-                                <span className="text-xs cursor-pointer font-semibold">Listing Request Status</span>
+                                <span className="text-xs cursor-pointer font-semibold text-black">Listing Request Status</span>
                             </div>
                         )}
                     </li>
@@ -95,7 +97,7 @@ const Navbar = () => {
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
                     <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]">Sign In</button>
-                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]">Sign Up</button>
+                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
                 </div>
             </div>
 
@@ -147,9 +149,10 @@ const Navbar = () => {
                             <li className={`text-white cursor-pointer text-[14px]`}>FAQ'S</li>
                             <li className={`text-white cursor-pointer text-[14px]`}>Contact Information</li>
                         </ul>
+                        {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>
                             <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]">Sign In</button>
-                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]">Sign Up</button>
+                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
                         </div>
                     </div>
                 )}
