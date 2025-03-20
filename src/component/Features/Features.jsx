@@ -20,16 +20,16 @@ const Features = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Feature Boxes */}
                 {[
-                    { icon: <FiCommand />, title: "Personalized Search" },
-                    { icon: <FaMagic />, title: "Premium Listings" },
-                    { icon: <FaLayerGroup />, title: "Expert Guidance" },
-                     { icon: <GiStarsStack />, title: "Seamless Process" },
-                    { icon: <TiBookmark />, title: "Trusted Expertise" },
-                    { icon: <HiOutlineCube />, title: "Tailored Solutions" }
+                    { icon: <FiCommand className="text-[#23396A] text-3xl" />, title: "Personalized Search" },
+                    { icon: <FaMagic className="text-[#23396A] text-3xl"/>, title: "Premium Listings" },
+                    { icon: <FaLayerGroup className="text-[#23396A] text-3xl"/>, title: "Expert Guidance" },
+                     { icon: <GiStarsStack className="text-[#23396A] text-3xl" />, title: "Seamless Process" },
+                    { icon: <TiBookmark className="text-[#23396A] text-3xl"/>, title: "Trusted Expertise" },
+                    { icon: <HiOutlineCube className="text-[#23396A] text-3xl"/>, title: "Tailored Solutions" }
                 ].map((feature, index) => (
                     <div key={index} className='shadow-lg border border-gray-200 border-1 p-4 bg-white flex flex-col gap-4 md:items-start items-center'>
                         <div className="text-[#23396A] text-3xl">
-                            {feature.icon}  {/* Dynamically render the icon */}
+                            {feature.icon}
                         </div>
                         <div className='flex flex-col items-center justify-center gap-3 text-center'>
                             <h2 className='text-[#23396A] md:text-lg'>{feature.title}</h2>
