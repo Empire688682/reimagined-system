@@ -69,7 +69,7 @@ const Hero = () => {
                         ))
                     }
                 </div>
-                <p className='mt-3 text-gray-700 max-w-[400px] mx-auto'>Guiding me through every step of the process and ensuring i found the perfect film set</p>
+                <p className='mt-3 text-gray-700 max-w-[300px] md:max-w-[400px] mx-auto'>Guiding me through every step of the process and ensuring i found the perfect film set</p>
                 <div className='flex items-center gap-4 mt-6 justify-center'>
                     <Image
                         priority={true}
