@@ -95,14 +95,18 @@ const Signup = () => {
     const handleFullFormSubmission = (e) => {
         e.preventDefault();
 
-        const { email, firstName, lastName, phone, state, city, job } = formData;
+        const { email, firstName, lastName, phone, job } = formData;
 
         // Validate required fields
-        if (!email.trim() || !/\S+@\S+\.\S+/.test(email) ||
-            !formCondition.length || !formCondition.character ||
+        if (!email.trim() || !/\S+@\S+\.\S+/.test(email)||
             !firstName.trim() || !lastName.trim() ||
-            !phone.trim()) {
+            !phone.trim() || !job.trim()) {
             setErrorMsg("All fields are required");
+            setTimeout(() => setErrorMsg(""), 2000);
+            return;
+        }
+        if(!formCondition.length || !formCondition.character ){
+            setErrorMsg("Password must be at least 8 characters long with special character");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
