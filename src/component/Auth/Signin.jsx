@@ -85,6 +85,13 @@ const Signin = () => {
                             }
                         </label>
                     </div>
+                    <div className="flex justify-between text-sm">
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" className="cursor-pointer" />
+                            <p>Remember me</p>
+                        </div>
+                        <p className="text-sm text-blue-500 cursor-pointer">Forgot password</p>
+                    </div>
                     <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
                         Sign in
                     </button>
