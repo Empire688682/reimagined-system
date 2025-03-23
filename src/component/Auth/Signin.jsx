@@ -72,16 +72,16 @@ const Signin = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
-            <div className="flex flex-col gap-4 items-center">
+        <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2   py-30 md:px-16 px-4">
+            <div className="flex flex-col max-w-[500px] min-w-[300px] md:min-w-[350px] m-auto gap-4 items-center">
                 {/* Logo */}
                 <Image src="/colored-ayinla-logo.png" alt="Ayinla Logo" priority width={60} height={60} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
                 {
                     formCategory === "Login" ?
-                    <p className="text-gray-700">Welcome back! Please enter your details</p>
-                    :
-                    <p className="text-gray-700">Please enter your email to reset your password</p>
+                        <p className="text-gray-700">Welcome back! Please enter your details</p>
+                        :
+                        <p className="text-gray-700">Please enter your email to reset your password</p>
                 }
                 <form onSubmit={handleFormSubmission} className="flex w-full flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
@@ -148,6 +148,15 @@ const Signin = () => {
                         <span className="text-blue-500 cursor-pointer" onClick={() => route.push("/signup")}>Sign up</span>
                     </div>
                 }
+            </div>
+            <div className='relative h-[screen] hidden h-full md:block w-full'>
+                <Image
+                    priority={true}
+                    fill
+                    src="/service-img.png"
+                    alt="Hero Image"
+                    style={{ objectFit: "cover" }}
+                />
             </div>
         </div>
     );

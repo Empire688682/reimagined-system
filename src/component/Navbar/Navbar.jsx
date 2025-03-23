@@ -110,7 +110,7 @@ const Navbar = () => {
                     <IoMenuOutline className={`text-4xl ${isHompage ? "text-black" : "text-white"} cursor-pointer`} />
                 </div>
                 {isOpen && (
-                    <div className='absolute top-14 left-0 py-4 w-full min-h-screen bg-blue-400 flex flex-col justify-center items-center z-10'>
+                    <div className='absolute top-15 left-0 py-4 w-full  min-h-screen bg-blue-400 flex flex-col justify-center items-center z-10'>
                         <ul className='flex flex-col gap-8'>
                             <Link href="/" className='text-white text-[14px] cursor-pointer' onClick={() => setIsOpen(false)}>Home</Link>
                             <li className='flex relative items-center text-white text-[14px] cursor-pointer' onClick={() => handleSubMenu(1)}>
