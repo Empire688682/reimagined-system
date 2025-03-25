@@ -5,13 +5,15 @@ import { useParams } from "next/navigation";
 import SingleProptsCart from "@/component/SingleProptsCart/SingleProptsCart";
 import { useGlobalContext } from "@/component/Context";
 import LoadingSpinner from "@/component/LoadingSpinner/LoadingSpinner";
+import BookingAddressModal from "@/component/BookingAddressModal/BookingAddressModal";
 
 const Page = () => {
   const { allPropts } = useGlobalContext();
   const { slug } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [relatedProps, setRelatedProps] = useState([])
+  const [relatedProps, setRelatedProps] = useState([]);
+  const [addressModal, setAddressModal] = useState(true);
 
   useEffect(() => {
     if (!slug || !allPropts.length) return; 
@@ -37,7 +39,12 @@ const Page = () => {
           <LoadingSpinner/>
           </div>
       ) : data ? (
-        <div>
+        <div className="relative">
+          {
+            addressModal && <div className='absolute w-full bg-gray-600 top-0 z-[999] flex items-center h-screen'>
+              <BookingAddressModal/>
+            </div>
+          }
           <SingleProptsCart
             data={data}
             title={data.title}
