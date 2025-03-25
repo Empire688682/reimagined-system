@@ -42,7 +42,7 @@ const BookingAddressModal = () => {
             name='sDate'
             value={formData.sDate}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
           />
         </label>
 
@@ -55,7 +55,7 @@ const BookingAddressModal = () => {
             name='eDate'
             value={formData.eDate}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
           />
         </label>
 
@@ -68,7 +68,7 @@ const BookingAddressModal = () => {
             name='sTime'
             value={formData.sTime}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
           />
         </label>
 
@@ -81,7 +81,7 @@ const BookingAddressModal = () => {
             name='eTime'
             value={formData.eTime}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
           />
         </label>
 
@@ -94,7 +94,7 @@ const BookingAddressModal = () => {
             name='noCast'
             value={formData.noCast}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
             min='1'
           />
         </label>
