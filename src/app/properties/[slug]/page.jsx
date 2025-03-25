@@ -41,7 +41,7 @@ const Page = () => {
       ) : data ? (
         <div className="relative">
           {
-            addressModal && <div className='absolute w-full bg-gray-600 top-0 z-[999] flex items-center h-screen'>
+            addressModal && <div className='absolute w-full bg-gray-600 top-0 z-[999] flex items-center min-h-screen p-5'>
               <BookingAddressModal/>
             </div>
           }
