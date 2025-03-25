@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 const BookingAddressModal = () => {
   const [formData, setFormData] = useState({
-    sDate: new Date().toISOString().split('T')[0],
-    eDate: new Date().toISOString().split('T')[0],
-    sTime: new Date().toTimeString().split(' ')[0].slice(0, 5),
-    eTime: new Date().toTimeString().split(' ')[0].slice(0, 5),
+    sDate: "",
+    eDate: "",
+    sTime: "",
+    eTime: "",
     noCast: '',
     cleanUp: false,
     inspecting: false,
@@ -36,6 +36,7 @@ const BookingAddressModal = () => {
         <label htmlFor='sDate' className='flex flex-col text-gray-700 text-sm'>
           Start Date
           <input
+            required
             type='date'
             id='sDate'
             name='sDate'
@@ -48,6 +49,7 @@ const BookingAddressModal = () => {
         <label htmlFor='eDate' className='flex flex-col text-gray-700 text-sm'>
           End Date
           <input
+            required
             type='date'
             id='eDate'
             name='eDate'
@@ -60,6 +62,7 @@ const BookingAddressModal = () => {
         <label htmlFor='sTime' className='flex flex-col text-gray-700 text-sm'>
           Start Time
           <input
+            required
             type='time'
             id='sTime'
             name='sTime'
@@ -72,6 +75,7 @@ const BookingAddressModal = () => {
         <label htmlFor='eTime' className='flex flex-col text-gray-700 text-sm'>
           End Time
           <input
+            required
             type='time'
             id='eTime'
             name='eTime'
@@ -84,6 +88,7 @@ const BookingAddressModal = () => {
         <label htmlFor='noCast' className='flex flex-col text-gray-700 text-sm'>
           Number of Cast and Crew
           <input
+            required
             type='number'
             id='noCast'
             name='noCast'
@@ -96,6 +101,7 @@ const BookingAddressModal = () => {
 
         <label className='flex items-center gap-2 text-gray-700 text-sm'>
           <input
+            required
             type='checkbox'
             id='cleanUp'
             name='cleanUp'
@@ -107,6 +113,7 @@ const BookingAddressModal = () => {
 
         <label className='flex items-center gap-2 text-gray-700 text-sm'>
           <input
+            required
             type='checkbox'
             id='inspecting'
             name='inspecting'
