@@ -8,11 +8,21 @@ import { FaBed } from "react-icons/fa";
 import { FaToilet } from "react-icons/fa";
 import { MdSquareFoot } from "react-icons/md";
 
-const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, amenities, relatedProperties, data }) => {
+const SingleProptsCart = ({ title,
+   location, 
+   price, 
+   oldPrice, 
+   discount, 
+   images, 
+   amenities, 
+   relatedProperties, 
+   data,
+   setAddressModal
+}) => {
   const { route } = useGlobalContext();
 
   return (
-    <div className="md:p-16 p-4 mt-20">
+    <div className="md:p-16 p-4 mt-15 md:mt-20">
       {/* Property Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
         {/* Image Gallery */}
@@ -59,7 +69,7 @@ const SingleProptsCart = ({ title, location, price, oldPrice, discount, images, 
             <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.size}</p>
           </div>
 
-          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white">
+          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>setAddressModal(true)}>
             Book Now
           </button>
         </div>

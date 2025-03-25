@@ -13,7 +13,16 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [relatedProps, setRelatedProps] = useState([]);
-  const [addressModal, setAddressModal] = useState(true);
+  const [addressModal, setAddressModal] = useState(false);
+  const [formData, setFormData] = useState({
+    sDate: "",
+    eDate: "",
+    sTime: "",
+    eTime: "",
+    noCast: '',
+    cleanUp: false,
+    inspecting: false,
+  });
 
   useEffect(() => {
     if (!slug || !allPropts.length) return; 
@@ -28,9 +37,13 @@ const Page = () => {
     setRelatedProps(relatedProperties || [])
 
     fetchProptsData();
-  }, [slug, allPropts]); // Add dependencies
+  }, [slug, allPropts]);
 
-  console.log("data:", data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setAddressModal(false)
+    console.log('Form Data Submitted:', formData);
+  };
 
   return (
     <>
@@ -41,8 +54,13 @@ const Page = () => {
       ) : data ? (
         <div className="relative">
           {
-            addressModal && <div className='absolute w-full bg-gray-600 top-0 z-[999] flex items-center min-h-screen p-5'>
-              <BookingAddressModal/>
+            addressModal && <div className='fixed w-full bg-gray-600 top-0 z-[9] flex items-center min-h-screen p-5'>
+              <BookingAddressModal
+              formData={formData}
+              setFormData={setFormData}
+              handleSubmit={handleSubmit}
+              setAddressModal={setAddressModal}
+                />
             </div>
           }
           <SingleProptsCart
@@ -55,6 +73,7 @@ const Page = () => {
             images={data.images}
             amenities={data.amenities}
             relatedProperties={relatedProps}
+            setAddressModal={setAddressModal}
           />
           <Footer />
         </div>
