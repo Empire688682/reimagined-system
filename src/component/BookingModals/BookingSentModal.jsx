@@ -4,6 +4,7 @@ import { useGlobalContext } from '../Context';
 import { motion } from 'framer-motion';
 
 const BookingSentModal = () => {
+    
     const { route } = useGlobalContext();
 
     return (

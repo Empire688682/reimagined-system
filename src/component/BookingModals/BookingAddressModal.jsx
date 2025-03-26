@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const BookingAddressModal = ({formData, setFormData, handleSubmit}) => {
 
+  //Onchange handler
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
