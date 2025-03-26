@@ -26,7 +26,7 @@ const ListingAddress = () => {
         console.log('Form Data Submitted:', formData);
     };
     return (
-        <section className='grid grid-cols-1 md:grid-cols-2 gap-20'>
+        <section className='grid grid-cols-1 md:grid-cols-2 mt-20 gap-20'>
             {/** Col one */}
             <div className='bg-white flex w-full flex-col gap-3 max-w-[300px] md:max-w-[450px] m-auto rounded-lg'>
                 <div>
