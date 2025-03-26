@@ -70,7 +70,7 @@ const Page = () => {
                   </div>
                 }
                 {
-                  requestSentModal && <div className='md:py-10 mt-30 w-full top-0  min-h-screen'>
+                  requestSentModal && <div className='md:py-10 mt-30 w-full h-screen'>
                     <BookingSentModal />
                   </div>
                 }
