@@ -11,7 +11,7 @@ const BookingAddressModal = ({formData, setFormData, handleSubmit}) => {
   };
 
   return (
-    <div className='bg-white flex flex-col gap-3 max-w-[450px] m-auto rounded-lg p-5'>
+    <div className='bg-white flex flex-col gap-3 max-w-[300px] md:max-w-[450px] m-auto rounded-lg p-5'>
       <div>
         <h1 className='font-semibold md:text-lg'>Booking Details</h1>
         <p className='text-sm'>Fill in the following details to schedule your booking.</p>

@@ -41,7 +41,7 @@ const BookingSentModal = () => {
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
                 className='bg-[#23396A] max-w-[300px] m-auto text-sm text-white py-2 cursor-pointer w-full flex justify-center border' 
-                onClick={() => route.push("/booking-history")}
+                onClick={() => {route.push("/booking-history"); window.scrollTo(0,0)}}
             >
                 See Booking History
             </motion.button>
