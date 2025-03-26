@@ -1,8 +1,11 @@
+"use client"
 import React from 'react';
 import Image from "next/image";
 import { FaLayerGroup } from "react-icons/fa6";
+import { useGlobalContext } from '../Context';
 
 const ListYourProps = () => {
+    const {route} = useGlobalContext();
     return (
         <section className="relative w-full min-h-screen md:pb-20 pt-15">
             <div className="relative w-full min-h-[90vh] flex items-center md:items-end justify-center md:justify-start md:pb-20">
@@ -19,7 +22,7 @@ const ListYourProps = () => {
                     <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
                         Earn Money For Listing Your Space
                     </h1>
-                    <button className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
+                    <button onClick={()=>{route.push(`/list-your-property/all-listing`); window.scrollTo(0,0)}} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
                         Get Started Now
                     </button>
                 </div>
