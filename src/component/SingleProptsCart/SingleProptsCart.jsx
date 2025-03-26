@@ -69,7 +69,7 @@ const SingleProptsCart = ({ title,
             <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.size}</p>
           </div>
 
-          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>setAddressModal(true)}>
+          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>{setAddressModal(true); window.scrollTo(0,0)}}>
             Book Now
           </button>
         </div>
