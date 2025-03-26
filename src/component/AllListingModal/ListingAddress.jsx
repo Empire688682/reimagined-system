@@ -26,11 +26,11 @@ const ListingAddress = () => {
         console.log('Form Data Submitted:', formData);
     };
     return (
-        <section className='grid grid-cols-1 md:grid-cols-2 mt-20 gap-20'>
+        <section className='grid grid-cols-1 md:grid-cols-2 mt-20 gap-10 py-10 '>
             {/** Col one */}
-            <div className='bg-white flex w-full flex-col gap-3 max-w-[300px] md:max-w-[450px] m-auto rounded-lg'>
+            <div className='bg-white flex w-full flex-col gap-3 max-w-[300px] md:max-w-[400px] m-auto rounded-lg'>
                 <div>
-                    <h1 className='font-semibold md:text-lg'>Details</h1>
+                    <h1 className='font-semibold md:text-lg'>Details Address</h1>
                     <p className='text-sm'>Fill in the following details to schedule your booking.</p>
                 </div>
                 <hr className='text-gray-300' />
