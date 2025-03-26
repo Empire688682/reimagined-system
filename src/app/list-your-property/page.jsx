@@ -1,5 +1,5 @@
 import Footer from '@/component/Footer/Footer'
-import Property from '@/component/Property/Property'
+import Property from '@/component/ListYourProps/ListYourProps'
 import React from 'react'
 
 const page = () => {

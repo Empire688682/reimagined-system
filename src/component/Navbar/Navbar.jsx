@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useGlobalContext } from '../Context';
 
 const Navbar = () => {
-    const {route} = useGlobalContext();
+    const { route } = useGlobalContext();
     const [isOpen, setIsOpen] = useState(false);
     const [openSubMenu, setOpenSubMenu] = useState({});
 
@@ -66,8 +66,8 @@ const Navbar = () => {
                                     Properties
                                 </Link>
                                 <hr className="text-gray-300" />
-                                <Link href="/property" passHref className="text-xs text-black cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
-                                    Property
+                                <Link href="/list-your-property" passHref className="text-xs text-black cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                    List your property
                                 </Link>
                                 <hr className="text-gray-300" />
                                 <Link href="/listing-history" passHref className="text-xs cursor-pointer font-semibold text-black" onClick={() => setIsOpen(false)}>
@@ -96,8 +96,8 @@ const Navbar = () => {
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]" onClick={()=>{route.push("/signin"); setIsOpen(false)}}>Sign In</button>
-                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
+                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
+                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
                 </div>
             </div>
 
@@ -122,8 +122,8 @@ const Navbar = () => {
                                             Properties
                                         </Link>
                                         <hr className="text-gray-300" />
-                                        <Link href="/property" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
-                                            Property
+                                        <Link href="/list-your-property" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
+                                            List your property
                                         </Link>
                                         <hr className="text-gray-300" />
                                         <Link href="/listing-history" passHref className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
@@ -151,8 +151,8 @@ const Navbar = () => {
                         </ul>
                         {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>
-                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={()=>{route.push("/signin"); setIsOpen(false)}}>Sign In</button>
-                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={()=>{route.push("/signup"); setIsOpen(false)}}>Sign Up</button>
+                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
+                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
                         </div>
                     </div>
                 )}

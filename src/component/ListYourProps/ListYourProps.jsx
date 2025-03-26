@@ -2,7 +2,7 @@ import React from 'react';
 import Image from "next/image";
 import { FaLayerGroup } from "react-icons/fa6";
 
-const Property = () => {
+const ListYourProps = () => {
     return (
         <section className="relative w-full min-h-screen md:pb-20 pt-15">
             <div className="relative w-full min-h-[90vh] flex items-center md:items-end justify-center md:justify-start md:pb-20">
@@ -15,7 +15,7 @@ const Property = () => {
                     style={{ objectFit: "cover" }}
                     className="absolute z-[-1] top-0 left-0 w-full h-full"
                 />
-                <div className='flex flex-col gap-5 md:px-16 px-6 text-center'>
+                <div className='flex flex-col gap-5 md:px-16 px-6 md:text-left text-center'>
                     <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
                         Earn Money For Listing Your Space
                     </h1>
@@ -25,19 +25,19 @@ const Property = () => {
                 </div>
             </div>
             <div className='px-6 md:px-16 py-10 flex flex-col gap-4'>
-                <p className='text-center text-[12px] border m-auto max-w-30 rounded-full border-blue-400 text-gray-500 px-2 py-3'>Dummy Text</p>
+                <p className='text-center text-[12px] border m-auto max-w-30 rounded-full border-blue-400 text-gray-500 px-2 py-3'>DUMMY TEXT</p>
                 <h1 className='text-center text-2xl font-semibold'>How it Works</h1>
                 <p className='text-center pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, numquam!</p>
                 {/** Two Col Content */}
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-20'>
                     {/** Col one */}
-                    <div className='relative w-full hidden md:block min-h-[300px]'>
+                    <div className='relative w-full min-h-[300px]'>
                         <Image
                             priority={true}
                             fill
-                            src="/property-1.png"
+                            src="/listing-yourspace-2-img.png"
                             alt="Hero Image"
-                            className="w-full h-full"
+                            className="rounded-2xl"
                             style={{ objectFit: "cover" }}
                         />
                     </div>
@@ -80,4 +80,4 @@ const Property = () => {
     )
 }
 
-export default Property
+export default ListYourProps
