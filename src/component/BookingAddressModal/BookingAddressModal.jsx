@@ -87,7 +87,6 @@ const BookingAddressModal = ({formData, setFormData, handleSubmit}) => {
 
         <label className='flex items-center gap-2 text-gray-700 text-sm'>
           <input
-            required
             type='checkbox'
             id='cleanUp'
             name='cleanUp'
@@ -99,7 +98,6 @@ const BookingAddressModal = ({formData, setFormData, handleSubmit}) => {
 
         <label className='flex items-center gap-2 text-gray-700 text-sm'>
           <input
-            required
             type='checkbox'
             id='inspecting'
             name='inspecting'

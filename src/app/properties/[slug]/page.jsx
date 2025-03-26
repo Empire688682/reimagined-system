@@ -54,7 +54,7 @@ const Page = () => {
       ) : data ? (
         <div className="relative">
           {
-            addressModal && <div className='fixed w-full bg-gray-600 top-0 z-[9] flex items-center min-h-screen p-5'>
+            addressModal && <div className='fixed md:py-10 w-full bg-gray-600 top-0 z-[9] flex items-center min-h-screen'>
               <BookingAddressModal
               formData={formData}
               setFormData={setFormData}

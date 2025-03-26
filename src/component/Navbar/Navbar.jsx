@@ -79,13 +79,13 @@ const Navbar = () => {
                         )}
                     </li>
                     <li className={`flex relative items-center ${isHompage ? "text-black" : "text-white"} cursor-pointer text-[14px]`} onClick={() => { handleSubMenu(2); }}>
-                        Booking List
+                        Booking
                         <IoIosArrowDown className={`ml-1 ${isHompage ? "text-black" : "text-white"} text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 2 && (
                             <div className={`absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white ${isHompage ? "text-black" : "text-white"} text-[13px]'`}>
                                 <Link href="/booking" className="text-xs text-black cursor-pointer font-semibold">Booking</Link>
                                 <hr className="text-gray-300" />
-                                <span className="text-xs text-black cursor-pointer font-semibold">Booking Status</span>
+                                <Link href="/booking-history" onClick={() => setIsOpen(false)} className="text-xs text-black cursor-pointer font-semibold">Booking history</Link>
                             </div>
                         )}
                     </li>
@@ -135,13 +135,13 @@ const Navbar = () => {
                                 )}
                             </li>
                             <li className='flex relative items-center text-[14px] text-white cursor-pointer' onClick={() => handleSubMenu(2)}>
-                                Booking List
+                                Booking
                                 <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                                 {openSubMenu === 2 && (
                                     <div className={`absolute top-[100%] text-black z-20 w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white`}>
                                         <Link href="/booking" className="text-xs cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>Booking</Link>
                                         <hr className="text-gray-300" />
-                                        <span className="text-xs cursor-pointer font-semibold">Booking Status</span>
+                                        <Link href="/booking-history" onClick={() => setIsOpen(false)} className="text-xs text-black cursor-pointer font-semibold">Booking history</Link>
                                     </div>
                                 )}
                             </li>
