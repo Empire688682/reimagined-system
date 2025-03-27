@@ -3,38 +3,38 @@ import Image from 'next/image';
 
 const statesCitiesAndLga = {
     "Lagos": {
-      "Ikeja": ["Ikeja LGA"],
-      "Surulere": ["Surulere LGA"],
-      "Lekki": ["Eti-Osa LGA"]
+        "Ikeja": ["Ikeja LGA"],
+        "Surulere": ["Surulere LGA"],
+        "Lekki": ["Eti-Osa LGA"]
     },
     "Abuja": {
-      "Garki": ["Abuja Municipal LGA"],
-      "Wuse": ["Abuja Municipal LGA"],
-      "Maitama": ["Abuja Municipal LGA"]
+        "Garki": ["Abuja Municipal LGA"],
+        "Wuse": ["Abuja Municipal LGA"],
+        "Maitama": ["Abuja Municipal LGA"]
     },
     "Kano": {
-      "Kano Municipal": ["Kano Municipal LGA"],
-      "Fagge": ["Fagge LGA"],
-      "Dala": ["Dala LGA"]
+        "Kano Municipal": ["Kano Municipal LGA"],
+        "Fagge": ["Fagge LGA"],
+        "Dala": ["Dala LGA"]
     },
     "Rivers": {
-      "Port Harcourt": ["Port Harcourt LGA"],
-      "Obio-Akpor": ["Obio-Akpor LGA"],
-      "Bonny": ["Bonny LGA"]
+        "Port Harcourt": ["Port Harcourt LGA"],
+        "Obio-Akpor": ["Obio-Akpor LGA"],
+        "Bonny": ["Bonny LGA"]
     },
     "Ogun": {
-      "Abeokuta": ["Abeokuta South LGA", "Abeokuta North LGA"],
-      "Ijebu-Ode": ["Ijebu-Ode LGA"],
-      "Sango Ota": ["Ado-Odo/Ota LGA"]
+        "Abeokuta": ["Abeokuta South LGA", "Abeokuta North LGA"],
+        "Ijebu-Ode": ["Ijebu-Ode LGA"],
+        "Sango Ota": ["Ado-Odo/Ota LGA"]
     },
     "Kogi": {
-      "Lokoja": ["Lokoja LGA"],
-      "Okene": ["Okene LGA"],
-      "Idah": ["Idah LGA"],
-      "Yagba West": ["Yagba West LGA"]
+        "Lokoja": ["Lokoja LGA"],
+        "Okene": ["Okene LGA"],
+        "Idah": ["Idah LGA"],
+        "Yagba West": ["Yagba West LGA"]
     }
-  };
-  
+};
+
 
 const ListingAddress = () => {
     const [formData, setFormData] = useState({
@@ -88,13 +88,46 @@ const ListingAddress = () => {
                         />
                     </label>
 
-                    {
-                        statesCitiesAndLga.map((drop, i)=>(
-                            <label key={i} htmlFor='eTime' className='flex flex-col text-gray-700 text-sm'>
-                        {drop.key()}
-                        </label>
-                        ))
-                    }
+                    <label htmlFor='state' className='flex flex-col text-gray-700 text-sm'>
+                        State
+                        <select value={formData.state} onChange={handleChange} name="state" id="state" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
+                            <option value="" disabled className='text-gray'>
+                                Select state
+                            </option>
+                            {Object.keys(statesCitiesAndLga).map((state) => (
+                                <option key={state} value={state} className='text-gray'>{state}</option>
+                            ))}
+                        </select>
+                    </label>
+                    <label htmlFor='city' className='flex flex-col text-gray-700 text-sm'>
+                        City
+                        <select value={formData.city} onChange={handleChange} name="city" id="city" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
+                            <option value="" disabled className='text-gray'>
+                                Select city
+                            </option>
+                            {
+                                formData.state && Object.keys(statesCitiesAndLga[formData.state] || {}).map((city) => (
+                                    <option key={city} value={city} className='text-gray'>{city}</option>
+                                ))
+                            }
+
+                        </select>
+                    </label>
+
+                    <label htmlFor='lg' className='flex flex-col text-gray-700 text-sm'>
+                        LGA
+                        <select value={formData.lg} onChange={handleChange} name="lg" id="lg" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
+                            <option value="" disabled className='text-gray'>
+                                Select Lga
+                            </option>
+                            {
+                                formData.state && Object.values(statesCitiesAndLga[formData.state] || []).map((lg, i) => (
+                                    <option key={i} value={lg} className='text-gray'>{lg}</option>
+                                ))
+                            }
+
+                        </select>
+                    </label>
 
                     <label htmlFor='apSt' className='flex flex-col text-gray-700 text-sm'>
                         Apt, St
@@ -114,13 +147,13 @@ const ListingAddress = () => {
                     <label htmlFor='phone' className='flex flex-col text-gray-700 text-sm'>
                         Phone
                         <input
-                             required
-                             type='tel'
-                             placeholder='+234 808080808080'
-                             id='phone'
-                             name='phone'
-                             checked={formData.phone}
-                             onChange={handleChange}
+                            required
+                            type='tel'
+                            placeholder='+234 808080808080'
+                            id='phone'
+                            name='phone'
+                            checked={formData.phone}
+                            onChange={handleChange}
                             className='border border-gray-300 text-gray-600 placeholder-gray w-full outline-none rounded-md p-1'
                             min='1'
                         />
@@ -129,13 +162,13 @@ const ListingAddress = () => {
                     <label htmlFor='address' className='flex flex-col text-gray-700 text-sm'>
                         Address
                         <input
-                             required
-                             type='text'
-                             placeholder="Address"
-                             id='address'
-                             name='address'
-                             checked={formData.address}
-                             onChange={handleChange}
+                            required
+                            type='text'
+                            placeholder="Address"
+                            id='address'
+                            name='address'
+                            checked={formData.address}
+                            onChange={handleChange}
                             className='border border-gray-300 text-gray-600 placeholder-gray w-full outline-none rounded-md p-1'
                             min='1'
                         />
@@ -154,7 +187,7 @@ const ListingAddress = () => {
                     src="/location-img.png"
                     alt="Hero Image"
                     className="rounded-2xl"
-                    style={{ objectFit: "contain"}}
+                    style={{ objectFit: "contain" }}
                 />
             </div>
         </section>
