@@ -36,7 +36,7 @@ const statesCitiesAndLga = {
 };
 
 
-const ListingAddress = () => {
+const ListingAddress = ({setModals}) => {
     const [formData, setFormData] = useState({
         name: "",
         state: "",
@@ -59,6 +59,7 @@ const ListingAddress = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form Data Submitted:', formData);
+        setModals("upload");
     };
     return (
         <section className='grid relative grid-cols-1 md:grid-cols-2 mt-20 items-center gap-10 py-10 '>
