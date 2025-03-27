@@ -15,7 +15,7 @@ const page = () => {
       }
       {
         modals === "address" &&
-        <ListingAddress/>
+        <ListingAddress setModals={setModals} />
       }
       {
         modals === "upload" && 
