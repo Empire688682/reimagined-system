@@ -5,7 +5,7 @@ import Footer from '@/component/Footer/Footer'
 import React, { useState } from 'react'
 
 const page = () => {
-  const [allLists, setAllLists] = useState(true)
+  const [allLists, setAllLists] = useState(false)
   return (
     <div>
       {

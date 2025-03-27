@@ -55,6 +55,7 @@ const Page = () => {
     setAddressModal(false);
     setRequestSentModal(true);
     console.log('Form Data Submitted:', formData);
+    window.scrollTo(0,0);
   };
 
   return (

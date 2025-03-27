@@ -13,7 +13,7 @@ const ListYourProps = () => {
                 <Image
                     priority={true}
                     fill
-                    src="/property-1.png"
+                    src="/listing-yourspace-hero.png"
                     alt="Hero Image"
                     style={{ objectFit: "cover" }}
                     className="absolute z-[-1] top-0 left-0 w-full h-full"
