@@ -6,7 +6,7 @@ import Footer from '@/component/Footer/Footer'
 import React, { useState } from 'react'
 
 const page = () => {
-  const [modals, setModals] = useState("upload")
+  const [modals, setModals] = useState("allList")
   return (
     <div>
       {
