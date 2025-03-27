@@ -175,7 +175,7 @@ const ListingAddress = ({setModals}) => {
                         />
                     </label>
 
-                    <button type='submit' className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
+                    <button type='submit' onClick={()=>setModals("upload")} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
                         Next
                     </button>
                 </form>
