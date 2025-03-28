@@ -60,7 +60,7 @@ const UploadModal = ({ setModals }) => {
             <div className="flex justify-between items-center">
                 <h1 className="md:font-semibold">New Listing</h1>
                 <p className="text-center text-sm border py-1 px-6 border-gray-300">
-                    {images.length}
+                    2
                 </p>
             </div>
 
