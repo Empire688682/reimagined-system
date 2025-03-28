@@ -58,7 +58,7 @@ const Hero = () => {
 
                 {/* Search Box */}
                 <div
-                    className="absolute cursor-pointer z-50 top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]"
+                    className="absolute cursor-pointer z-1 top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]"
                     onClick={() => route.push("/properties")}
                 >
                     <p className="text-start pr-2 flex-2">Search Location</p>

@@ -26,7 +26,7 @@ const Navbar = () => {
             document.body.style.overflow = "auto";
         };
     }, [isOpen]);
-
+    
 
     // Change navbar background color based on route
     const navbarBg = pathname !== "/" ? "bg-[#23396A]" : "bg-transparent";
@@ -102,7 +102,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Navbar */}
-            <div className='flex md:hidden justify-between items-center'>
+            <div className='flex md:hidden z-20 justify-between items-center'>
                 <Link href="/" className="relative w-[60px] h-[60px] cursor-pointer" onClick={() => setIsOpen(false)}>
                     <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
