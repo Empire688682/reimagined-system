@@ -47,7 +47,7 @@ const Navbar = () => {
     const isHompage = pathname === "/"
 
     return (
-        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 border-b border-blue-400 transition-all duration-300 ${navbarBg}`}>
+        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 ${navbarBg}`}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
                 <Link href="/" className="relative w-[80px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
@@ -96,8 +96,8 @@ const Navbar = () => {
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer bg-[#23396A] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
-                    <button className="px-6 py-3 cursor-pointer bg-white text-[#23396A] text-[14px]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
+                    <button className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#23396A] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
+                    <button className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
                 </div>
             </div>
 
@@ -151,8 +151,8 @@ const Navbar = () => {
                         </ul>
                         {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>
-                            <button className="px-8 py-3 text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
-                            <button className="px-8 py-3 cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
+                            <button className="px-8 py-3 rounded-sm text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
+                            <button className="px-8 py-3 rounded-sm cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
                         </div>
                     </div>
                 )}
