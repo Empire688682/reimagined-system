@@ -14,7 +14,7 @@ const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <div className="w-full min-h-screen text-center max-w-7xl mx-auto pb-10">
+        <div className="w-full min-h-screen text-center max-w-7xl mx-auto pb-10 overflow-hidden">
             <div className="relative text-white text-flex-start pr-6 pl-6 pb-10 gap-3 flex flex-col pt-30">
                 <h1 className="text-3xl text-center text-gray-900 font-medium leading-snug md:text-3xl mx-auto md:w-[350px]">
                     Discover trusted partner in
@@ -33,7 +33,7 @@ const Hero = () => {
             </div>
 
             {/* Swiper 3D Coverflow Slider */}
-            <div className=" md:max-w-[3000px] h-[70vh] mx-auto flex items-center justify-center">
+            <div className=" md:max-w-[3000px] min-w-[600px] md:h-[70vh] h-[50vh] mx-auto flex items-center justify-center">
                 <Swiper
                     effect={"coverflow"}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -50,12 +50,12 @@ const Hero = () => {
                     }}
                     pagination={false}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
-                    className=" w-[200%] h-full rounded-xl"
+                    className=" w-full h-full mx-auto rounded-xl"
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 >
                     {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/ayinla-hero-img.png"].map((src, index) => (
                         <SwiperSlide key={index} className="w-[400px] relative h-[400px]">
-                            <div className="relative w-full h-full">
+                            <div className="relative h-full w-full">
                                 <Image
                                     priority={true}
                                     fill
