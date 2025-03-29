@@ -33,10 +33,10 @@ const Hero = () => {
             </div>
 
             {/* Swiper 3D Coverflow Slider */}
-            <div className="relative w-[90vw] md:max-w-[1000px] h-[70vh] mx-auto flex items-center justify-center">
+            <div className=" md:max-w-[3000px] h-[70vh] mx-auto flex items-center justify-center">
                 <Swiper
                     effect={"coverflow"}
-                    autoplay={{ delay: 2500, disableOnInteraction: false }}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                     loop={true}
                     grabCursor={true}
                     centeredSlides={true}
@@ -50,11 +50,11 @@ const Hero = () => {
                     }}
                     pagination={false}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
-                    className="w-full h-full rounded-xl"
+                    className=" w-[200%] h-full rounded-xl bg-red-300"
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 >
                     {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/ayinla-hero-img.png"].map((src, index) => (
-                        <SwiperSlide key={index} className="w-[300px] h-[400px]">
+                        <SwiperSlide key={index} className="w-[400px] relative h-[400px]">
                             <div className="relative w-full h-full">
                                 <Image
                                     priority={true}
