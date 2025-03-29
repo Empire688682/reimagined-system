@@ -48,7 +48,7 @@ const Journey = () => {
                         Your journey to finding the perfect movie starts with Ayinla Film. We are a platform that connects you with the best movie sets from where you want.
                     </h2>
                     <p className='text-[#23396A] text-sm pb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis dolorem soluta quibusdam officiis iure id, sunt, non odio nam ipsum accusamus nihil!</p>
-                    <button onClick={() => route.push("/properties")} className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white">
+                    <button onClick={() => route.push("/properties")} className="bg-[#23396A] rounded-sm text-sm cursor-pointer py-3 px-6 text-white">
                         Book Now
                     </button>
                 </div>
