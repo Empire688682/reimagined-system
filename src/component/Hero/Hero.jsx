@@ -20,7 +20,7 @@ const Hero = () => {
 
     return (
         <div className="w-full min-h-screen text-center max-w-7xl mx-auto pb-10 overflow-hidden">
-            <div className="relative text-white text-flex-start pr-6 pl-6 pb-10 gap-3 flex flex-col pt-30">
+            <div className="relative text-white text-flex-start pr-6 pl-6 pb-10 mb-20 gap-3 flex flex-col pt-30">
                 <h1 className="text-3xl text-center text-gray-900 font-medium leading-snug md:text-3xl mx-auto md:w-[350px]">
                     Discover trusted partner in
                     <span className="relative inline-block mx-2 align-middle">
@@ -38,53 +38,42 @@ const Hero = () => {
 
             {/* Swiper 3D Coverflow Slider */}
             <div className="w-full md:h-[70vh] h-[50vh] relative flex items-center justify-center pr-6 pl-6 max-w-7xl mx-auto">
-                <div className="h-full w-full flex items-center gap-1">
-                    {/* Left Image (Dimmed) */}
-                    <div className="relative min-h-[130px] w-[30%] mx-auto grayscale">
+                <div className="relative flex w-full md:h-[90vh] h-[60vh] max-w-7xl mx-auto items-center justify-center gap-2 overflow-hidden">
+                    {/* Left Image */}
+                    <div className="relative basis-[20%] min-w-[300px] h-[50%] overflow-hidden grayscale">
                         <Image
-                            priority
-                            fill
                             src={images[(activeIndex - 1 + images.length) % images.length]}
                             alt="Hero Image"
-                            className="rounded-xl"
-                            style={{
-                                objectFit:"cover"
-                            }}
+                            fill
+                            className="rounded-xl object-cover"
                         />
                     </div>
-                    
-                    {/* Center Image (Active) */}
-                    <div className="relative h-[100%] w-[100%] mx-auto transition-opacity duration-700 ease-in-out">
+
+                    {/* Center Image */}
+                    <div className="relative basis-[60%] min-w-[300px] md:min-w-[700px] h-full overflow-hidden">
                         <Image
-                            priority
-                            fill
                             src={images[activeIndex]}
                             alt="Hero Image"
-                            className="rounded-xl"
-                            style={{
-                                objectFit:"cover"
-                            }}
+                            fill
+                            className="rounded-xl object-cover"
                         />
                     </div>
-                    
-                    {/* Right Image (Dimmed) */}
-                    <div className="relative mx-auto min-h-[130px] w-[30%] grayscale">
+
+                    {/* Right Image */}
+                    <div className="relative basis-[20%] min-w-[300px] h-[50%] overflow-hidden grayscale">
                         <Image
-                            priority
-                            fill
                             src={images[(activeIndex + 1) % images.length]}
                             alt="Hero Image"
-                            className="rounded-xl"
-                            style={{
-                                objectFit:"cover"
-                            }}
+                            fill
+                            className="rounded-xl object-cover"
                         />
                     </div>
                 </div>
 
+
                 {/* Search Box */}
                 <div
-                    className="absolute cursor-pointer z-1 top-[-16px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]"
+                    className="absolute cursor-pointer z-1 top-[-34px] left-1/2 -translate-x-1/2 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]"
                     onClick={() => route.push("/properties")}
                 >
                     <p className="text-start pr-2 flex-2">Search Location</p>
