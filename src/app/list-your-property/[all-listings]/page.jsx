@@ -1,5 +1,7 @@
 "use client";
 import ListingAddress from '@/component/AllListingModal/ListingAddress';
+import ListingSent from '@/component/AllListingModal/ListingSent';
+import SecondListingAddress from '@/component/AllListingModal/SecondListingAddress';
 import UploadModal from '@/component/AllListingModal/UploadModal';
 import AllListings from '@/component/AllListings/AllListings'
 import Footer from '@/component/Footer/Footer'
@@ -16,6 +18,14 @@ const page = () => {
       {
         modals === "address" &&
         <ListingAddress setModals={setModals} />
+      }
+      {
+        modals === "secondAddress" &&
+        <SecondListingAddress setModals={setModals} />
+      }
+      {
+        modals === "listingSent" &&
+        <ListingSent />
       }
       {
         modals === "upload" && 

@@ -87,6 +87,10 @@ const UploadModal = ({ setModals }) => {
                     </p>
                 </div>
 
+                <button type='submit' onClick={() => setModals("secondAddress")} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
+                    Next
+                </button>
+
                 {error && <p className="text-red-500 text-sm">{error}</p>}
 
                 {/* Image Preview Grid */}
@@ -99,7 +103,6 @@ const UploadModal = ({ setModals }) => {
                                 className="w-20 h-20 object-cover rounded-md"
                             />
                             <button
-                                type="button"
                                 onClick={() => removeImage(index)}
                                 className="absolute top-0 right-0 bg-gray-700 text-white rounded-full p-1"
                             >
