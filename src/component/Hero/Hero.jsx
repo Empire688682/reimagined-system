@@ -33,7 +33,7 @@ const Hero = () => {
             </div>
 
             {/* Swiper 3D Coverflow Slider */}
-            <div className=" md:max-w-[3000px] min-w-[500px] md:h-[70vh] h-[50vh] mx-auto relative flex items-center justify-center">
+            <div className=" md:max-w-[3000px] min-w-[300px] md:h-[70vh] h-[50vh] mx-auto relative flex items-center justify-center">
                 <Swiper
                     effect={"coverflow"}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
