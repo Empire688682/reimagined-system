@@ -1,17 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import { useGlobalContext } from "../Context";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 const Hero = () => {
     const { route } = useGlobalContext();
+    const images = [
+        "/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/service-img.png"
+    ];
     const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 3000); // Change image every 3 seconds
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="w-full min-h-screen text-center max-w-7xl mx-auto pb-10 overflow-hidden">
@@ -24,8 +29,7 @@ const Hero = () => {
                             alt="Hero Image"
                             width={70}
                             height={80}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
+                            className="rounded-full object-cover"
                         />
                     </span>
                     finding the perfect film set
@@ -33,46 +37,50 @@ const Hero = () => {
             </div>
 
             {/* Swiper 3D Coverflow Slider */}
-            <div className=" md:max-w-[3000px] md:h-[70vh] h-[50vh] mx-auto relative flex items-center justify-center">
-                <Swiper
-                    effect={"coverflow"}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    loop={true}
-                    grabCursor={true}
-                    centeredSlides={true}
-                    slidesPerView={3}
-                    coverflowEffect={{
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows: true,
-                    }}
-                    pagination={false}
-                    modules={[EffectCoverflow, Pagination, Autoplay]}
-                    className=" w-full min-w-[800px] h-full mx-auto rounded-xl"
-                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                >
-                    {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/service-img.png"].map((src, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="relative h-full w-full">
-                                <Image
-                                    priority={true}
-                                    fill
-                                    src={src}
-                                    alt={`Hero Image ${index + 1}`}
-                                    style={{
-                                        objectFit: "cover",
-                                        transform: `scale(${activeIndex === index ? 1 : 0.4})`,
-                                        filter: activeIndex === index ? "none" : "blur(5px)",
-                                        transition: "all 0.5s ease"
-                                    }}
-                                    className="rounded-xl"
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+            <div className="w-full md:h-[70vh] h-[50vh] relative flex items-center justify-center pr-6 pl-6 max-w-7xl mx-auto">
+                <div className="h-full w-full flex items-center gap-1">
+                    {/* Left Image (Dimmed) */}
+                    <div className="relative min-h-[130px] w-[30%] mx-auto grayscale">
+                        <Image
+                            priority
+                            fill
+                            src={images[(activeIndex - 1 + images.length) % images.length]}
+                            alt="Hero Image"
+                            className="rounded-xl"
+                            style={{
+                                objectFit:"cover"
+                            }}
+                        />
+                    </div>
+                    
+                    {/* Center Image (Active) */}
+                    <div className="relative h-[100%] w-[100%] mx-auto transition-opacity duration-700 ease-in-out">
+                        <Image
+                            priority
+                            fill
+                            src={images[activeIndex]}
+                            alt="Hero Image"
+                            className="rounded-xl"
+                            style={{
+                                objectFit:"cover"
+                            }}
+                        />
+                    </div>
+                    
+                    {/* Right Image (Dimmed) */}
+                    <div className="relative mx-auto min-h-[130px] w-[30%] grayscale">
+                        <Image
+                            priority
+                            fill
+                            src={images[(activeIndex + 1) % images.length]}
+                            alt="Hero Image"
+                            className="rounded-xl"
+                            style={{
+                                objectFit:"cover"
+                            }}
+                        />
+                    </div>
+                </div>
 
                 {/* Search Box */}
                 <div
