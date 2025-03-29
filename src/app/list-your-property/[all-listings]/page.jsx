@@ -29,7 +29,7 @@ const page = () => {
       }
       {
         modals === "upload" && 
-        <UploadModal />
+        <UploadModal setModals={setModals} />
       }
       <Footer />
     </div>
