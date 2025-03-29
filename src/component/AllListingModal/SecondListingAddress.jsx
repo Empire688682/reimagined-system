@@ -30,6 +30,7 @@ const SecondListingAddress = ({ setModals }) => {
 
         console.log('Form Data Submitted:', formData);
         setModals("listingSent");
+        window.scrollTo(0,0)
     };
 
     return (

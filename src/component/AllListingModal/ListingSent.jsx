@@ -12,7 +12,7 @@ const ListingSent = () => {
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 1 }}
-            className='text-center px-16 flex flex-col gap-15 min-h-screen mt-20'
+            className='text-center px-16 flex flex-col gap-15 min-h-screen mt-30'
         >
             <h1 className='font-semibold md:text-lg'>Listing Request Sent</h1>
             

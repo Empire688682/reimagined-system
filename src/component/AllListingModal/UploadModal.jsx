@@ -87,7 +87,7 @@ const UploadModal = ({ setModals }) => {
                     </p>
                 </div>
 
-                <button onClick={() => setModals("secondAddress")} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
+                <button onClick={() => {setModals("secondAddress"); window.scrollTo(0,0)}} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
                     Next
                 </button>
 
