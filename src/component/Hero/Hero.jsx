@@ -50,7 +50,7 @@ const Hero = () => {
                     }}
                     pagination={false}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
-                    className=" w-full min-w-[1000px] h-full mx-auto rounded-xl"
+                    className=" w-full min-w-[600px] h-full mx-auto rounded-xl"
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 >
                     {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/ayinla-hero-img.png"].map((src, index) => (
