@@ -53,7 +53,7 @@ const Hero = () => {
                     className=" w-full min-w-[800px] h-full mx-auto rounded-xl"
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 >
-                    {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/ayinla-hero-img.png"].map((src, index) => (
+                    {["/new-hero-img.png", "/hero-img-2.png", "/listing-yourspace-hero.png", "/service-img.png"].map((src, index) => (
                         <SwiperSlide key={index}>
                             <div className="relative h-full w-full">
                                 <Image
