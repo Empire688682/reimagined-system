@@ -29,7 +29,7 @@ const Navbar = () => {
     
 
     // Change navbar background color based on route
-    const navbarBg = pathname !== "/" ? "bg-[#23396A]" : "bg-transparent";
+    const navbarBg = pathname === "/" ? "" : "bg-[#23396A]";
 
     // Change logo base on route
     const logo = pathname !== "/" ? "/ayinla-logo.png" : "/colored-ayinla-logo.png";
@@ -47,7 +47,7 @@ const Navbar = () => {
     const isHompage = pathname === "/"
 
     return (
-        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 `}>
+        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 ${navbarBg} `}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
                 <Link href="/" className="relative w-[80px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
