@@ -96,7 +96,7 @@ const Navbar = () => {
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#23396A] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
+                    <button className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
                     <button className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
                 </div>
             </div>
