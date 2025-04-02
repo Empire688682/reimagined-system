@@ -15,7 +15,7 @@ const Hero = () => {
                 loop
                 muted
                 playsInline
-                src="/building-video-compressed.mp4"
+                src="/hero-video.mp4"
             ></video>
             {/* Swiper 3D Coverflow Slider */}
             <div className="w-full md:h-[70vh] h-[50vh] relative flex flex-col items-center justify-center pt-40 pr-6 pl-6 max-w-7xl mx-auto">
