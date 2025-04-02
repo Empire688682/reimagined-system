@@ -47,17 +47,17 @@ const Navbar = () => {
     const isHompage = pathname === "/"
 
     return (
-        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 ${navbarBg}`}>
+        <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 `}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
                 <Link href="/" className="relative w-[80px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
-                    <Image src={logo} alt="logo" fill className="object-contain" />
+                    <Image src="/ayinla-logo.png" alt="logo" fill className="object-contain" />
                 </Link>
 
                 {/* Nav Links */}
                 <ul className={`flex gap-8 ${isHompage ? "text-black" : "text-white"}`}>
-                    <Link href="/" className={`text-black cursor-pointer text-white bg-black p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Home</Link>
-                    <li className={`flex relative items-center text-white bg-black p-2 rounded-sm justify-cnter cursor-pointer text-[14px]`} onClick={() => handleSubMenu(1)}>
+                    <Link href="/" className={`text-black cursor-pointer text-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Home</Link>
+                    <li className={`flex relative items-center text-white p-2 rounded-sm justify-cnter cursor-pointer text-[14px]`} onClick={() => handleSubMenu(1)}>
                         Property List
                         <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 1 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 1 && (
@@ -78,7 +78,7 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className={`flex relative items-center text-white bg-black p-2 rounded-sm cursor-pointer text-[14px]`} onClick={() => { handleSubMenu(2); }}>
+                    <li className={`flex relative items-center text-white p-2 rounded-sm cursor-pointer text-[14px]`} onClick={() => { handleSubMenu(2); }}>
                         Booking
                         <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 2 && (
@@ -89,9 +89,9 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>About Us</li>
-                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>FAQ'S</li>
-                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>Contact Information</li>
+                    <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`}>About Us</li>
+                    <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`}>FAQ'S</li>
+                    <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`}>Contact Information</li>
                 </ul>
 
                 {/* Auth Buttons */}
@@ -104,10 +104,10 @@ const Navbar = () => {
             {/* Mobile Navbar */}
             <div className='flex md:hidden z-20 justify-between items-center'>
                 <Link href="/" className="relative w-[60px] h-[60px] cursor-pointer" onClick={() => setIsOpen(false)}>
-                    <Image src={logo} alt="logo" fill className="object-contain" />
+                    <Image src="/ayinla-logo.png" alt="logo" fill className="object-contain" />
                 </Link>
                 <div onClick={() => setIsOpen(!isOpen)}>
-                    <IoMenuOutline className={`text-4xl ${isHompage ? "text-black" : "text-white"} cursor-pointer`} />
+                    <IoMenuOutline className={`text-4xl text-white cursor-pointer`} />
                 </div>
                 {isOpen && (
                     <div className='absolute top-15 left-0 py-4 w-full  min-h-screen bg-blue-400 flex flex-col justify-center items-center z-10'>
