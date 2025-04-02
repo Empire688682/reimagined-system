@@ -56,10 +56,10 @@ const Navbar = () => {
 
                 {/* Nav Links */}
                 <ul className={`flex gap-8 ${isHompage ? "text-black" : "text-white"}`}>
-                    <Link href="/" className={`text-black cursor-pointer ${isHompage ? "text-black" : "text-white"} text-[14px]`} onClick={() => setIsOpen(false)}>Home</Link>
-                    <li className={`flex relative items-center ${isHompage ? "text-black" : "text-white"} cursor-pointer text-[14px]`} onClick={() => handleSubMenu(1)}>
+                    <Link href="/" className={`text-black cursor-pointer text-white bg-black p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Home</Link>
+                    <li className={`flex relative items-center text-white bg-black p-2 rounded-sm justify-cnter cursor-pointer text-[14px]`} onClick={() => handleSubMenu(1)}>
                         Property List
-                        <IoIosArrowDown className={`ml-1 ${isHompage ? "text-black" : "text-white"} text-[20px] transition-transform ${openSubMenu === 1 ? 'rotate-[180deg]' : ''}`} />
+                        <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 1 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 1 && (
                             <div className={`absolute -z top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white ${isHompage ? "text-black" : "text-white"} text-[13px]'`}>
                                 <Link href="/properties" passHref className="text-xs text-black cursor-pointer font-semibold" onClick={() => setIsOpen(false)}>
@@ -78,9 +78,9 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className={`flex relative items-center ${isHompage ? "text-black" : "text-white"} cursor-pointer text-[14px]`} onClick={() => { handleSubMenu(2); }}>
+                    <li className={`flex relative items-center text-white bg-black p-2 rounded-sm cursor-pointer text-[14px]`} onClick={() => { handleSubMenu(2); }}>
                         Booking
-                        <IoIosArrowDown className={`ml-1 ${isHompage ? "text-black" : "text-white"} text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
+                        <IoIosArrowDown className={`ml-1 text-white text-[20px] transition-transform ${openSubMenu === 2 ? 'rotate-[180deg]' : ''}`} />
                         {openSubMenu === 2 && (
                             <div className={`absolute top-[100%] w-[160px] rounded-sm p-3 flex flex-col gap-3 left-0 bg-white ${isHompage ? "text-black" : "text-white"} text-[13px]'`}>
                                 <Link href="/booking" className="text-xs text-black cursor-pointer font-semibold">Booking</Link>
@@ -89,9 +89,9 @@ const Navbar = () => {
                             </div>
                         )}
                     </li>
-                    <li className={`text-black cursor-pointer ${isHompage ? "text-black" : "text-white"} text-[14px]`}>About Us</li>
-                    <li className={`text-black cursor-pointer ${isHompage ? "text-black" : "text-white"} text-[14px]`}>FAQ'S</li>
-                    <li className={`text-black cursor-pointer ${isHompage ? "text-black" : "text-white"} text-[14px]`}>Contact Information</li>
+                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>About Us</li>
+                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>FAQ'S</li>
+                    <li className={`text-white cursor-pointertext-white bg-black p-2 rounded-sm text-[14px]`}>Contact Information</li>
                 </ul>
 
                 {/* Auth Buttons */}
