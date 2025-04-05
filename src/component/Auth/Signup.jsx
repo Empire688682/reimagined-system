@@ -1,28 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { IoIosCheckmarkCircleOutline, IoMdCheckmarkCircle } from "react-icons/io";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
 import Verification from "./Verification";
-
-// TO BE DELETED IF NOT NEEDED
-//const statesAndCities = {
-//  "Lagos": ["Ikeja", "Surulere", "Lekki"],
-//  "Abuja": ["Garki", "Wuse", "Maitama"],
-//  "Kano": ["Kano Municipal", "Fagge", "Dala"],
-//  "Rivers": ["Port Harcourt", "Obio-Akpor", "Bonny"],
-//  "Ogun": ["Abeokuta", "Ijebu-Ode", "Sango Ota"],
-// "Kogi": ["Lokoja", "Okene", "Idah", "Yagba West"]
-//};
-
-// Define available job roles
-const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
+import axios from "axios"
+import CreateAccount from "./SignUpModals/CreateAccount";
+import PersonalDetails from "./SignUpModals/PersonalDetails";
 
 const Signup = () => {
-    const { route } = useGlobalContext();
+    const { route, createAcctUrl } = useGlobalContext();
     const [formCategory, setFormCategory] = useState("Create Account");
     const [errorMsg, setErrorMsg] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // State to manage user input
     const [formData, setFormData] = useState({
@@ -68,22 +57,51 @@ const Signup = () => {
     }, [formData.password]);
 
     // Handles form submission for initial account creation with Email only
-    const handleCreateAcctFormSubmission = (e) => {
+    const handleCreateAcctFormSubmit = async (e) => {
         e.preventDefault();
         const { email } = formData;
-
+    
         // Validate required fields
         if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
             setErrorMsg("Please enter a valid email address");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
-
-         // Move to personal details form
-        setFormCategory("Personal Details");
-        console.log("Form submitted successfully", formData);
-        alert("User pushed to Personal Details section");
+    
+        try {
+            setLoading(true);
+    
+            // Send the request with the required headers
+            const response = await axios.post(createAcctUrl, {
+                email: formData.email,
+                base_url: "http://example.com",
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": "ApiKeyAuth", 
+                },
+            });
+    
+            // Check if the response status is 204 (No Content)
+            if (response.status === 204) {
+                console.log("User signup successfully");
+                alert("User registered successfully");
+    
+                // Move to personal details form
+                setFormCategory("Personal Details");
+            } else {
+                // Handle unexpected response status
+                console.log("Unexpected response:", response);
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            setErrorMsg(error.response?.data?.message || error.message || "An error occurred");
+        } finally {
+            setLoading(false);
+        }
     };
+    
+
 
     // Handles Signup with google
     const handleGoogleSignup = () => {
@@ -92,20 +110,20 @@ const Signup = () => {
     }
 
     // Handles full form submission with additional details
-    const handleFullFormSubmission = (e) => {
+    const handlePersonalDetailSubmit = (e) => {
         e.preventDefault();
 
         const { email, firstName, lastName, phone, job } = formData;
 
         // Validate required fields
-        if (!email.trim() || !/\S+@\S+\.\S+/.test(email)||
+        if (!email.trim() || !/\S+@\S+\.\S+/.test(email) ||
             !firstName.trim() || !lastName.trim() ||
             !phone.trim() || !job.trim()) {
             setErrorMsg("All fields are required");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
-        if(!formCondition.length || !formCondition.character ){
+        if (!formCondition.length || !formCondition.character) {
             setErrorMsg("Password must be at least 8 characters long with special character");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
@@ -127,8 +145,8 @@ const Signup = () => {
         setFormCategory("Check your email");
     };
 
-       // Handles resending email
-    const handleResendingEmail = () =>{
+    // Handles resending email
+    const handleResendingEmail = () => {
         alert(`Resending email successfully to ${formData.email}`)
     }
 
@@ -138,146 +156,38 @@ const Signup = () => {
                 {/* Logo */}
                 <Image src="/colored-ayinla-logo.png" alt="Ayinla Logo" priority width={60} height={60} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
-
-                <form onSubmit={handleFullFormSubmission} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
-                    {
-                        //Signup Form / Create an Account
-                        formCategory === "Create Account" &&
-                        <div className="flex flex-col w-full gap-4">
-                            {/* Email Field */}
-                            <label htmlFor="email" className="flex text-gray-700 flex-col text-sm md:text-base">
-                                Email*
-                                <input onChange={handleOnchange} type="email" placeholder="Enter your email" value={formData.email} name="email" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
-                            </label>
-                        </div>
-                    }
-
-                    {
-                        //Signup Form / Personal Details
-                        formCategory === "Personal Details" &&
-                        <div className="flex flex-col w-full gap-4">
-                            <div className="flex gap-4 flex-col md:flex-row">
-                                {/* First Name Field */}
-                                <label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                    First Name*
-                                    <input onChange={handleOnchange} type="text" name="firstName" value={formData.firstName} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
-                                </label>
-                                {/* Last Name Field */}
-                                <label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                    Last Name*
-                                    <input onChange={handleOnchange} type="text" name="lastName" value={formData.lastName} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
-                                </label>
-                            </div>
-                            {/* Password Field with Toggle Visibility */}
-                            <label htmlFor="password" className="flex relative text-gray-700 flex-col text-sm md:text-base">
-                                Password
-                                <input onChange={handleOnchange} type={showPassword ? "text" : "password"} placeholder="Enter your password" value={formData.password} name="password" id="password" className="border border-gray-300 text-gray-600 outline-none rounded-md pl-1 py-1 pr-10" />
-                                {
-                                    showPassword ?
-                                        <FaEyeSlash onClick={() => setShowPassword(!showPassword)} className="absolute bottom-1 right-2 cursor-pointer text-lg" /> :
-                                        <FaEye onClick={() => setShowPassword(!showPassword)} className="absolute bottom-1 right-2 cursor-pointer text-lg" />
-                                }
-                            </label>
-                            {/* Phone Field */}
-                            <label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                Phone
-                                <input onChange={handleOnchange} type="tel" name="phone" value={formData.phone} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
-                            </label>
-                            {/* // TO BE DELETED IF NOT NEEDED */}
-                            {//<label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                //  State
-                                // <select name="state" value={formData.state} onChange={handleOnchange} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
-                                //    <option value="" disabled>Select your state</option>
-                                //    {Object.keys(statesAndCities).map((state) => (
-                                //       <option key={state} value={state}>{state}</option>
-                                //   ))}
-                                //</select>
-                                // </label>
-                            }
-                            {/* // TO BE DELETED IF NOT NEEDED */}
-                            {//<label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                //City
-                                //<select name="city" value={formData.city} onChange={handleOnchange} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
-                                //  <option value="" disabled>Select your city</option>
-                                // {formData.state && statesAndCities[formData.state]?.map((city) => (
-                                //     <option key={city} value={city}>{city}</option>
-                                // ))}
-                                // </select>
-                                // </label>
-                            }
-                            {/* Job Dropdown */}
-                            <label className="flex text-gray-700 flex-col text-sm md:text-base">
-                                Job
-                                <select name="job" value={formData.job} onChange={handleOnchange} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
-                                    <option value="" disabled>Select your job role</option>
-                                    {jobs.map((job) => (
-                                        <option key={job} value={job}>{job}</option>
-                                    ))}
-                                </select>
-                            </label>
-                        </div>
-                    }
-                    {/** Error Message */}
-                    {
-                        errorMsg && <p className="text-red-600 text-xs font-semibold">{errorMsg}</p>
-                    }
-                    {
-                        formCategory === "Personal Details" &&
-                        <div className="flex flex-col gap-1">
-                            {/* Password Validation Conditions */}
-                            <div className="flex gap-2 items-center">
-                                {formCondition.length ? <IoMdCheckmarkCircle /> : <IoIosCheckmarkCircleOutline />}
-                                <p className="text-[13px] text-gray-700">Password must be at least 8 characters</p>
-                            </div>
-                            <div className="flex gap-2 items-center">
-                                {formCondition.character ? <IoMdCheckmarkCircle /> : <IoIosCheckmarkCircleOutline />}
-                                <p className="text-[13px] text-gray-700">Password must contain at least one special character</p>
-                            </div>
-                        </div>
-                    }
-                    {/* All three Submit Buttons */}
-                    {
-                        formCategory === "Create Account" &&
-                        <p className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md" onClick={handleCreateAcctFormSubmission}>
-                            Get Started
-                        </p>
-                    }
-                    {
-                        formCategory === "Personal Details" &&
-                        <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
-                            Proceed
-                        </button>
-                    }
-                    {/* Skip submit button */}
-                    {
-                        formCategory === "Personal Details" && (
-                            <p
-                                onClick={handleSkipClick}
-                                className="flex items-center gap-2 text-sm py-2 cursor-pointer text w-full justify-center"
-                            >
-                                Skip for now
-                            </p>
-                        )
-                    }
-
-                </form>
                 {
-                    // Signup with Google, only for create account
-                    formCategory === "Create Account" && <div className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100" onClick={handleGoogleSignup}>
-                        <Image
-                            src="/google-icon.png"
-                            alt="Google Logo"
-                            width={24}
-                            height={24}
-                            className="mr-2"
+                    formCategory === "Create Account" && (
+                        <CreateAccount
+                            handleCreateAcctFormSubmit={handleCreateAcctFormSubmit}
+                            handleOnchange={handleOnchange}
+                            formData={formData}
+                            errorMsg={errorMsg}
                         />
-                        <span className="text-gray-700 text-sm font-medium">Sign up with Google</span>
-                    </div>
+                    )
+                }
+                {
+                    formCategory === "Personal Details" && (
+                        <PersonalDetails
+                            handlePersonalDetailSubmit={handlePersonalDetailSubmit}
+                            handleOnchange={handleOnchange}
+                            formData={formData}
+                            errorMsg={errorMsg}
+                            handleSkipClick={handleSkipClick}
+                            showPassword={showPassword}
+                            setShowPassword={setShowPassword}
+                        />
+                    )
+                }
+                {
+                    formCategory === "Check your email" && (
+                        <Verification
+                            userEmail={formData.email}
+                            handleResendingEmail={handleResendingEmail}
+                        />
+                    )
                 }
 
-                {
-                    formCategory === "Check your email" && <Verification userEmail={formData.email} handleResendingEmail={handleResendingEmail}/>
-                }
 
             </div>
         </div>
