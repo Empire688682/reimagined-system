@@ -11,13 +11,17 @@ export const AppProvider = ({children}) => {
   const fetchProperties = async () =>{
     setAllPropts(properties)
   }
+
   useEffect(()=>{
     fetchProperties()
   },[])
+
+  const createAcctUrl = "https://api.ayinlafilms.com/api/v1/auth/initiate-signup"
   return (
     <AppContext.Provider value={{
       route,
-      allPropts
+      allPropts,
+      createAcctUrl
       }}>
         {children}
     </AppContext.Provider>
