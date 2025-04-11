@@ -40,19 +40,19 @@ const Hero = () => {
                 <div className="flex gap-3 pr-6 pl-6 items-center justify-center md:justify-start">
                     {/* List Your Property Button */}
                     <div
-                        className="py-3 flex items-center text-white bg-[#23396A] cursor-pointer gap-2 px-6 rounded-md transition-all duration-300 hover:bg-[#1a2d56] hover:scale-105 hover:shadow-lg"
+                        className="py-3 flex items-center text-white bg-[#23396A] cursor-pointer gap-2 px-4 rounded-md transition-all duration-300 hover:bg-[#1a2d56] hover:scale-105 hover:shadow-lg"
                         onClick={() => route.push("/list-your-property")}
                     >
-                        <p>List Your Property</p>
+                        <p className="text-[13px] md:text-[5px]">List Your Property</p>
                         <IoHome className="hidden md:block"/>
                     </div>
 
                     {/* Find Location Button */}
                     <div
-                        className="py-3 flex items-center cursor-pointer gap-2 px-9 text-[#23396A] bg-white rounded-md transition-all duration-300 hover:bg-[#f0f4ff] hover:text-[#1a2d56] hover:scale-105 hover:shadow-lg"
+                        className="py-3 flex items-center cursor-pointer gap-2 px-7 text-[#23396A] bg-white rounded-md transition-all duration-300 hover:bg-[#f0f4ff] hover:text-[#1a2d56] hover:scale-105 hover:shadow-lg"
                         onClick={() => route.push("/properties")}
                     >
-                        <p>Find Location</p>
+                        <p className="text-[13px] md:text-[5px]">Find Location</p>
                         <FaLocationDot className="hidden md:block"/>
                     </div>
                 </div>
