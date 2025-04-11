@@ -5,7 +5,7 @@ import { FaLayerGroup } from "react-icons/fa6";
 import { useGlobalContext } from '../Context';
 
 const ListYourProps = () => {
-    const {route} = useGlobalContext();
+    const { route } = useGlobalContext();
     return (
         <section className="relative w-full min-h-screen md:pb-20 pt-15">
             <div className="relative w-full min-h-[90vh] flex items-center md:items-end justify-center md:justify-start md:pb-20">
@@ -20,9 +20,12 @@ const ListYourProps = () => {
                 />
                 <div className='flex flex-col gap-5 md:px-16 px-6 md:text-left text-center'>
                     <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
-                        Earn Money For Listing Your Space
+                        Turn your space into a set and start earning by sharing it with the creative community.
+
+                        Book. Shoot. Create.
+                        It all starts here.
                     </h1>
-                    <button onClick={()=>{route.push(`/list-your-property/all-listing`); window.scrollTo(0,0)}} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
+                    <button onClick={() => { route.push(`/list-your-property/all-listing`); window.scrollTo(0, 0) }} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
                         Get Started Now
                     </button>
                 </div>
@@ -47,34 +50,34 @@ const ListYourProps = () => {
                     {/** Col two */}
                     <div className='relative w-full min-h-[300px]'>
                         <div className='flex flex-col gap-5'>
-                        <div className='flex gap-3'>
-                            <FaLayerGroup className='text-2xl' />
-                            <div className='flex flex-2 flex-col gap-3'>
-                                <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                            <div className='flex gap-3'>
+                                <FaLayerGroup className='text-2xl' />
+                                <div className='flex flex-2 flex-col gap-3'>
+                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className='flex gap-3'>
-                            <FaLayerGroup className='text-2xl' />
-                            <div className='flex flex-2 flex-col gap-3'>
-                                <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                            <div className='flex gap-3'>
+                                <FaLayerGroup className='text-2xl' />
+                                <div className='flex flex-2 flex-col gap-3'>
+                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className='flex gap-3'>
-                            <FaLayerGroup className='text-2xl' />
-                            <div className='flex flex-2 flex-col gap-3'>
-                                <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                            <div className='flex gap-3'>
+                                <FaLayerGroup className='text-2xl' />
+                                <div className='flex flex-2 flex-col gap-3'>
+                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className='flex gap-3'>
-                            <FaLayerGroup className='text-2xl' />
-                            <div className='flex flex-2 flex-col gap-3'>
-                                <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                            <div className='flex gap-3'>
+                                <FaLayerGroup className='text-2xl' />
+                                <div className='flex flex-2 flex-col gap-3'>
+                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { CiSearch } from "react-icons/ci";
+import { IoHome } from "react-icons/io5";
 import { useGlobalContext } from "../Context";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Hero = () => {
     const { route } = useGlobalContext();
 
     return (
-        <div className="w-full relative min-h-screen text-center mx-auto pb-10 overflow-hidden">
+        <div className="w-full relative min-h-screen pb-10 ">
             <video
                 className="w-full h-full object-cover absolute"
                 autoPlay
@@ -17,11 +18,12 @@ const Hero = () => {
                 playsInline
                 src="/hero-video.mp4"
             ></video>
-            {/* Swiper 3D Coverflow Slider */}
-            <div className="w-full md:h-[70vh] h-[50vh] relative flex flex-col items-center justify-center pt-40 pr-6 pl-6 max-w-7xl mx-auto">
-                <div className="relative text-white text-flex-start pr-6 pl-6 pb-10 mb-20 gap-3 flex flex-col pt-30">
-                    <h1 className="text-3xl md:text-5xl text-white font-extrabold leading-tight tracking-wide text-center drop-shadow-5xl md:w-[600px]">
-                        Discover trusted partner in
+            {/* Text-content */}
+            <div className="w-full md:min-h-[70vh] min-h-[50vh] relative flex flex-col justify-center md:justify-start bg-gradient-to-b from-black/60 via-black/70 to-transparent pt-30 md:pt-40">
+                <div className="relative text-white max-w-[800px] text-flex-start pr-6 pl-6 pb-6 mb-20 gap-3 flex flex-col pt-15">
+                    <h1 className="text-2xl md:text-3xl text-white font-extrabold leading-tight tracking-wide text-center md:text-left drop-shadow-5xl w-[full]">
+                        Welcome to Ayinla Films Location (AFL)
+                        Your go-to marketplace
                         <span className="relative inline-block mx-2 align-middle">
                             <Image
                                 src="/h1-img.png"
@@ -30,20 +32,31 @@ const Hero = () => {
                                 height={80}
                                 className="rounded-full object-cover"
                             />
-                        </span>
-                        finding the perfect film set
+                        </span> for filming locations.
                     </h1>
+                    <p className="text-center md:text-left">Discover unique spaces that bring your creative vision to life — from cozy homes to vibrant studios and stunning outdoor scenes. Whether you’re shooting a film, ad, music video, or content project, we make finding the perfect location simple and seamless.</p>
                 </div>
-                {/* Search Box */}
-                <div
-                    className="cursor-pointer z-1 bg-white flex items-center py-1 px-4 rounded-full shadow-md min-w-[300px]"
-                    onClick={() => route.push("/properties")}
-                >
-                    <p className="text-start pr-2 flex-2">Search Location</p>
-                    <div className="bg-[#23396A] w-7 h-7 flex items-center justify-center rounded-full">
-                        <CiSearch className="text-gray-500 font-bold text-white" />
+        
+                <div className="flex gap-3 pr-6 pl-6 items-center justify-center md:justify-start">
+                    {/* List Your Property Button */}
+                    <div
+                        className="py-3 flex items-center text-white bg-[#23396A] cursor-pointer gap-2 px-6 rounded-md transition-all duration-300 hover:bg-[#1a2d56] hover:scale-105 hover:shadow-lg"
+                        onClick={() => route.push("/list-your-property")}
+                    >
+                        <p>List Your Property</p>
+                        <IoHome />
+                    </div>
+
+                    {/* Find Location Button */}
+                    <div
+                        className="py-3 flex items-center cursor-pointer gap-2 px-9 text-[#23396A] bg-white rounded-md transition-all duration-300 hover:bg-[#f0f4ff] hover:text-[#1a2d56] hover:scale-105 hover:shadow-lg"
+                        onClick={() => route.push("/properties")}
+                    >
+                        <p>Find Location</p>
+                        <FaLocationDot />
                     </div>
                 </div>
+
             </div>
         </div>
     );
