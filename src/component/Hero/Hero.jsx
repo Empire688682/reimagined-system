@@ -43,8 +43,8 @@ const Hero = () => {
                         className="py-3 flex items-center text-white bg-[#23396A] cursor-pointer gap-2 px-6 rounded-md transition-all duration-300 hover:bg-[#1a2d56] hover:scale-105 hover:shadow-lg"
                         onClick={() => route.push("/list-your-property")}
                     >
-                        <p className="text-[12px] md:text-[15px]">List Your Property</p>
-                        <IoHome />
+                        <p>List Your Property</p>
+                        <IoHome className="hidden md:block"/>
                     </div>
 
                     {/* Find Location Button */}
@@ -52,8 +52,8 @@ const Hero = () => {
                         className="py-3 flex items-center cursor-pointer gap-2 px-9 text-[#23396A] bg-white rounded-md transition-all duration-300 hover:bg-[#f0f4ff] hover:text-[#1a2d56] hover:scale-105 hover:shadow-lg"
                         onClick={() => route.push("/properties")}
                     >
-                        <p className="text-[12px] md:text-[15px]">Find Location</p>
-                        <FaLocationDot />
+                        <p>Find Location</p>
+                        <FaLocationDot className="hidden md:block"/>
                     </div>
                 </div>
 
