@@ -18,7 +18,7 @@ const ListYourProps = () => {
                     style={{ objectFit: "cover" }}
                     className="absolute z-[-1] top-0 left-0 w-full h-full"
                 />
-                <div className='flex flex-col gap-5 md:px-16 px-6 md:text-left text-center'>
+                <div className='flex flex-col gap-5 md:px-16 px-6 md:text-left text-center pt-45 h-screen bg-gradient-to-b from-black/40 via-black/50 to-transparent'>
                     <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
                         Turn your space into a set and start earning by sharing it with the creative community.
 
