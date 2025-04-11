@@ -20,7 +20,7 @@ const Hero = () => {
             ></video>
             {/* Text-content */}
             <div className="w-full md:min-h-[70vh] min-h-[50vh] relative flex flex-col justify-center md:justify-start bg-gradient-to-b from-black/40 via-black/50 to-transparent pt-30 md:pt-40">
-                <div className="relative text-white max-w-[800px] text-flex-start pr-6 pl-6 pb-6 mb-20 gap-3 flex flex-col pt-15">
+                <div className="relative text-white max-w-[800px] text-flex-start pr-6 pl-6 mb-20 gap-5 flex flex-col pt-15">
                     <h1 className="text-2xl md:text-3xl text-white font-extrabold leading-tight tracking-wide text-center md:text-left drop-shadow-5xl w-[full]">
                         Welcome to Ayinla Films Location (AFL)
                         Your go-to marketplace
