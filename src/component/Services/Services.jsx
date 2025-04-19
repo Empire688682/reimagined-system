@@ -26,7 +26,7 @@ const Services = () => {
 
 
   return (
-    <div className=" md:p-16 p-4 from-[#F1F9FF]">
+    <div className=" md:p-16 p-4 from-[#F1F9FF]" id='faq'>
       {/* Content goes here */}
       <p className='text-[#23396A] text-sm text-center font-semibold mb-4'>Services</p>
       <h2 className='text-xl md:text-2xl font-bold text-[#23396A] text-center mb-4 w-[300px] md:w-[400px] m-auto'>Explore our range of expert real estate services for film makers</h2>

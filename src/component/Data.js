@@ -7,12 +7,12 @@ export const allFaqs = [
     {
       _id: 2,
       question: "Is there a booking fee?",
-      answer: "No, we do not charge any booking fees. You only pay for the property you choose."
+      answer: "Yes, we charge a service fee to guests which is usually a percentage of the booking subtotal."
     },
     {
       _id: 3,
-      question: "Can I list my property on this platform?",
-      answer: "Yes, you can list your property by signing up as a host and filling out the required property details."
+      question: " What fees does AFL charge for bookings?",
+      answer: " AFL charges a service fee on top of the rental price, typically around 15% of the total booking amount. This fee helps us maintain our platform and provide support for both hosts and users. Additionally, hosts may incur a fee of approximately 15% on their earnings from bookings. Some listings may also include cleaning fees or charges for additional services. All fees are clearly displayed during the booking process, so you can see the total cost before finalizing your reservation."
     },
     {
       _id: 4,
@@ -28,7 +28,12 @@ export const allFaqs = [
       _id: 6,
       question: "Can I cancel or modify my booking?",
       answer: "Yes, cancellations and modifications depend on the property's policy. Please check the cancellation policy before booking."
-    }
+    },
+    {
+      _id: 7,
+      question: "Can I list my property on this platform?",
+      answer: "Yes, you can list your property by signing up as a host and filling out the required property details."
+    },
   ];
   
   export const properties = [

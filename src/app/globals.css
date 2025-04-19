@@ -9,6 +9,10 @@
   --foreground: #171717; /* Your custom color */
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   font-family:'Lucida faxe', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
