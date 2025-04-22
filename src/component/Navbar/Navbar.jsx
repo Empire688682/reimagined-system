@@ -91,7 +91,7 @@ const Navbar = () => {
                     </li>
                     <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
                     <a href='#faq' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>FAQ'S</a>
-                    <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Contact Information</li>
+                    <a href='#contact' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                 </ul>
 
                 {/* Auth Buttons */}
@@ -147,7 +147,7 @@ const Navbar = () => {
                             </li>
                             <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
                             <a href='#faq' onClick={() => setIsOpen(false)} className={`text-white cursor-pointer text-[14px]`}>FAQ'S</a>
-                            <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact Information</li>
+                            <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</li>
                         </ul>
                         {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>

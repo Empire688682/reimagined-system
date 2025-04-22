@@ -47,8 +47,9 @@ const Journey = () => {
                     <h2 className='md:text-2xl font-normal text-lg text-gray-800 mb-4'>
                         Your journey to finding the perfect movie starts with Ayinla Film. We are a platform that connects you with the best movie sets from where you want.
                     </h2>
-                    <p className='text-[#23396A] text-sm pb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis dolorem soluta quibusdam officiis iure id, sunt, non odio nam ipsum accusamus nihil!</p>
-                    <button onClick={() => route.push("/properties")} className="bg-[#23396A] rounded-sm text-sm cursor-pointer py-3 px-6 text-white">
+                    <p className='text-[#23396A] text-sm pb-4'>Ayinla Film helps you find and book premium movie locations across Nigeria.<br />
+                    Whether you're shooting a film, music video, or commercial — we're here to support your vision.</p>
+                    <button onClick={() => route.push("/booking")} className="bg-[#23396A] rounded-sm text-sm cursor-pointer py-3 px-6 text-white">
                         Book Now
                     </button>
                 </div>

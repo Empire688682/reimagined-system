@@ -74,7 +74,7 @@ const Signup = () => {
             // Send the request with the required headers
             const response = await axios.post(createAcctUrl, {
                 email: formData.email,
-                base_url: "http://localhost:3000",
+                base_url: "http://localhost:3000/",
             }, {
                 headers: {
                     "Content-Type": "application/json",
