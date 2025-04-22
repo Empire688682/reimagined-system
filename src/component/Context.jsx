@@ -16,12 +16,10 @@ export const AppProvider = ({children}) => {
     fetchProperties()
   },[])
 
-  const createAcctUrl = "https://api.ayinlafilms.com/api/v1/auth/initiate-signup/"
   return (
     <AppContext.Provider value={{
       route,
       allPropts,
-      createAcctUrl
       }}>
         {children}
     </AppContext.Provider>

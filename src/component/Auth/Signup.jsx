@@ -7,8 +7,9 @@ import axios from "axios"
 import CreateAccount from "./SignUpModals/CreateAccount";
 import PersonalDetails from "./SignUpModals/PersonalDetails";
 
+const createAcctUrl = "https://api.ayinlafilms.com/api/v1/auth/initiate-signup/"
+
 const Signup = () => {
-    const { route, createAcctUrl } = useGlobalContext();
     const [formCategory, setFormCategory] = useState("Create Account");
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
