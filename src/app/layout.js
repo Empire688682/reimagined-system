@@ -2,6 +2,8 @@
 import { AppProvider } from "@/component/Context";
 import Navbar from "@/component/Navbar/Navbar";
 import "./globals.css";
+import ContactPage from "@/component/Contact/Contact";
+import Footer from "@/component/Footer/Footer";
 
 export const metadata = {
   title: "Ayinla Film",
@@ -16,6 +18,8 @@ export default function RootLayout({ children }) {
         <AppProvider>
           <Navbar/>
           {children}
+          <ContactPage />
+          <Footer />
         </AppProvider>
       </body>
     </html>

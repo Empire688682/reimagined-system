@@ -4,7 +4,6 @@ import ListingSent from '@/component/AllListingModal/ListingSent';
 import SecondListingAddress from '@/component/AllListingModal/SecondListingAddress';
 import UploadModal from '@/component/AllListingModal/UploadModal';
 import AllListings from '@/component/AllListings/AllListings'
-import Footer from '@/component/Footer/Footer'
 import React, { useState } from 'react'
 
 const page = () => {
@@ -31,7 +30,6 @@ const page = () => {
         modals === "upload" && 
         <UploadModal setModals={setModals} />
       }
-      <Footer />
     </div>
   )
 }

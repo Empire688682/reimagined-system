@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from 'react';
 import Hero from '@/component/Hero/Hero';
 import Services from '@/component/Services/Services';
-import Footer from '@/component/Footer/Footer';
 import Properties from '@/component/Properties/Properties';
 import Features from '@/component/Features/Features';
 import Journey from '@/component/Journey/Journey';
@@ -52,7 +51,6 @@ const Page = () => {
       </div>
       <Features />
       <Journey />
-      <Footer />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Footer from "@/component/Footer/Footer";
 import { useParams } from "next/navigation";
 import SingleProptsCart from "@/component/SingleProptsCart/SingleProptsCart";
 import { useGlobalContext } from "@/component/Context";
@@ -104,7 +103,6 @@ const Page = () => {
                 setAddressModal={setAddressModal}
               />
           }
-          <Footer /> {/* Render footer at the bottom */}
         </div>
       ) : (
         // Show error message if property is not found

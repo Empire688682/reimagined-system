@@ -1,8 +1,8 @@
 import React from 'react';
 import BookingTopLocation from '@/component/BookingTopLocation/BookingTopLocation';
-import Footer from '@/component/Footer/Footer';
 import BookingFAQ from '@/component/BookingFAQ/BookingFAQ';
 import BookingHero from '@/component/BookingHero/BookingHero';
+import ContactPage from '@/component/ContactPage/ContactPage';
 
 const Page = () => {
   return (
@@ -11,7 +11,7 @@ const Page = () => {
       <BookingTopLocation/>
       <BookingFAQ/>
       {/*Footer*/}
-      <Footer/>
+      <ContactPage />
     </div>
   )
 }
