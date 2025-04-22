@@ -7,7 +7,7 @@ import axios from "axios"
 import CreateAccount from "./SignUpModals/CreateAccount";
 import PersonalDetails from "./SignUpModals/PersonalDetails";
 
-const createAcctUrl = "https://api.ayinlafilms.com/api/v1/auth/initiate-signup/"
+const createAcctUrl = "https://ayinla-api.aweayo.com.ng/api/v1/initiate-signup/"
 
 const Signup = () => {
     const [formCategory, setFormCategory] = useState("Create Account");
