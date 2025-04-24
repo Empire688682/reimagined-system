@@ -82,8 +82,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="absolute bottom-[-15px] right-6 w-24 h-24 bg-white/10 bg-opacity-10 rounded-full" />
-          <div className="absolute bottom-10 right-10 w-16 h-16 bg-white/10 bg-opacity-20 rounded-full" />
+          <div className="absolute bottom-[-32px] right-[-28px] w-30 h-30 bg-white/10 bg-opacity-10 rounded-full" />
+          <div className="absolute bottom-14 right-8 w-16 h-16 bg-white/10 bg-opacity-20 rounded-full" />
         </div>
 
         {/* Right Column */}

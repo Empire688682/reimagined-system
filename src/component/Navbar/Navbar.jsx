@@ -32,7 +32,7 @@ const Navbar = () => {
     const navbarBg = pathname === "/" ? "" : "bg-[#23396A]";
 
     // Change logo base on route
-    const logo = pathname !== "/" ? "/ayinla-logo.png" : "/colored-ayinla-logo.png";
+    const logo = pathname !== "/" ? "/ayinla-logo-2.PNG" : "/ayinla-logo-1.PNG";
 
     const handleSubMenu = (id) => {
         setOpenSubMenu((prev) => {
@@ -50,8 +50,8 @@ const Navbar = () => {
         <nav className={`pl-3 pr-3 md:pl-6 md:pr-6 py-0 absolute top-0 left-0 right-0 z-10 transition-all duration-300 ${navbarBg} `}>
             <div className='md:flex hidden justify-between items-center'>
                 {/* Logo */}
-                <Link href="/" className="relative w-[80px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
-                    <Image src="/ayinla-logo.png" alt="logo" fill className="object-contain" />
+                <Link href="/" className="relative w-[100px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
+                    <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
 
                 {/* Nav Links */}
@@ -103,9 +103,11 @@ const Navbar = () => {
 
             {/* Mobile Navbar */}
             <div className='flex md:hidden z-20 justify-between items-center'>
-                <Link href="/" className="relative w-[60px] h-[60px] cursor-pointer" onClick={() => setIsOpen(false)}>
-                    <Image src="/ayinla-logo.png" alt="logo" fill className="object-contain" />
+                {/* Logo */}
+                <Link href="/" className="relative w-[100px] h-[80px] cursor-pointer" onClick={() => setIsOpen(false)}>
+                    <Image src={logo} alt="logo" fill className="object-contain" />
                 </Link>
+
                 <div onClick={() => setIsOpen(!isOpen)}>
                     <IoMenuOutline className={`text-4xl text-white cursor-pointer`} />
                 </div>
@@ -147,7 +149,7 @@ const Navbar = () => {
                             </li>
                             <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
                             <a href='#faq' onClick={() => setIsOpen(false)} className={`text-white cursor-pointer text-[14px]`}>FAQ'S</a>
-                            <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</li>
+                            <a href='#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                         </ul>
                         {/** Auth buttons */}
                         <div className='mt-4 flex gap-3'>

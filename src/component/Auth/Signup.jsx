@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useGlobalContext } from "../Context";
 import Verification from "./Verification";
 import axios from "axios"
 import CreateAccount from "./SignUpModals/CreateAccount";
@@ -61,17 +60,17 @@ const Signup = () => {
     const handleCreateAcctFormSubmit = async (e) => {
         e.preventDefault();
         const { email } = formData;
-    
+
         // Validate required fields
         if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
             setErrorMsg("Please enter a valid email address");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
         }
-    
+
         try {
             setLoading(true);
-    
+
             // Send the request with the required headers
             const response = await axios.post(createAcctUrl, {
                 email: formData.email,
@@ -79,15 +78,15 @@ const Signup = () => {
             }, {
                 headers: {
                     "Content-Type": "application/json",
-                    "X-API-KEY": "ApiKeyAuth", 
+                    "X-API-KEY": "ApiKeyAuth",
                 },
             });
-    
+
             // Check if the response status is 204 (No Content)
             if (response.status === 204) {
                 console.log("User signup successfully");
                 alert("User registered successfully");
-    
+
                 // Move to personal details form
                 setFormCategory("Personal Details");
             } else {
@@ -101,7 +100,7 @@ const Signup = () => {
             setLoading(false);
         }
     };
-    
+
 
 
     // Handles Signup with google
@@ -155,7 +154,7 @@ const Signup = () => {
         <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
             <div className="flex flex-col gap-4 items-center">
                 {/* Logo */}
-                <Image src="/colored-ayinla-logo.png" alt="Ayinla Logo" priority width={60} height={60} />
+                <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
                 {
                     formCategory === "Create Account" && (

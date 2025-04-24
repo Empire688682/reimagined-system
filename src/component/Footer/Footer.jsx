@@ -12,12 +12,11 @@ const Footer = () => {
         {/* Logo & Description */}
         <div className="flex flex-col justify-center md:justify-start items-center text-center md:text-start md:items-start">
           <Image 
-            src="/ayinla-logo.png" 
+            src="/ayinla-logo-2.PNG" 
             alt="Footer Logo" 
-            width={60} 
+            width={150} 
             height={60} 
             priority 
-            className="mb-4"
           />
           <p className="text-gray-300 text-sm">Providing you with movie sets from where you want.</p>
         </div>

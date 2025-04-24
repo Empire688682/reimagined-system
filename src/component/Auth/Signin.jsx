@@ -75,7 +75,7 @@ const Signin = () => {
         <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2   py-30 md:px-16 px-4">
             <div className="flex flex-col max-w-[500px] min-w-[300px] md:min-w-[350px] m-auto gap-4 items-center">
                 {/* Logo */}
-                <Image src="/colored-ayinla-logo.png" alt="Ayinla Logo" priority width={60} height={60} />
+                <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
                 {
                     formCategory === "Login" ?
