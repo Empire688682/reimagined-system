@@ -152,7 +152,7 @@ const Navbar = () => {
                             <a href='#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                         </ul>
                         {/** Auth buttons */}
-                        <div className='flex gap-3'>
+                        <div className='flex gap-3 mt-6'>
                             <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
                             <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
                         </div>

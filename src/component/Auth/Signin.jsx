@@ -27,6 +27,7 @@ const Signin = () => {
 
     const loginUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/login";
     const PwdRecoveryUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/initiate-password-recovery";
+    const googleUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/google/url";
 
     // State to manage user input
     const [formData, setFormData] = useState({
@@ -122,7 +123,7 @@ const Signin = () => {
                 console.log("response:", response);
                 console.log("Recovery link Data", formData);
                 alert(`Recovery link sent to: ${formData.email}`);
-                route.pus('/');
+                route.push('/');
             } else {
                 // Handle unexpected response status
                 console.log("Unexpected response:", response);
@@ -143,6 +144,25 @@ const Signin = () => {
         }
         else {
             handleForgotPassword();
+        }
+    };
+
+    const googleLogin = async () =>{
+        try {
+            const response = await axios.get(googleUrl, {
+                url:"http://example.com"
+            }, {
+                headers:{
+                    "Content-Type": "aplication/json"
+                }
+            });
+            if(response.status === 200){
+                console.log("response:", response);
+                alert("Login with google successful")
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
         }
     }
 
@@ -199,7 +219,7 @@ const Signin = () => {
                 }
                 {
                     formCategory === "Login" &&
-                    <div className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100">
+                    <div onClick={googleLogin} className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100">
                         <Image
                             src="/google-icon.png"
                             alt="Google Logo"
