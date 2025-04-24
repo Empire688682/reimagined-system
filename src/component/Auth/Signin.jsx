@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
+import axios from "axios";
+import { FaSpinner } from 'react-icons/fa6';
 
 // Define available states and corresponding cities
 const statesAndCities = {
@@ -21,6 +23,9 @@ const Signin = () => {
     const { route } = useGlobalContext();
     const [formCategory, setFormCategory] = useState("Login");
     const [errorMsg, setErrorMsg] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const loginUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/login";
 
     // State to manage user input
     const [formData, setFormData] = useState({
@@ -41,7 +46,7 @@ const Signin = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     // Handles Login form
-    const handleFormSubmission = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         const { password, email } = formData;
@@ -51,11 +56,38 @@ const Signin = () => {
             setErrorMsg("All fields are required");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
-        }
+        };
+        setLoading(true);
+        try {
+            const response = await axios.post(loginUrl, {
+                email: formData.email,
+                password: formData.password
+            },
+            {
+                headers:{
+                    "Content-Type": "application/json",
+                    "X-API-KEY": "ApiKeyAuth",
+                },
+            }
+        );
 
-        console.log("User login successfully", formData);
-        alert("User Login");
-        route.push("/");
+         // Check if the response status is 204 (No Content)
+         if (response.status === 200) {
+            console.log("response:", response);
+            console.log("User login successfully", formData);
+            alert("User Login successful");
+            route.pus('/');
+        } else {
+            // Handle unexpected response status
+            console.log("Unexpected response:", response);
+        };
+
+        } catch (error) {
+            console.error("Error during login:", error);
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+        }finally{
+            setLoading(false);
+        }
     };
 
     const handleForgotPassword = (e) => {
@@ -82,23 +114,23 @@ const Signin = () => {
                         :
                         <p className="text-gray-700">Please enter your email to reset your password</p>
                 }
-                <form onSubmit={handleFormSubmission} className="flex w-full flex-col gap-4">
+                <form onSubmit={handleLogin} className="flex w-full flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         {/* Email Field */}
                         <label htmlFor="email" className="flex text-gray-700 flex-col text-sm md:text-base">
                             Email*
-                            <input onChange={handleOnchange} type="email" placeholder="Enter your email" value={formData.email} name="email" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
+                            <input onChange={handleOnchange} type="email" placeholder="Enter your email" value={formData.email} name="email" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-3" />
                         </label>
 
                         {/* Password Field with Toggle Visibility */}
                         {
                             formCategory === "Login" && <label htmlFor="password" className="flex relative text-gray-700 flex-col text-sm md:text-base">
                                 Password*
-                                <input onChange={handleOnchange} type={showPassword ? "text" : "password"} placeholder="Enter your password" value={formData.password} name="password" id="password" className="border border-gray-300 text-gray-600 outline-none rounded-md pl-1 py-1 pr-10" />
+                                <input onChange={handleOnchange} type={showPassword ? "text" : "password"} placeholder="Enter your password" value={formData.password} name="password" id="password" className="border border-gray-300 text-gray-600 outline-none rounded-md p-3 pr-10" />
                                 {
                                     showPassword ?
-                                        <FaEyeSlash onClick={() => setShowPassword(!showPassword)} className="absolute bottom-1 right-2 cursor-pointer text-lg" /> :
-                                        <FaEye onClick={() => setShowPassword(!showPassword)} className="absolute bottom-1 right-2 cursor-pointer text-lg" />
+                                        <FaEyeSlash onClick={() => setShowPassword(!showPassword)} className="absolute bottom-3 right-2 cursor-pointer text-lg" /> :
+                                        <FaEye onClick={() => setShowPassword(!showPassword)} className="absolute bottom-3 right-2 cursor-pointer text-lg" />
                                 }
                             </label>
                         }
@@ -115,10 +147,10 @@ const Signin = () => {
                     }
                     {
                         formCategory === "Login" ?
-                            <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
-                                Sign in
+                            <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
+                                {loading ? <FaSpinner className="animate-spin text-lg text-white" />:"Sign in"}
                             </button>
-                            : <p className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md" onClick={handleForgotPassword}>
+                            : <p className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md" onClick={handleForgotPassword}>
                                 Resset Password
                             </p>
                     }

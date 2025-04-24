@@ -9,6 +9,7 @@ import { useGlobalContext } from "../Context";
 
 const initiateSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/initiate-signup";
 const completeSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/complete-signup";
+const googleSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/complete-signup";
 
 const Signup = () => {
     const {BaseUrl} = useGlobalContext();
@@ -86,11 +87,9 @@ const Signup = () => {
                 },
             });
 
-            console.log("Response:", response);
-
             // Check if the response status is 204 (No Content)
             if (response.status === 204) {
-                console.log("User signup successfully");
+                console.log("response:", response);
                 alert("User registered successfully");
 
                 // Move to CompleteSignup form
@@ -192,7 +191,7 @@ const Signup = () => {
             <div className="flex flex-col gap-4 items-center">
                 {/* Logo */}
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
-                <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
+                <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory === "InitialSignup" ? "Sign Up" : "Complete Sign Up"}</h1>
                 {
                     formCategory === "InitialSignup" && (
                         <InitialSignup

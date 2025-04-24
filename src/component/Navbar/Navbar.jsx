@@ -26,7 +26,7 @@ const Navbar = () => {
             document.body.style.overflow = "auto";
         };
     }, [isOpen]);
-    
+
 
     // Change navbar background color based on route
     const navbarBg = pathname === "/" ? "" : "bg-[#23396A]";
@@ -96,8 +96,8 @@ const Navbar = () => {
 
                 {/* Auth Buttons */}
                 <div className='flex gap-3'>
-                    <button className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
-                    <button className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
+                    <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
+                    <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
                 </div>
             </div>
 
@@ -152,9 +152,9 @@ const Navbar = () => {
                             <a href='#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                         </ul>
                         {/** Auth buttons */}
-                        <div className='mt-4 flex gap-3'>
-                            <button className="px-8 py-3 rounded-sm text-white cursor-pointer text-[14px] bg-[#23396A]" onClick={() => { route.push("/signin"); setIsOpen(false) }}>Sign In</button>
-                            <button className="px-8 py-3 rounded-sm cursor-pointer text-[14px] bg-white text-[#23396A]" onClick={() => { route.push("/signup"); setIsOpen(false) }}>Sign Up</button>
+                        <div className='flex gap-3'>
+                            <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
+                            <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
                         </div>
                     </div>
                 )}
