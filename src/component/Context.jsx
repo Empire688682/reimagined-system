@@ -16,14 +16,13 @@ export const AppProvider = ({ children }) => {
     fetchProperties()
   }, []);
 
-  function Spin() {
-    return <div className="w-12 h-12 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"/>
-  };
+  const BaseUrl = "http://localhost:3000" || "https://ayinla.vercel.app"
 
   return (
     <AppContext.Provider value={{
       route,
       allPropts,
+      BaseUrl
     }}>
       {children}
     </AppContext.Provider>

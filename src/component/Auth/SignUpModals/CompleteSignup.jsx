@@ -13,7 +13,9 @@ const CompleteSignup = ({
     formData, 
     errorMsg, 
     showPassword, 
-    setShowPassword
+    setShowPassword,
+    formCondition,
+    handleSkipClick
 }) => {
     return (
         <div>

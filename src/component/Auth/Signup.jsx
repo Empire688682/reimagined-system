@@ -5,19 +5,21 @@ import EmailVerification from "./EmailVerification";
 import axios from "axios"
 import InitialSignup from "./SignUpModals/InitialSignup";
 import CompleteSignup from "./SignUpModals/CompleteSignup";
+import { useGlobalContext } from "../Context";
 
-const initiateSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/initiate-signup/"
-const completeSignupUrl = "https://api.ayinlafilms.com/api/v1/auth/complete-signup/"
+const initiateSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/initiate-signup";
+const completeSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/complete-signup";
 
 const Signup = () => {
+    const {BaseUrl} = useGlobalContext();
     const [formCategory, setFormCategory] = useState("InitialSignup");
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
 
     // State to manage user input
     const [formData, setFormData] = useState({
-        token: "TOKEN",
-        email: "user@example.com",
+        token: "",
+        email: "",
         password: "",
         first_name: "",
         last_name: "",
@@ -75,8 +77,8 @@ const Signup = () => {
 
             // Send the request with the required headers
             const response = await axios.post(initiateSignupUrl, {
-                email: "user@example.com",
-                base_url: "http://example.com/",
+                email: formData.email,
+                base_url: BaseUrl,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -143,7 +145,7 @@ const Signup = () => {
                 phone_number: formData.phone_number,
                 job_title: formData.job_title,
                 password: formData.password,
-                base_url: "http://localhost:3000/",
+                base_url: BaseUrl,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -212,6 +214,7 @@ const Signup = () => {
                             handleSkipClick={handleSkipClick}
                             showPassword={showPassword}
                             setShowPassword={setShowPassword}
+                            formCondition={formCondition}
                         />
                     )
                 }
