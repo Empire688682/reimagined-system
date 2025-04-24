@@ -20,18 +20,27 @@ const statesAndCities = {
 const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
 
 const Signin = () => {
-    const { route } = useGlobalContext();
+    const { route, BaseUrl } = useGlobalContext();
     const [formCategory, setFormCategory] = useState("Login");
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
 
     const loginUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/login";
+    const PwdRecoveryUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/initiate-password-recovery";
 
     // State to manage user input
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
+    useEffect(() => {
+        setFormData({
+            email: "",
+            password: "",
+        });
+        setErrorMsg("")
+    }, [formCategory]);
 
     // Handles input changes and updates form data
     const handleOnchange = (e) => {
@@ -46,9 +55,7 @@ const Signin = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     // Handles Login form
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
+    const handleLogin = async () => {
         const { password, email } = formData;
 
         // Validate required fields
@@ -63,44 +70,81 @@ const Signin = () => {
                 email: formData.email,
                 password: formData.password
             },
-            {
-                headers:{
-                    "Content-Type": "application/json",
-                    "X-API-KEY": "ApiKeyAuth",
-                },
-            }
-        );
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-API-KEY": "ApiKeyAuth",
+                    },
+                }
+            );
 
-         // Check if the response status is 204 (No Content)
-         if (response.status === 200) {
-            console.log("response:", response);
-            console.log("User login successfully", formData);
-            alert("User Login successful");
-            route.pus('/');
-        } else {
-            // Handle unexpected response status
-            console.log("Unexpected response:", response);
-        };
+            // Check if the response status is 204 (No Content)
+            if (response.status === 200) {
+                console.log("response:", response);
+                console.log("User login successfully", formData);
+                alert("User Login successful");
+                route.pus('/');
+            } else {
+                // Handle unexpected response status
+                console.log("Unexpected response:", response);
+            };
 
         } catch (error) {
             console.error("Error during login:", error);
             setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
-        }finally{
+        } finally {
             setLoading(false);
         }
     };
 
-    const handleForgotPassword = (e) => {
+    const handleForgotPassword = async () => {
         const { email } = formData;
-        e.preventDefault();
         if (!email.trim()) {
             setErrorMsg("Please enter your email address");
             return
         }
-        console.log("Password reset link sent to your email");
-        alert(`Password reset link sent to your email: ${email}`);
-        window.location.reload();
+        setLoading(true);
+        try {
+            const response = await axios.post(PwdRecoveryUrl, {
+                email: formData.email,
+                base_url: BaseUrl
+            },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-API-KEY": "ApiKeyAuth",
+                    },
+                }
+            );
+
+            // Check if the response status is 204 (No Content)
+            if (response.status === 204) {
+                console.log("response:", response);
+                console.log("Recovery link Data", formData);
+                alert(`Recovery link sent to: ${formData.email}`);
+                route.pus('/');
+            } else {
+                // Handle unexpected response status
+                console.log("Unexpected response:", response);
+            };
+
+        } catch (error) {
+            console.error("Error during PwdRecovery:", error);
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+        } finally {
+            setLoading(false);
+        }
     };
+
+    function handleFormSumission(e) {
+        e.preventDefault();
+        if (formCategory === "Login") {
+            handleLogin()
+        }
+        else {
+            handleForgotPassword();
+        }
+    }
 
     return (
         <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2   py-30 md:px-16 px-4">
@@ -114,7 +158,7 @@ const Signin = () => {
                         :
                         <p className="text-gray-700">Please enter your email to reset your password</p>
                 }
-                <form onSubmit={handleLogin} className="flex w-full flex-col gap-4">
+                <form onSubmit={handleFormSumission} className="flex w-full flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         {/* Email Field */}
                         <label htmlFor="email" className="flex text-gray-700 flex-col text-sm md:text-base">
@@ -145,15 +189,9 @@ const Signin = () => {
                             <p className="text-sm text-blue-500 cursor-pointer" onClick={() => setFormCategory("Forgotten Password")}>Forgot password</p>
                         </div>
                     }
-                    {
-                        formCategory === "Login" ?
-                            <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
-                                {loading ? <FaSpinner className="animate-spin text-lg text-white" />:"Sign in"}
-                            </button>
-                            : <p className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md" onClick={handleForgotPassword}>
-                                Resset Password
-                            </p>
-                    }
+                    <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
+                        {loading ? <FaSpinner className="animate-spin text-lg text-white" /> : <>{formCategory === "Login" ? "Login" : "Resset Password"}</>}
+                    </button>
                 </form>
                 {/** Error Message */}
                 {
