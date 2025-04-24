@@ -2,25 +2,34 @@
 import React from 'react';
 import { IoIosCheckmarkCircleOutline, IoMdCheckmarkCircle } from "react-icons/io";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaSpinner } from 'react-icons/fa6';
 
 // Define available job roles
 const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
-const PersonalDetails = ({handlePersonalDetailSubmit, handleOnchange, formData, showPassword, setShowPassword}) => {
+const CompleteSignup = ({
+    handleCompleteSignup, 
+    loading, 
+    handleOnchange, 
+    formData, 
+    errorMsg, 
+    showPassword, 
+    setShowPassword
+}) => {
     return (
         <div>
             {/** Personal Details Form */}
-                <form onSubmit={handlePersonalDetailSubmit} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
+                <form onSubmit={handleCompleteSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         <div className="flex gap-4 flex-col md:flex-row">
                             {/* First Name Field */}
                             <label className="flex text-gray-700 flex-col text-sm md:text-base">
                                 First Name*
-                                <input onChange={handleOnchange} type="text" name="firstName" value={formData.firstName} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
+                                <input onChange={handleOnchange} type="text" name="first_name" value={formData.first_name} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
                             </label>
                             {/* Last Name Field */}
                             <label className="flex text-gray-700 flex-col text-sm md:text-base">
                                 Last Name*
-                                <input onChange={handleOnchange} type="text" name="lastName" value={formData.lastName} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
+                                <input onChange={handleOnchange} type="text" name="last_name" value={formData.last_name} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
                             </label>
                         </div>
                         {/* Password Field with Toggle Visibility */}
@@ -36,12 +45,12 @@ const PersonalDetails = ({handlePersonalDetailSubmit, handleOnchange, formData, 
                         {/* Phone Field */}
                         <label className="flex text-gray-700 flex-col text-sm md:text-base">
                             Phone
-                            <input onChange={handleOnchange} type="tel" name="phone" value={formData.phone} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
+                            <input onChange={handleOnchange} type="tel" name="phone_number" value={formData.phone_number} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
                         </label>
                         {/* Job Dropdown */}
                         <label className="flex text-gray-700 flex-col text-sm md:text-base">
                             Job
-                            <select name="job" value={formData.job} onChange={handleOnchange} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
+                            <select name="job_title" value={formData.job_title} onChange={handleOnchange} className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
                                 <option value="" disabled>Select your job role</option>
                                 {jobs.map((job) => (
                                     <option key={job} value={job}>{job}</option>
@@ -65,7 +74,7 @@ const PersonalDetails = ({handlePersonalDetailSubmit, handleOnchange, formData, 
                         </div>
                     </div>
                     <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
-                        Proceed
+                        {loading ? <FaSpinner className="animate-spin text-lg text-white" /> : "Continue"}
                     </button>
                     {/* Skip submit button */}
                     <p
@@ -79,4 +88,4 @@ const PersonalDetails = ({handlePersonalDetailSubmit, handleOnchange, formData, 
     )
 }
 
-export default PersonalDetails
+export default CompleteSignup

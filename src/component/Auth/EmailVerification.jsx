@@ -1,7 +1,7 @@
 "use client";
 import { useGlobalContext } from "../Context";
 
-const Verification = ({ userEmail, handleResendingEmail }) => {
+const EmailVerification = ({ userEmail, handleEmailVerification }) => {
     const { route } = useGlobalContext();
 
 
@@ -14,11 +14,11 @@ const Verification = ({ userEmail, handleResendingEmail }) => {
             >
                 Open email app
             </p>
-            <p className="text-sm my-3">Dont recieve the email? <span className="text-[#23396A] cursor-pointer font-semibold" onClick={handleResendingEmail}> Click to resend</span></p>
+            <p className="text-sm my-3">Dont recieve the email? <span className="text-[#23396A] cursor-pointer font-semibold" onClick={handleEmailVerification}> Click to resend</span></p>
 
             <p className="text-sm my-3">Already have an account? <span className="text-[#23396A] cursor-pointer font-semibold" onClick={()=>route.push("/signin")}> Log in</span></p>
         </div>
     );
 };
 
-export default Verification;
+export default EmailVerification;

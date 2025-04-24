@@ -1,26 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Verification from "./Verification";
+import EmailVerification from "./EmailVerification";
 import axios from "axios"
-import CreateAccount from "./SignUpModals/CreateAccount";
-import PersonalDetails from "./SignUpModals/PersonalDetails";
+import InitialSignup from "./SignUpModals/InitialSignup";
+import CompleteSignup from "./SignUpModals/CompleteSignup";
 
-const createAcctUrl = "https://ayinla-api.aweayo.com.ng/api/v1/initiate-signup/"
+const initiateSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/initiate-signup/"
+const completeSignupUrl = "https://api.ayinlafilms.com/api/v1/auth/complete-signup/"
 
 const Signup = () => {
-    const [formCategory, setFormCategory] = useState("Create Account");
+    const [formCategory, setFormCategory] = useState("InitialSignup");
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
 
     // State to manage user input
     const [formData, setFormData] = useState({
-        email: "",
+        token: "TOKEN",
+        email: "user@example.com",
         password: "",
-        firstName: "",
-        lastName: "",
-        phone: "",
-        job: "",
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        job_title: "",
     });
 
     // State to track password validation conditions
@@ -57,7 +59,7 @@ const Signup = () => {
     }, [formData.password]);
 
     // Handles form submission for initial account creation with Email only
-    const handleCreateAcctFormSubmit = async (e) => {
+    const handleInitialSignup = async (e) => {
         e.preventDefault();
         const { email } = formData;
 
@@ -72,9 +74,9 @@ const Signup = () => {
             setLoading(true);
 
             // Send the request with the required headers
-            const response = await axios.post(createAcctUrl, {
-                email: formData.email,
-                base_url: "http://localhost:3000/",
+            const response = await axios.post(initiateSignupUrl, {
+                email: "user@example.com",
+                base_url: "http://example.com/",
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -82,20 +84,22 @@ const Signup = () => {
                 },
             });
 
+            console.log("Response:", response);
+
             // Check if the response status is 204 (No Content)
             if (response.status === 204) {
                 console.log("User signup successfully");
                 alert("User registered successfully");
 
-                // Move to personal details form
-                setFormCategory("Personal Details");
+                // Move to CompleteSignup form
+                setFormCategory("CompleteSignup");
             } else {
                 // Handle unexpected response status
                 console.log("Unexpected response:", response);
             }
         } catch (error) {
             console.error("Error during signup:", error);
-            setErrorMsg(error.response?.data?.message || error.message || "An error occurred");
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
         } finally {
             setLoading(false);
         }
@@ -110,15 +114,15 @@ const Signup = () => {
     }
 
     // Handles full form submission with additional details
-    const handlePersonalDetailSubmit = (e) => {
+    const handleCompleteSignup = async (e) => {
         e.preventDefault();
 
-        const { email, firstName, lastName, phone, job } = formData;
+        const { token, email, first_name, last_name, phone_number, job_title } = formData;
 
         // Validate required fields
         if (!email.trim() || !/\S+@\S+\.\S+/.test(email) ||
-            !firstName.trim() || !lastName.trim() ||
-            !phone.trim() || !job.trim()) {
+            !first_name.trim() || !last_name.trim() ||
+            !phone_number.trim() || !job_title.trim()) {
             setErrorMsg("All fields are required");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
@@ -129,24 +133,55 @@ const Signup = () => {
             return;
         }
 
-        console.log("Form submitted successfully", formData);
-        alert("User registered with full details successfully");
-        // Move to Email verification if  registration is successful
-        setFormCategory("Check your email");
+        try {
+            // Send the request with the required headers
+            const response = await axios.post(completeSignupUrl, {
+                token: formData.token,
+                email: formData.email,
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                phone_number: formData.phone_number,
+                job_title: formData.job_title,
+                password: formData.password,
+                base_url: "http://localhost:3000/",
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": "ApiKeyAuth",
+                },
+            });
+
+            // Check if the response status is 204 (No Content)
+            if (response.status === 204) {
+                console.log("User signup successfully");
+                alert("User registered successfully");
+
+                // Move to EmailVerification form
+                setFormCategory("EmailVerification");
+            } else {
+                // Handle unexpected response status
+                console.log("Unexpected response:", response);
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+        } finally {
+            setLoading(false);
+        }
     };
 
-    // Handles skipping personal details
+    // Handles skipping CompleteSignup
     const handleSkipClick = (e) => {
         e.preventDefault();
         console.log("Form submitted successfully", formData);
         alert("User registered with half details");
 
         // Move to Email verification if  registration is successful
-        setFormCategory("Check your email");
+        setFormCategory("EmailVerification");
     };
 
     // Handles resending email
-    const handleResendingEmail = () => {
+    const handleEmailVerification = () => {
         alert(`Resending email successfully to ${formData.email}`)
     }
 
@@ -157,19 +192,20 @@ const Signup = () => {
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">{formCategory}</h1>
                 {
-                    formCategory === "Create Account" && (
-                        <CreateAccount
-                            handleCreateAcctFormSubmit={handleCreateAcctFormSubmit}
+                    formCategory === "InitialSignup" && (
+                        <InitialSignup
+                            handleInitialSignup={handleInitialSignup}
                             handleOnchange={handleOnchange}
                             formData={formData}
                             errorMsg={errorMsg}
+                            loading={loading}
                         />
                     )
                 }
                 {
-                    formCategory === "Personal Details" && (
-                        <PersonalDetails
-                            handlePersonalDetailSubmit={handlePersonalDetailSubmit}
+                    formCategory === "CompleteSignup" && (
+                        <CompleteSignup
+                            handleCompleteSignup={handleCompleteSignup}
                             handleOnchange={handleOnchange}
                             formData={formData}
                             errorMsg={errorMsg}
@@ -180,10 +216,10 @@ const Signup = () => {
                     )
                 }
                 {
-                    formCategory === "Check your email" && (
-                        <Verification
+                    formCategory === "EmailVerification" && (
+                        <EmailVerification
                             userEmail={formData.email}
-                            handleResendingEmail={handleResendingEmail}
+                            handleEmailVerification={handleEmailVerification}
                         />
                     )
                 }

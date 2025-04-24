@@ -1,16 +1,25 @@
 "use client";
 import React from 'react';
 import Image from "next/image";
+import { FaSpinner } from 'react-icons/fa6';
 
-const CreateAccount = ({ handleCreateAcctFormSubmit, loading, handleGoogleSignup, handleOnchange, formData, errorMsg }) => {
+const InitialSignup = ({ 
+    handleInitialSignup, 
+    loading, 
+    handleGoogleSignup, 
+    handleOnchange, 
+    formData, 
+    errorMsg 
+    }) => {
+        
     return (
         <div className='flex flex-col gap-4'>
-            <form onSubmit={handleCreateAcctFormSubmit} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
+            <form onSubmit={handleInitialSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                 <div className="flex flex-col w-full gap-4">
                     {/* Email Field */}
                     <label htmlFor="email" className="flex text-gray-700 flex-col text-sm md:text-base">
                         Email*
-                        <input onChange={handleOnchange} type="email" placeholder="Enter your email" value={formData.email} name="email" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1" />
+                        <input onChange={handleOnchange} type="email" placeholder="Enter your email" value={formData.email} name="email" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-3" />
                     </label>
                 </div>
 
@@ -18,14 +27,14 @@ const CreateAccount = ({ handleCreateAcctFormSubmit, loading, handleGoogleSignup
                 {
                     errorMsg && <p className="text-red-600 text-xs font-semibold">{errorMsg}</p>
                 }
-                <button type='submit' className="flex items-center bg-[#23396A] text-sm text-white py-2 cursor-pointer text w-full justify-center border rounded-md">
-                    {loading? "Get Started.....":"Get Started"}
+                <button disabled={loading} type='submit' className="flex disabled:cursor-not-allowed items-center bg-[#23396A] text-sm text-white py-3 cursor-pointer text w-full justify-center border rounded-md">
+                    {loading? <FaSpinner className='text-white text-xl animate-spin'/>:"Get Started"}
                 </button>
             </form>
 
             {
                 // Signup with Google, only for create account
-                <div className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100" onClick={handleGoogleSignup}>
+                <div disabled={loading} className="flex w-full disabled:cursor-not-allowed items-center justify-center border border-gray-300 rounded-md p-3 cursor-pointer hover:bg-gray-100" onClick={handleGoogleSignup}>
                     <Image
                         src="/google-icon.png"
                         alt="Google Logo"
@@ -40,4 +49,4 @@ const CreateAccount = ({ handleCreateAcctFormSubmit, loading, handleGoogleSignup
     )
 }
 
-export default CreateAccount
+export default InitialSignup
