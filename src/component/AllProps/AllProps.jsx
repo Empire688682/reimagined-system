@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { CiFilter } from "react-icons/ci";
@@ -8,12 +8,48 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa";
 import { FaToilet } from "react-icons/fa";
 import { MdSquareFoot } from "react-icons/md";
+import axios from "axios";
 
 const allPropts = () => {
   const [index, setIndex] = useState(8);
   const [searchQuery, setSearchQuery] = useState("");
   const { route, allPropts } = useGlobalContext();
+  const [loading, setLoading] = useState(false)
+  const SearchUrl = "https://ayinla-api.aweayo.com.ng/api/v1/search";
 
+   const handlePropsSearch = async () =>{
+    if(!searchQuery){
+      return 
+    }
+    try {
+      const response = await axios.post(SearchUrl, {
+        query: searchQuery,
+        page: 0,
+        limit: 0
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": "ApiKeyAuth",
+        },
+      }
+    );
+    if(response.status === 200){
+      console.log("response:", response);
+      alert(`Data fetched successfully: ${response.data.paging}`);
+    }
+    else{
+      console.log("response:", response);
+      alert("Data not fetched");
+    }
+    } catch (error) {
+      console.error("Error during data fetching:", error);
+      alert(error.response?.data?.error_code || error.message || "An error occurred");
+    }
+   };
+
+   useEffect(() => {
+    handlePropsSearch();
+  }, [searchQuery]);
   // Filter properties based on the search query
   const filteredProperties = allPropts
     .filter((property) =>

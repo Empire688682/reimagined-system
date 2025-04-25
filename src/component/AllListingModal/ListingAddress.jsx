@@ -37,8 +37,28 @@ const statesCitiesAndLga = {
 
 
 const ListingAddress = ({setModals}) => {
+
+       //{
+         // "property_type": "apartment",
+         // "size_sqft": 0,
+         // "contact_phone_number": "string",
+         // "tags": [
+          //  "string"
+         // ],
+         // "thumbnail_url": "http://example.com",
+          //"image_urls": [
+          //  "http://example.com"
+          //],
+         // "amenity_slugs": [
+         //   "string"
+         // ],
+         // "price_kobo": 0
+        //}
+
+
     const [formData, setFormData] = useState({
         name: "",
+        description: "",
         state: "",
         city: "",
         lg: "",
@@ -89,6 +109,20 @@ const ListingAddress = ({setModals}) => {
                         />
                     </label>
 
+                    <label htmlFor='description' className='flex flex-col text-gray-700 text-sm'>
+                        Discription
+                        <input
+                            required
+                            type='text'
+                            placeholder='Water view 2 bedroom apartment'
+                            id='description'
+                            name='description'
+                            value={formData.description}
+                            onChange={handleChange}
+                            className='border border-gray-300 text-gray-600 placeholder-gray w-full outline-none rounded-md p-1'
+                        />
+                    </label>
+
                     <label htmlFor='state' className='flex flex-col text-gray-700 text-sm'>
                         State
                         <select value={formData.state} onChange={handleChange} name="state" id="state" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
@@ -98,20 +132,6 @@ const ListingAddress = ({setModals}) => {
                             {Object.keys(statesCitiesAndLga).map((state) => (
                                 <option key={state} value={state} className='text-gray'>{state}</option>
                             ))}
-                        </select>
-                    </label>
-                    <label htmlFor='city' className='flex flex-col text-gray-700 text-sm'>
-                        City
-                        <select value={formData.city} onChange={handleChange} name="city" id="city" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
-                            <option value="" disabled className='text-gray'>
-                                Select city
-                            </option>
-                            {
-                                formData.state && Object.keys(statesCitiesAndLga[formData.state] || {}).map((city) => (
-                                    <option key={city} value={city} className='text-gray'>{city}</option>
-                                ))
-                            }
-
                         </select>
                     </label>
 
@@ -128,21 +148,6 @@ const ListingAddress = ({setModals}) => {
                             }
 
                         </select>
-                    </label>
-
-                    <label htmlFor='apSt' className='flex flex-col text-gray-700 text-sm'>
-                        Apt, St
-                        <input
-                            required
-                            type='text'
-                            placeholder='12 Block B'
-                            id='apSt'
-                            name='apSt'
-                            value={formData.apSt}
-                            onChange={handleChange}
-                            className='border border-gray-300 text-gray-600 placeholder-gray w-full outline-none rounded-md p-1'
-                            min='1'
-                        />
                     </label>
 
                     <label htmlFor='phone' className='flex flex-col text-gray-700 text-sm'>

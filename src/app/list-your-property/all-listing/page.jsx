@@ -7,7 +7,30 @@ import AllListings from '@/component/AllListings/AllListings'
 import React, { useState } from 'react'
 
 const page = () => {
-  const [modals, setModals] = useState("allList")
+  const [modals, setModals] = useState("allList");
+  const ListingUrl = "https://ayinla-api.aweayo.com.ng/api/v1/listings";
+   //{
+         // "name": "string",
+         // "description": "string",
+         // "property_type": "apartment",
+         // "state": "string",
+         // "local_government_area": "string",
+         // "address": "string",
+         // "size_sqft": 0,
+         // "contact_phone_number": "string",
+         // "tags": [
+          //  "string"
+         // ],
+         // "thumbnail_url": "http://example.com",
+          //"image_urls": [
+          //  "http://example.com"
+          //],
+         // "amenity_slugs": [
+         //   "string"
+         // ],
+         // "price_kobo": 0
+        //}
+        
   return (
     <div>
       {
