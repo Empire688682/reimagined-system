@@ -50,7 +50,7 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
                     3
                 </p>
             </div>
-            <form onSubmit={handleSubmit} className="flex flex-col justify-center gap-10 mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col justify-center gap-5 mx-auto">
                 <div>
                     <h1 className='font-semibold md:text-lg'>Property Details</h1>
                     <p className='text-sm'>More detailed information about your property</p>

@@ -12,7 +12,7 @@ const Page = () => {
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("")
 
-    const ListingUrl = "https://api.ayinlafilms.com/api/v1/listings";
+    const ListingUrl = "/api/v1/listings";
 
     const [formData, setFormData] = useState({
         name: "",
