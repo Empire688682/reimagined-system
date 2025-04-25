@@ -36,53 +36,24 @@ const statesCitiesAndLga = {
 };
 
 
-const ListingAddress = ({setModals}) => {
+const ListingAddress = ({setModals, formData, handleChange}) => {
 
-       //{
-         // "property_type": "apartment",
-         // "size_sqft": 0,
-         // "contact_phone_number": "string",
-         // "tags": [
-          //  "string"
-         // ],
-         // "thumbnail_url": "http://example.com",
-          //"image_urls": [
-          //  "http://example.com"
-          //],
-         // "amenity_slugs": [
-         //   "string"
-         // ],
-         // "price_kobo": 0
-        //}
-
-
-    const [formData, setFormData] = useState({
-        name: "",
-        description: "",
-        state: "",
-        city: "",
-        lg: "",
-        apSt: '',
-        phone: "",
-        address: "",
-    });
-    //Onchange handler
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
+    const [errorMsg, setErrorMsg] = useState('');
     // Handle form submission for booking
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!formData.name || !formData.state || !formData.description || !formData.contact_phone_number || !formData.local_government_area || !formData.address) {
+            console.log("Form:", formData);
+            setErrorMsg("Please fill in all fields before proceeding.");
+            return;
+        };
         console.log('Form Data Submitted:', formData);
+        window.scrollTo(0, 0)
         setModals("upload");
     };
+    
     return (
-        <section className='grid relative grid-cols-1 md:grid-cols-2 mt-20 items-center gap-10 py-10 '>
+        <section className='grid relative grid-cols-1 sm:grid-cols-1 md:grid-cols-2 mt-20 items-center gap-10 py-10 '>
             <span className='absolute right-6 md-right-16 top-3 text-center text-sm border py-1 px-6 border-gray-300'>
                 1
             </span>
@@ -110,7 +81,7 @@ const ListingAddress = ({setModals}) => {
                     </label>
 
                     <label htmlFor='description' className='flex flex-col text-gray-700 text-sm'>
-                        Discription
+                        Description
                         <input
                             required
                             type='text'
@@ -137,7 +108,7 @@ const ListingAddress = ({setModals}) => {
 
                     <label htmlFor='lg' className='flex flex-col text-gray-700 text-sm'>
                         LGA
-                        <select value={formData.lg} onChange={handleChange} name="lg" id="lg" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
+                        <select value={formData.local_government_area} onChange={handleChange} name="local_government_area" id="lg" className="border border-gray-300 text-gray-600 outline-none rounded-md p-1">
                             <option value="" disabled className='text-gray'>
                                 Select Lga
                             </option>
@@ -150,15 +121,15 @@ const ListingAddress = ({setModals}) => {
                         </select>
                     </label>
 
-                    <label htmlFor='phone' className='flex flex-col text-gray-700 text-sm'>
+                    <label htmlFor='contact_phone_number' className='flex flex-col text-gray-700 text-sm'>
                         Phone
                         <input
                             required
                             type='tel'
                             placeholder='+234 808080808080'
-                            id='phone'
-                            name='phone'
-                            checked={formData.phone}
+                            id='contact_phone_number'
+                            name='contact_phone_number'
+                            checked={formData.contact_phone_number}
                             onChange={handleChange}
                             className='border border-gray-300 text-gray-600 placeholder-gray w-full outline-none rounded-md p-1'
                             min='1'
@@ -180,7 +151,13 @@ const ListingAddress = ({setModals}) => {
                         />
                     </label>
 
-                    <button type='submit' onClick={()=>setModals("upload")} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
+                    {
+                        errorMsg && (
+                            <p className='text-red-500 text-sm'>{errorMsg}</p>
+                        )
+                    }
+
+                    <button type='submit' className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
                         Next
                     </button>
                 </form>
