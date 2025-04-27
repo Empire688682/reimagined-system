@@ -16,7 +16,7 @@ export const AppProvider = ({ children }) => {
     fetchProperties()
   }, []);
 
-  const BaseUrl = "http://localhost:3000" || "https://ayinla.vercel.app"
+  const BaseUrl = "https://ayinla.vercel.app";
 
   return (
     <AppContext.Provider value={{
