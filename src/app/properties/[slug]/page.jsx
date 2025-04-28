@@ -6,6 +6,7 @@ import { useGlobalContext } from "@/component/Context";
 import LoadingSpinner from "@/component/LoadingSpinner/LoadingSpinner";
 import BookingAddressModal from "@/component/BookingModals/BookingAddressModal";
 import BookingSentModal from "@/component/BookingModals/BookingSentModal";
+import axios from "axios";
 
 const Page = () => {
   // Get global properties data
@@ -15,19 +16,22 @@ const Page = () => {
   // Local state for managing property data, loading state, and related properties
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [formLoading, setFormLoading] = useState(false)
+  const [errorMsg, setErrorMsg] =  useState("");
   const [relatedProps, setRelatedProps] = useState([]);
   // Modals for booking process
   const [addressModal, setAddressModal] = useState(false);
   const [requestSentModal, setRequestSentModal] = useState(false);
   // Form data for booking
   const [formData, setFormData] = useState({
-    sDate: "",
-    eDate: "",
-    sTime: "",
-    eTime: "",
-    noCast: '',
-    cleanUp: false,
-    inspecting: false,
+    start_date: "",
+    end_date: "",
+    start_time: "",
+    end_time: "",
+    crew_member_count: 0,
+    setup_day_count: 0,
+    requires_cleanup: false,
+    requires_inspection: false,
   });
 
   // Fetch property data and related properties on mount or when slug changes
@@ -49,12 +53,43 @@ const Page = () => {
   }, [slug, allPropts]);
 
   // Handle form submission for booking
-  const handleSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setAddressModal(false);
-    setRequestSentModal(true);
-    console.log('Form Data Submitted:', formData);
-    window.scrollTo(0,0);
+    if(!formData.start_date || !formData.end_date || !formData.start_time || !formData.end_time || !formData.crew_member_count || !formData.setup_day_count) 
+      return setErrorMsg("Please fill all fields");
+    setFormLoading(true);
+    try {
+      const response = await axios.post(`/api/v1/listings/${slug}/bookings`, {
+        start_date: formData.start_date,
+        end_date: formData.end_date,
+        start_time: formData.start_time,
+        end_time: formData.end_time,
+        crew_member_count: formData.crew_member_count,
+        setup_day_count: formData.setup_day_count,
+        requires_cleanup: formData.requires_cleanup,
+        requires_inspection: formData.requires_inspection
+      },
+        {
+          headers: {
+            "Content-Type": "aplication/json"
+          }
+        }
+      );
+      if (response.status === 201) {
+        console.log(response);
+        alert("Booking successful");
+        setAddressModal(false);
+        setRequestSentModal(true);
+        window.scrollTo(0, 0);
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+    }
+    finally{
+      setFormLoading(false)
+    }
+
   };
 
   return (
@@ -75,8 +110,10 @@ const Page = () => {
                     <BookingAddressModal
                       formData={formData}
                       setFormData={setFormData}
-                      handleSubmit={handleSubmit}
+                      handleFormSubmit={handleFormSubmit}
                       setAddressModal={setAddressModal}
+                      errorMsg={errorMsg}
+                      formLoading={formLoading}
                     />
                   </div>
                 }

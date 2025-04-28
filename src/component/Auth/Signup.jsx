@@ -9,7 +9,7 @@ import { useGlobalContext } from "../Context";
 
 const initiateSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/initiate-signup";
 const completeSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/complete-signup";
-const googleSignupUrl = "https://ayinla-api.aweayo.com.ng/api/v1/auth/complete-signup";
+
 
 const Signup = () => {
     const {BaseUrl} = useGlobalContext();
@@ -109,10 +109,24 @@ const Signup = () => {
 
 
     // Handles Signup with google
-    const handleGoogleSignup = () => {
-        console.log("User signed up with Google successfully");
-        alert("User signed up with Google successfully");
-    }
+    const handleGoogleSignup = async () => {
+        try {
+            const response = await axios.get(`/api/v1/auth/google`, {
+                url:"http://example.com"
+            }, {
+                headers: {
+                    "Content-Type": "aplication/json"
+                }
+            });
+            if(response.status === 200){
+                console.log("response:", response);
+                alert("Login with google successful")
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+        }
+        }
 
     // Handles full form submission with additional details
     const handleCompleteSignup = async (e) => {
@@ -200,6 +214,7 @@ const Signup = () => {
                             formData={formData}
                             errorMsg={errorMsg}
                             loading={loading}
+                            handleGoogleSignup={handleGoogleSignup}
                         />
                     )
                 }

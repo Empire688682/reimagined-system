@@ -9,7 +9,7 @@ const InitialSignup = ({
     handleGoogleSignup, 
     handleOnchange, 
     formData, 
-    errorMsg 
+    errorMsg ,
     }) => {
         
     return (
