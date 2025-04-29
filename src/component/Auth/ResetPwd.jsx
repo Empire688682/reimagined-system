@@ -36,7 +36,7 @@ const ResetPwd = () => {
         try {
             const response = await axios.post(`${ApiUrl}/initiate-password-recovery`, {
                 email: formData.email,
-                base_url: BaseUrl
+                base_url: BaseUrl + "/reset-password/complete-reset-password",
             },
                 {
                     headers: {
