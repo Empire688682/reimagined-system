@@ -3,23 +3,29 @@ import React from 'react';
 import { IoIosCheckmarkCircleOutline, IoMdCheckmarkCircle } from "react-icons/io";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaSpinner } from 'react-icons/fa6';
+import { useGlobalContext } from '../Context';
+import Image from "next/image";
 
 // Define available job roles
 const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
-const CompleteSignup = ({
-    handleCompleteSignup, 
-    loading, 
-    handleOnchange, 
-    formData, 
-    errorMsg, 
-    showPassword, 
-    setShowPassword,
-    formCondition,
-    handleSkipClick
-}) => {
+const CompleteSignup = () => {
+    const {
+        handleCompleteSignup,
+        loading,
+        handleOnchange,
+        formData,
+        errorMsg,
+        showPassword,
+        setShowPassword,
+        formCondition,
+        handleSkipClick,
+    } = useGlobalContext();
     return (
-        <div>
-            {/** Personal Details Form */}
+        <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
+            <div className="flex flex-col gap-4 items-center">
+                {/* Logo */}
+                <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
+                <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">Complete Sign Up </h1>
                 <form onSubmit={handleCompleteSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         <div className="flex gap-4 flex-col md:flex-row">
@@ -86,6 +92,7 @@ const CompleteSignup = ({
                         Skip for now
                     </p>
                 </form>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+"use"
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useGlobalContext } from '../Context';
+import axios from 'axios';
 
 const statesCitiesAndLga = {
     "Lagos": {
@@ -37,6 +40,25 @@ const statesCitiesAndLga = {
 
 
 const ListingAddress = ({setModals, formData, handleChange}) => {
+    const {ApiUrl} = useGlobalContext();
+
+    const [states, setStates] = useState([]);
+
+    const getState = async () =>{
+        try {
+            const res = await axios.get(`${ApiUrl}/api/v1/states`);
+            if(res.status === 200){
+                setStates(res.data);
+                console.log("Res:", res);
+            }
+        } catch (error) {
+            console.log("State error:", error)
+        }
+    };
+
+    useEffect(()=>{
+        getState();
+    },[])
 
     const [errorMsg, setErrorMsg] = useState('');
     // Handle form submission for booking
