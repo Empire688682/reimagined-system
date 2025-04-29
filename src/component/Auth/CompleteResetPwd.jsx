@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 
-const CompleteForgottenPwd = () => {
+const CompleteResetPwd = () => {
   return (
     <div>
       
@@ -9,4 +9,4 @@ const CompleteForgottenPwd = () => {
   )
 }
 
-export default CompleteForgottenPwd
+export default CompleteResetPwd

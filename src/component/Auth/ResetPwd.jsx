@@ -15,7 +15,6 @@ const ResetPwd = () => {
     // State to manage user input
     const [formData, setFormData] = useState({
         email: "",
-        password: "",
     });
 
     // Handles input changes and updates form data
