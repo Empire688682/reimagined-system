@@ -2,12 +2,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { properties } from './Data';
+import axios from "axios";
+import { toast, } from "react-toastify";
 
 const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
   const route = useRouter();
   const [allPropts, setAllPropts] = useState([]);
+   //Authenticational States//
+   const [errorMsg, setErrorMsg] = useState("");
+   const [loading, setLoading] = useState(false);
+
+   //Properties
   const fetchProperties = async () => {
     setAllPropts(properties)
   }
@@ -21,9 +28,6 @@ export const AppProvider = ({ children }) => {
 
 
   //Authenticational fuctions//
-  const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false);
-
 
   // State to manage user input
   const [formData, setFormData] = useState({
@@ -98,17 +102,15 @@ export const AppProvider = ({ children }) => {
       // Check if the response status is 204 (No Content)
       if (response.status === 204) {
         console.log("response:", response);
-        alert("User registered successfully");
-
-        // Move to CompleteSignup form
-        setFormCategory("CompleteSignup");
+        toast.success("Please Check your email for comfirmation");
+        
       } else {
         // Handle unexpected response status
         console.log("Unexpected response:", response);
       }
     } catch (error) {
       console.error("Error during signup:", error);
-      setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+      toast.error(error.response?.data?.error_code || error.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -198,9 +200,7 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
     console.log("Form submitted successfully", formData);
     alert("User registered with half details");
-
-    // Move to Email verification if  registration is successful
-    setFormCategory("EmailVerification");
+    route.push("/");
   };
 
   // Handles resending email

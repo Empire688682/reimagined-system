@@ -1,10 +1,10 @@
-import Login from '@/component/Auth/Login'
+import CompleteResetPwd from '@/component/Auth/CompleteResetPwd'
 import React from 'react'
 
 const Page = () => {
   return (
     <div>
-      <Login />
+      <CompleteResetPwd />
     </div>
   )
 }

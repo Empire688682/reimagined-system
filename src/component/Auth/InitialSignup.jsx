@@ -3,6 +3,8 @@ import React from 'react';
 import Image from "next/image";
 import { FaSpinner } from 'react-icons/fa6';
 import { useGlobalContext } from '../Context';
+import {ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const InitialSignup = () => {
     const {
@@ -16,6 +18,7 @@ const InitialSignup = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
+            <ToastContainer />
             <div className="flex flex-col gap-4 items-center">
                 {/* Logo */}
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
