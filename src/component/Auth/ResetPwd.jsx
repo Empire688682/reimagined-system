@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
 import axios from "axios";
 import { FaSpinner } from 'react-icons/fa6';
@@ -26,7 +25,8 @@ const ResetPwd = () => {
         }));
     };
 
-    const handleForgotPassword = async () => {
+    const handleForgotPassword = async (e) => {
+        e.preventDefault();
         const { email } = formData;
         if (!email.trim()) {
             toast.error("Please enter your email address");
@@ -49,9 +49,8 @@ const ResetPwd = () => {
             // Check if the response status is 204 (No Content)
             if (response.status === 204) {
                 console.log("response:", response);
-                console.log("Recovery link Data", formData);
                 toast.success(`Recovery link sent to: ${formData.email}`);
-                route.push('/');
+                route.push('/reset-password/complete-reset-password');
             } else {
                 // Handle unexpected response status
                 toast.error("Unexpected response:", response);

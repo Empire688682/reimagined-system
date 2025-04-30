@@ -1,10 +1,10 @@
-import InitialSignup from '@/component/Auth/InitialSignup'
+import InitateSignup from '@/component/Auth/InitateSignup'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <InitialSignup />
+      <InitateSignup />
     </div>
   )
 }

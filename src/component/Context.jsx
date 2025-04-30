@@ -10,11 +10,11 @@ const AppContext = React.createContext();
 export const AppProvider = ({ children }) => {
   const route = useRouter();
   const [allPropts, setAllPropts] = useState([]);
-   //Authenticational States//
-   const [errorMsg, setErrorMsg] = useState("");
-   const [loading, setLoading] = useState(false);
+  //Authenticational States//
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
-   //Properties
+  //Properties
   const fetchProperties = async () => {
     setAllPropts(properties)
   }
@@ -74,7 +74,7 @@ export const AppProvider = ({ children }) => {
   }, [formData.password]);
 
   // Handles form submission for initial account creation with Email only
-  const handleInitialSignup = async (e) => {
+  const handleInitateSignup = async (e) => {
     e.preventDefault();
     const { email } = formData;
 
@@ -103,7 +103,7 @@ export const AppProvider = ({ children }) => {
       if (response.status === 204) {
         console.log("response:", response);
         toast.success("Please Check your email for comfirmation");
-        
+
       } else {
         // Handle unexpected response status
         console.log("Unexpected response:", response);
@@ -142,12 +142,9 @@ export const AppProvider = ({ children }) => {
   const handleCompleteSignup = async (e) => {
     e.preventDefault();
 
-    const { token, email, first_name, last_name, phone_number, job_title } = formData;
-
     // Validate required fields
-    if (!email.trim() || !/\S+@\S+\.\S+/.test(email) ||
-      !first_name.trim() || !last_name.trim() ||
-      !phone_number.trim() || !job_title.trim()) {
+    if (!formData.first_name.trim() || !formData.last_name.trim() ||
+      !formData.phone_number.trim() || !formData.job_title.trim()) {
       setErrorMsg("All fields are required");
       setTimeout(() => setErrorMsg(""), 2000);
       return;
@@ -214,7 +211,7 @@ export const AppProvider = ({ children }) => {
       allPropts,
       BaseUrl,
       ApiUrl,
-      handleInitialSignup,
+      handleInitateSignup,
       handleCompleteSignup,
       handleGoogleSignup,
       loading,

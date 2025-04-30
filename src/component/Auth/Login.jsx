@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState, useEffect } from "react"; 
 import Image from "next/image";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
@@ -10,13 +10,20 @@ const Login = () => {
     const { route, ApiUrl, googleUrl } = useGlobalContext();
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
-    // State to manage user input
+
+    // ✅ State to manage "Remember me" checkbox
+    const [remindMe, setRemindMe] = useState(false);
+
+    // ✅ State to manage user input
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
 
-    // Handles input changes and updates form data
+    // ✅ Toggle password visibility
+    const [showPassword, setShowPassword] = useState(false);
+
+    // ✅ OnChange handler for input fields
     const handleOnchange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -25,43 +32,78 @@ const Login = () => {
         }));
     };
 
-    // State to toggle password visibility
-    const [showPassword, setShowPassword] = useState(false);
+    // ✅ Toggle "Remember me" checkbox and save/clear from localStorage
+    const remindMeClick = () => {
+        const newValue = !remindMe;
+        setRemindMe(newValue);
 
-    // Handles Login form
-    const handleLogin = async () => {
+        if (typeof window !== "undefined") {
+            if (newValue) {
+                // Save email and password in localStorage
+                localStorage.setItem("rememberedEmail", formData.email);
+                localStorage.setItem("rememberedPassword", formData.password);
+            } else {
+                // Clear stored data
+                localStorage.removeItem("rememberedEmail");
+                localStorage.removeItem("rememberedPassword");
+            }
+        }
+    };
+
+    // ✅ On mount, load stored credentials if present
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const rememberedEmail = localStorage.getItem("rememberedEmail");
+            const rememberedPassword = localStorage.getItem("rememberedPassword");
+            if (rememberedEmail && rememberedPassword) {
+                setFormData({
+                    email: rememberedEmail,
+                    password: rememberedPassword,
+                });
+                setRemindMe(true);
+            }
+        }
+    }, []);
+
+    // ✅ Handles login form submission
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
         const { password, email } = formData;
 
-        // Validate required fields
-        if (!email.trim() || !/\S+@\S+\.\S+/.test(email) || password.length < 0) {
+        if (!email.trim() || !/\S+@\S+\.\S+/.test(email) || password.length === 0) {
             setErrorMsg("All fields are required");
             setTimeout(() => setErrorMsg(""), 2000);
             return;
         };
+
         setLoading(true);
+
         try {
             const response = await axios.post(`${ApiUrl}/api/v1/auth/login`, {
                 email: formData.email,
                 password: formData.password
-            },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-API-KEY": "ApiKeyAuth",
-                    },
-                }
-            );
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": "ApiKeyAuth",
+                },
+            });
 
-            // Check if the response status is 204 (No Content)
             if (response.status === 200) {
-                console.log("response:", response);
-                console.log("User login successfully", formData);
+                console.log("User login successful", response);
+
+                if (typeof window !== "undefined" && remindMe) {
+                    // Update stored values in case user edited them
+                    localStorage.setItem("rememberedEmail", formData.email);
+                    localStorage.setItem("rememberedPassword", formData.password);
+                }
+
                 alert("User Login successful");
-                route.pus('/');
+                route.push('/');
             } else {
-                // Handle unexpected response status
                 console.log("Unexpected response:", response);
-            };
+            }
 
         } catch (error) {
             console.error("Error during login:", error);
@@ -71,27 +113,28 @@ const Login = () => {
         }
     };
 
+    // ✅ Google Login Handler
     const googleLogin = async () => {
         try {
             const response = await axios.get(googleUrl, {
                 url: "http://example.com"
             }, {
                 headers: {
-                    "Content-Type": "aplication/json"
+                    "Content-Type": "application/json"
                 }
             });
             if (response.status === 200) {
-                console.log("response:", response);
-                alert("Login with google successful")
+                console.log("Google login success:", response);
+                alert("Login with Google successful");
             }
         } catch (error) {
-            console.error("Error during signup:", error);
+            console.error("Error during Google login:", error);
             setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
         }
-    }
+    };
 
     return (
-        <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2   py-30 md:px-16 px-4">
+        <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2 py-30 md:px-16 px-4">
             <div className="flex flex-col max-w-[500px] min-w-[300px] md:min-w-[350px] m-auto gap-4 items-center">
                 {/* Logo */}
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
@@ -116,21 +159,28 @@ const Login = () => {
                             }
                         </label>
                     </div>
+
+                    {/* Remember Me and Forgot Password */}
                     <div className="flex justify-between text-sm">
-                        <div className="flex items-center gap-2">
-                            <input type="checkbox" className="cursor-pointer" />
+                        <div className="flex items-center gap-2 cursor-pointer" onClick={remindMeClick}>
+                            <input type="checkbox" checked={remindMe} onChange={remindMeClick} className="cursor-pointer" />
                             <p>Remember me</p>
                         </div>
-                        <p className="text-sm text-blue-500 cursor-pointer" onClick={() => setFormCategory("Forgotten Password")}>Forgot password</p>
+                        <p className="text-sm text-blue-500 cursor-pointer" onClick={() => route.push("/reset-password")}>Forgot password</p>
                     </div>
+
+                    {/* Submit Button */}
                     <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
-                        {loading ? <FaSpinner className="animate-spin text-lg text-white" /> : <>{formCategory === "Login" ? "Login" : "Resset Password"}</>}
+                        {loading ? <FaSpinner className="animate-spin text-lg text-white" /> : "Login"}
                     </button>
                 </form>
-                {/** Error Message */}
+
+                {/* Error Message */}
                 {
                     errorMsg && <p className="text-red-600 text-xs font-semibold">{errorMsg}</p>
                 }
+
+                {/* Google Login */}
                 <div onClick={googleLogin} className="flex w-full items-center justify-center border border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100">
                     <Image
                         src="/google-icon.png"
@@ -141,12 +191,16 @@ const Login = () => {
                     />
                     <span className="text-gray-700 text-sm font-medium">Sign up with Google</span>
                 </div>
+
+                {/* Sign Up Redirect */}
                 <div className="flex gap-2 items-center text-sm">
                     <p className="flex text-gray-700 gap-2 items-center">Don't have an account?</p>
                     <span className="text-blue-500 cursor-pointer" onClick={() => route.push("/signup")}>Sign up</span>
                 </div>
             </div>
-            <div className='relative h-[screen] hidden h-full md:block w-full'>
+
+            {/* Right Side Image */}
+            <div className='relative hidden h-full md:block w-full'>
                 <Image
                     priority={true}
                     fill

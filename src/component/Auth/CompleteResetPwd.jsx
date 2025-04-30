@@ -1,29 +1,42 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import { FaSpinner } from 'react-icons/fa6';
 import {ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from 'next/navigation';
 
 const CompleteResetPwd = () => {
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState({
-      token: "",
-      new_password: "",
-      });
+    const [newPassword, setNewPassword] = useState("");
 
-      const handleOnchange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-          ...prev,
-          [name]: value,
-        }));
+    const searchParams = useSearchParams();
+    const token = searchParams.get('token');
+
+      const [formCondition, setFormCondition] = useState({
+         length: false,
+         character: false,
+       });
+
+       const handleCondition = () => {
+        setFormCondition({
+          length: newPassword.length >= 8, // Checks if newPassword is at least 8 characters long
+          character: /[!@#$%^&*(),.?":{}|<>]/.test(newPassword), // Checks if password contains a special character
+        });
       };
 
-      const handleCompleteResetPassword = async () => {
-        const { token, new_password } = formData;
-        if (!token.trim() || !new_password.trim()) {
+      useEffect(()=>{
+        handleCondition()
+      },[newPassword])
+
+      const handleCompleteResetPassword = async (e) => {
+        e.preventDefault();
+        if (!token|| !newPassword.trim()) {
           toast.error("Please enter your token and new password");
+          return;
+        }
+        if(!formCondition.length || !formCondition.character){
+          toast.error("Password must be at least 8 characters long with special character");
           return;
         }
         setLoading(true);
@@ -31,8 +44,8 @@ const CompleteResetPwd = () => {
           const response = await axios.post(
             `${ApiUrl}/complete-password-recovery`,
             {
-              token: formData.token,
-              new_password: formData.new_password,
+              token: token,
+              new_password: newPassword,
             },
             {
               headers: {
@@ -64,9 +77,9 @@ const CompleteResetPwd = () => {
                 <form onSubmit={handleCompleteResetPassword} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         {/* Password Field */}
-                        <label htmlFor="password" className="flex text-gray-700 flex-col text-sm md:text-base">
+                        <label htmlFor="new_password" className="flex text-gray-700 flex-col text-sm md:text-base">
                             New Password*
-                            <input onChange={handleOnchange} type="password" placeholder="Enter your new password" value={formData.new_password} name="password" id="email" className="border border-gray-300 text-gray-600 outline-none rounded-md p-3" />
+                            <input onChange={(e)=>setNewPassword(e.target.value)} type="password" placeholder="Enter your new password" value={newPassword} id="new_password" className="border border-gray-300 text-gray-600 outline-none rounded-md p-3" />
                         </label>
                     </div>
 

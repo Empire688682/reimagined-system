@@ -6,9 +6,9 @@ import { useGlobalContext } from '../Context';
 import {ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const InitialSignup = () => {
+const InitateSignup = () => {
     const {
-        handleInitialSignup,
+        handleInitateSignup,
         loading,
         handleGoogleSignup,
         handleOnchange,
@@ -23,7 +23,7 @@ const InitialSignup = () => {
                 {/* Logo */}
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
                 <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">Initial Sign Up </h1>
-                <form onSubmit={handleInitialSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
+                <form onSubmit={handleInitateSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         {/* Email Field */}
                         <label htmlFor="email" className="flex text-gray-700 flex-col text-sm md:text-base">
@@ -60,4 +60,4 @@ const InitialSignup = () => {
     )
 }
 
-export default InitialSignup
+export default InitateSignup
