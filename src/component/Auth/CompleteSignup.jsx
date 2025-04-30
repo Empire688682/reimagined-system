@@ -5,6 +5,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaSpinner } from 'react-icons/fa6';
 import { useGlobalContext } from '../Context';
 import Image from "next/image";
+import {ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Define available job roles
 const jobs = ["Engineer", "Doctor", "Teacher", "Designer", "Developer"];
@@ -22,6 +24,7 @@ const CompleteSignup = () => {
     } = useGlobalContext();
     return (
         <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
+            <ToastContainer />
             <div className="flex flex-col gap-4 items-center">
                 {/* Logo */}
                 <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />

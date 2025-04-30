@@ -130,11 +130,11 @@ export const AppProvider = ({ children }) => {
       });
       if (response.status === 200) {
         console.log("response:", response);
-        alert("Login with google successful")
+        alert("Login with google successful");
       }
     } catch (error) {
       console.error("Error during signup:", error);
-      setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
+      toast.error(error.response?.data?.error_code || error.message || "An error occurred");
     }
   }
 
@@ -146,12 +146,12 @@ export const AppProvider = ({ children }) => {
     if (!formData.first_name.trim() || !formData.last_name.trim() ||
       !formData.phone_number.trim() || !formData.job_title.trim()) {
       setErrorMsg("All fields are required");
-      setTimeout(() => setErrorMsg(""), 2000);
+      setTimeout(() => setErrorMsg(""), 4000);
       return;
     }
     if (!formCondition.length || !formCondition.character) {
       setErrorMsg("Password must be at least 8 characters long with special character");
-      setTimeout(() => setErrorMsg(""), 2000);
+      setTimeout(() => setErrorMsg(""), 4000);
       return;
     }
 
@@ -196,7 +196,8 @@ export const AppProvider = ({ children }) => {
   const handleSkipClick = (e) => {
     e.preventDefault();
     console.log("Form submitted successfully", formData);
-    alert("User registered with half details");
+    window.scrollTo(0,0)
+    toast.success("User registered with half details");
     route.push("/");
   };
 

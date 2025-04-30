@@ -10,6 +10,8 @@ const Login = () => {
     const { route, ApiUrl, googleUrl } = useGlobalContext();
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
+    //TODO:comming back
+    const [success, setSuccess] = useState(false);
 
     // ✅ State to manage "Remember me" checkbox
     const [remindMe, setRemindMe] = useState(false);
@@ -41,11 +43,9 @@ const Login = () => {
             if (newValue) {
                 // Save email and password in localStorage
                 localStorage.setItem("rememberedEmail", formData.email);
-                localStorage.setItem("rememberedPassword", formData.password);
             } else {
                 // Clear stored data
                 localStorage.removeItem("rememberedEmail");
-                localStorage.removeItem("rememberedPassword");
             }
         }
     };
@@ -54,8 +54,7 @@ const Login = () => {
     useEffect(() => {
         if (typeof window !== "undefined") {
             const rememberedEmail = localStorage.getItem("rememberedEmail");
-            const rememberedPassword = localStorage.getItem("rememberedPassword");
-            if (rememberedEmail && rememberedPassword) {
+            if (rememberedEmail) {
                 setFormData({
                     email: rememberedEmail,
                     password: rememberedPassword,
@@ -96,10 +95,10 @@ const Login = () => {
                 if (typeof window !== "undefined" && remindMe) {
                     // Update stored values in case user edited them
                     localStorage.setItem("rememberedEmail", formData.email);
-                    localStorage.setItem("rememberedPassword", formData.password);
                 }
 
                 alert("User Login successful");
+                setSuccess(false)
                 route.push('/');
             } else {
                 console.log("Unexpected response:", response);
