@@ -13,16 +13,14 @@ import axios from "axios";
 const allPropts = () => {
   const [index, setIndex] = useState(8);
   const [searchQuery, setSearchQuery] = useState("");
-  const { route, allPropts } = useGlobalContext();
-  const [loading, setLoading] = useState(false)
-  const SearchUrl = "https://ayinla-api.aweayo.com.ng/api/v1/search";
+  const { route, allPropts, ApiUrl } = useGlobalContext();
 
    const handlePropsSearch = async () =>{
     if(!searchQuery){
       return 
     }
     try {
-      const response = await axios.post(SearchUrl, {
+      const response = await axios.post(`${ApiUrl}/api/v1/search`, {
         query: searchQuery,
         page: 0,
         limit: 0

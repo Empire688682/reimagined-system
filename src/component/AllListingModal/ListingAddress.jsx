@@ -4,41 +4,6 @@ import Image from 'next/image';
 import { useGlobalContext } from '../Context';
 import axios from 'axios';
 
-const statesCitiesAndLga = {
-    "Lagos": {
-        "Ikeja": ["Ikeja LGA"],
-        "Surulere": ["Surulere LGA"],
-        "Lekki": ["Eti-Osa LGA"]
-    },
-    "Abuja": {
-        "Garki": ["Abuja Municipal LGA"],
-        "Wuse": ["Abuja Municipal LGA"],
-        "Maitama": ["Abuja Municipal LGA"]
-    },
-    "Kano": {
-        "Kano Municipal": ["Kano Municipal LGA"],
-        "Fagge": ["Fagge LGA"],
-        "Dala": ["Dala LGA"]
-    },
-    "Rivers": {
-        "Port Harcourt": ["Port Harcourt LGA"],
-        "Obio-Akpor": ["Obio-Akpor LGA"],
-        "Bonny": ["Bonny LGA"]
-    },
-    "Ogun": {
-        "Abeokuta": ["Abeokuta South LGA", "Abeokuta North LGA"],
-        "Ijebu-Ode": ["Ijebu-Ode LGA"],
-        "Sango Ota": ["Ado-Odo/Ota LGA"]
-    },
-    "Kogi": {
-        "Lokoja": ["Lokoja LGA"],
-        "Okene": ["Okene LGA"],
-        "Idah": ["Idah LGA"],
-        "Yagba West": ["Yagba West LGA"]
-    }
-};
-
-
 const ListingAddress = ({setModals, formData, handleChange}) => {
     const {ApiUrl} = useGlobalContext();
 
@@ -48,8 +13,7 @@ const ListingAddress = ({setModals, formData, handleChange}) => {
         try {
             const res = await axios.get(`${ApiUrl}/api/v1/states`);
             if(res.status === 200){
-                setStates(res.data);
-                console.log("Res:", res);
+                setStates(res.data.states);
             }
         } catch (error) {
             console.log("State error:", error)
@@ -122,8 +86,8 @@ const ListingAddress = ({setModals, formData, handleChange}) => {
                             <option value="" disabled className='text-gray'>
                                 Select state
                             </option>
-                            {Object.keys(statesCitiesAndLga).map((state) => (
-                                <option key={state} value={state} className='text-gray'>{state}</option>
+                            {states.map((stateObj, i) => (
+                                <option key={i} value={stateObj.name} className='text-gray'>{stateObj.name}</option>
                             ))}
                         </select>
                     </label>
@@ -135,8 +99,8 @@ const ListingAddress = ({setModals, formData, handleChange}) => {
                                 Select Lga
                             </option>
                             {
-                                formData.state && Object.values(statesCitiesAndLga[formData.state] || []).map((lg, i) => (
-                                    <option key={i} value={lg} className='text-gray'>{lg}</option>
+                                formData.state && states.find(state=> state.name === formData.state).lgas.map((lg, i)=>(
+                                    <option key={i} value={lg.name} className='text-gray'>{lg.name}</option>
                                 ))
                             }
 

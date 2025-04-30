@@ -25,7 +25,7 @@ const ListYourProps = () => {
                         Book. Shoot. Create.
                         It all starts here.
                     </h1>
-                    <Link href="/list-your-property/all-listing" onClick={() => {window.scrollTo(0, 0) }} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
+                    <Link href="/add-listing" onClick={() => {window.scrollTo(0, 0) }} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
                         Get Started Now
                     </Link>
                 </div>

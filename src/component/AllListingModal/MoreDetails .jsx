@@ -1,11 +1,32 @@
 "use client";
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { FaSpinner } from 'react-icons/fa6';
+import axios from "axios";
+import { useGlobalContext } from '@/component/Context';
 
 const typeOfProps = ["Apartment", "House", "Condo"];
 const amenities = ["Pool", "Gym", "Parking"];
 
 const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, setErrorMsg, errorMsg}) => {
+    const {ApiUrl} = useGlobalContext();
+
+    const [allAmineties, setAllAmineties] = useState([]);
+
+    useEffect(()=>{
+        const getAmineties = async () =>{
+            try {
+                const response = await axios.get(`${ApiUrl}/api/v1/amenities`);
+                if(response.status === 200){
+                    setAllAmineties(response.data.amenities);
+                }
+            } catch (error) {
+                console.error("Error during Listing:", error);
+            }
+        }
+        getAmineties();
+    },[]);
+
+    console.log("allAmineties:", allAmineties);
 
     const toggleArrayValue = (name, value) => {
         setFormData((prevData) => {

@@ -5,14 +5,14 @@ import MoreDetails from '@/component/AllListingModal/MoreDetails ';
 import UploadModal from '@/component/AllListingModal/UploadModal';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useGlobalContext } from '@/component/Context';
 
 const Page = () => {
 
-    const [modals, setModals] = useState("address");
+    const {ApiUrl} = useGlobalContext();
+    const [modals, setModals] = useState("moreDetails");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("")
-
-    const ListingUrl = "/api/v1/listings";
 
     const [formData, setFormData] = useState({
         name: "",
@@ -39,8 +39,6 @@ const Page = () => {
         }));
     };
 
-    console.log("formData:", formData);
-
     const handleFinalSubmission = async () => {
         if (
             !formData.name ||
@@ -61,7 +59,7 @@ const Page = () => {
         setLoading(true);
         try {
             const response = await axios.post(
-                ListingUrl,
+                `${ApiUrl}/api/v1/listings`,
                 {
                     name: formData.name,
                     description: formData.description,
@@ -98,8 +96,6 @@ const Page = () => {
             setLoading(false);
         }
     };
-
-
 
     return (
         <div className='min-h-[70vh]'>
