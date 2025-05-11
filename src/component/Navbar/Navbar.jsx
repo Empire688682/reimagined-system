@@ -73,8 +73,6 @@ const Navbar = () => {
                                 <Link href="/listing-history" passHref className="text-xs cursor-pointer font-semibold text-black" onClick={() => setIsOpen(false)}>
                                     Listing history
                                 </Link>
-                                <hr className="text-gray-300" />
-                                <span className="text-xs cursor-pointer font-semibold text-black">Listing Request Status</span>
                             </div>
                         )}
                     </li>
