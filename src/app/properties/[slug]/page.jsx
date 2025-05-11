@@ -10,9 +10,11 @@ import axios from "axios";
 
 const Page = () => {
   // Get global properties data
-  const { allPropts } = useGlobalContext();
+  const { allPropts, ApiUrl } = useGlobalContext();
+
   // Get property ID from URL params
   const { slug } = useParams();
+
   // Local state for managing property data, loading state, and related properties
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,17 +38,26 @@ const Page = () => {
 
   // Fetch property data and related properties on mount or when slug changes
   useEffect(() => {
-    if (!slug || !allPropts.length) return;
+    if (!slug) return;
 
     // Fetch the selected property based on slug
-    const fetchProptsData = () => {
-      const fetchData = allPropts.find((property) => property.id === Number(slug));
-      setData(fetchData || null);
+    const fetchProptsData = async () => {
+      try {
+        const response = await axios.get(`${ApiUrl}/api/v1/listings/${slug}/public`);
+        if(response){
+           setData(response.data.listing || null);
+        }
+        console.log("Response:", response);
+      } catch (error) {
+        console.log("Fetching-Error:", error)
+      }
+      finally{
       setLoading(false);
+      }
     };
 
     // Get related properties (first 4 properties from the list)
-    const relatedProperties = allPropts.slice(0, 4).map((property) => property);
+    const relatedProperties = allPropts?.listings?.slice(0, 4).map((property) => property);
     setRelatedProps(relatedProperties || [])
 
     fetchProptsData();
@@ -92,6 +103,8 @@ const Page = () => {
 
   };
 
+  console.log("Data:", data)
+
   return (
     <>
       {loading ? (
@@ -129,13 +142,6 @@ const Page = () => {
               // Display property details if no modal is active
               <SingleProptsCart
                 data={data}
-                title={data.title}
-                location={data.location}
-                price={data.price}
-                oldPrice={data.oldPrice}
-                discount={data.discount}
-                images={data.images}
-                amenities={data.amenities}
                 relatedProperties={relatedProps}
                 setAddressModal={setAddressModal}
               />
@@ -143,7 +149,9 @@ const Page = () => {
         </div>
       ) : (
         // Show error message if property is not found
-        <p className="text-center text-red-500">Property not found!</p>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <p className="text-center text-red-500">Property not found!</p>
+        </div>
       )}
     </>
   );

@@ -1,7 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { properties } from './Data';
 import axios from "axios";
 import { toast, } from "react-toastify";
 
@@ -14,13 +13,8 @@ export const AppProvider = ({ children }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //Properties
-  const fetchProperties = async () => {
-    setAllPropts(properties)
-  }
-
   useEffect(() => {
-    fetchProperties()
+    handlePropsSearch()
   }, []);
 
   const BaseUrl = "https://ayinla.vercel.app";
@@ -102,6 +96,15 @@ export const AppProvider = ({ children }) => {
       // Check if the response status is 204 (No Content)
       if (response.status === 204) {
         console.log("response:", response);
+        setFormData({
+          token: "",
+          email: "",
+          password: "",
+          first_name: "",
+          last_name: "",
+          phone_number: "",
+          job_title: "",
+        })
         toast.success("Please Check your email for comfirmation");
 
       } else {
@@ -121,8 +124,8 @@ export const AppProvider = ({ children }) => {
   // Handles Signup with google
   const handleGoogleSignup = async () => {
     try {
-      const response = await axios.get(`/api/v1/auth/google`, {
-        url: "http://example.com"
+      const response = await axios.get(`${ApiUrl}/api/v1/auth/google`, {
+        url: "http://localhost:3000"
       }, {
         headers: {
           "Content-Type": "aplication/json"
@@ -196,7 +199,7 @@ export const AppProvider = ({ children }) => {
   const handleSkipClick = (e) => {
     e.preventDefault();
     console.log("Form submitted successfully", formData);
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     toast.success("User registered with half details");
     route.push("/");
   };
@@ -205,6 +208,56 @@ export const AppProvider = ({ children }) => {
   const handleEmailVerification = () => {
     alert(`Resending email successfully to ${formData.email}`)
   }
+
+  const [searchQuery, setSearchQuery] = useState("Lagos");
+  const [page, setPage] = useState(0);
+  const [searchLoading, setSeachLoading] = useState(false);
+
+  const handlePropsSearch = async () => {
+    if (!searchQuery) {
+      return
+    }
+    try {
+      setSeachLoading(true);
+      const response = await axios.post(`${ApiUrl}/api/v1/search`, {
+        query: searchQuery,
+        page: page,
+        limit: 0
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": "ApiKeyAuth",
+        },
+      }
+      );
+      if (response.status === 200) {
+        console.log("response:", response);
+        setAllPropts(response.data)
+      }
+      else {
+        console.log("response:", response);
+        alert("Data not fetched");
+      }
+    } catch (error) {
+      console.error("Error during data fetching:", error);
+      alert(error.response?.data?.error_code || error.message || "An error occurred");
+    }
+    finally{
+      setSeachLoading(false)
+    }
+  };
+
+  const fireSearch = () =>{
+    if(!searchQuery){
+      return
+    }
+    handlePropsSearch();
+  }
+
+  useEffect(() => {
+    handlePropsSearch();
+  }, [page]);
+  
 
   return (
     <AppContext.Provider value={{
@@ -224,6 +277,12 @@ export const AppProvider = ({ children }) => {
       formCondition,
       handleSkipClick,
       handleEmailVerification,
+      searchQuery,
+      setSearchQuery,
+      page, 
+      setPage,
+      fireSearch,
+      searchLoading
     }}>
       {children}
     </AppContext.Provider>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
@@ -57,7 +57,7 @@ const Login = () => {
             if (rememberedEmail) {
                 setFormData({
                     email: rememberedEmail,
-                    password: rememberedPassword,
+                    password: "",
                 });
                 setRemindMe(true);
             }
@@ -91,6 +91,10 @@ const Login = () => {
 
             if (response.status === 200) {
                 console.log("User login successful", response);
+                setFormData({
+                    email: "",
+                    password: "",
+                })
 
                 if (typeof window !== "undefined" && remindMe) {
                     // Update stored values in case user edited them

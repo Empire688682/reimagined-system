@@ -4,59 +4,16 @@ import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { CiFilter } from "react-icons/ci";
 import { useGlobalContext } from "../Context";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaSpinner } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa";
 import { FaToilet } from "react-icons/fa";
 import { MdSquareFoot } from "react-icons/md";
-import axios from "axios";
 
 const allPropts = () => {
-  const [index, setIndex] = useState(8);
-  const [searchQuery, setSearchQuery] = useState("");
-  const { route, allPropts, ApiUrl } = useGlobalContext();
-
-   const handlePropsSearch = async () =>{
-    if(!searchQuery){
-      return 
-    }
-    try {
-      const response = await axios.post(`${ApiUrl}/api/v1/search`, {
-        query: searchQuery,
-        page: 0,
-        limit: 0
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-KEY": "ApiKeyAuth",
-        },
-      }
-    );
-    if(response.status === 200){
-      console.log("response:", response);
-      alert(`Data fetched successfully: ${response.data.paging}`);
-    }
-    else{
-      console.log("response:", response);
-      alert("Data not fetched");
-    }
-    } catch (error) {
-      console.error("Error during data fetching:", error);
-      alert(error.response?.data?.error_code || error.message || "An error occurred");
-    }
-   };
-
-   useEffect(() => {
-    handlePropsSearch();
-  }, [searchQuery]);
-  // Filter properties based on the search query
-  const filteredProperties = allPropts
-    .filter((property) =>
-      property.title?.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .slice(0, index);
+  const { route, allPropts, setSearchQuery, searchQuery, page, setPage, fireSearch, searchLoading } = useGlobalContext();
 
   return (
-    <section className="md:p-16 p-4 mt-20">
+    <section className="md:px-16 px-4 pb-20 pt-15 mt-20">
       {/* Header */}
       <div className="bg-white grid grid-cols-1 gap-5 justify-items-center md:flex md:justify-between items-center mb-7">
         <h2 className="font-semibold text-lg md:text-2xl">
@@ -70,22 +27,30 @@ const allPropts = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full p-2 text-black outline-none"
           />
-          <p className="flex items-center gap-2 bg-[#23396A] transition cursor-pointer text-white px-6 py-2">
-            Filter <CiFilter className="text-2xl" />
-          </p>
+          <button disabled={searchLoading} onClick={fireSearch} className="bg-[#23396A]">
+            {
+              searchLoading ? <p className="flex items-center gap-2 transition cursor-pointer text-white px-6 py-2">
+                Serching <FaSpinner className="animate-spin"/>
+              </p>
+                :
+                <p className="flex items-center gap-2 transition cursor-pointer text-white px-6 py-2">
+                  Filter <CiFilter className="text-2xl" />
+                </p>
+            }
+          </button>
         </div>
       </div>
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filteredProperties.length > 0 ? (
-          filteredProperties.map((property) => (
-            <div key={property.id} className="shadow-lg rounded-lg overflow-hidden" onClick={() => route.push(`/properties/${property.id}`)}>
+        {allPropts && allPropts.listings?.length > 0 ? (
+          allPropts.listings.map((property, id) => (
+            <div key={id} className="shadow-lg rounded-lg overflow-hidden" onClick={() => route.push(`/properties/${property.slug}`)}>
               {/* Image Wrapper */}
               <div className="relative w-full h-56">
                 <Image
-                  src={property.images?.[0]}
-                  alt={property.title}
+                  src={property.thumbnail_url}
+                  alt={property.name}
                   fill
                   style={{ objectFit: "cover" }}
                   className="transition-transform transform hover:scale-105 rounded-lg"
@@ -96,9 +61,9 @@ const allPropts = () => {
               <div className="p-4 text-[#23396A]">
                 <div className="flex items-center gap-2 mb-2">
                   <FaLocationDot />
-                  <p className="text-[#23396A]">{property.location}</p>
+                  <p className="text-[#23396A]">{property.state}</p>
                 </div>
-                <h2 className="font-semibold md:text-lg text-1xl mb-2">{property.title}</h2>
+                <h2 className="font-semibold md:text-lg text-1xl mb-2">{property.name}</h2>
                 <div className="flex items-center gap-4 my-3 text-gray-400">
                   <div className="flex items-center gap-1  border border-gray-300 px-1">
                     <FaBed />
@@ -116,7 +81,7 @@ const allPropts = () => {
                 {/* Price & Details */}
                 <div className="flex justify-between items-center">
                   <p className="text-1xl font-bold text-[#23396A]">
-                    #{property.price?.toLocaleString()}
+                    #{property.price_kobo?.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -130,11 +95,11 @@ const allPropts = () => {
       </div>
 
       {/* Load More Button */}
-      {filteredProperties.length >= index && (
+      {allPropts && allPropts.paging?.page > 1 && (
         <div className="flex md:justify-end mb-8 justify-center mt-10">
           <span
             className="flex items-center gap-2 bg-[#F1F9FF] px-4 py-2 text-gray-700 cursor-pointer font-semibold border border-[#23396A] rounded-sm"
-            onClick={() => setIndex(index + 4)}
+            onClick={() => setPage(page + 1)}
           >
             More lists <FaArrowRight />
           </span>
