@@ -9,8 +9,8 @@ import { useGlobalContext } from '@/component/Context';
 
 const Page = () => {
 
-    const {ApiUrl} = useGlobalContext();
-    const [modals, setModals] = useState("moreDetails");
+    const { ApiUrl, userToken } = useGlobalContext();
+    const [modals, setModals] = useState("address");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("")
 
@@ -78,8 +78,8 @@ const Page = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        "X-API-KEY": "ApiKeyAuth",
-                    },
+                        "Authorization": `Bearer ${userToken}`,
+                    }
                 }
             );
 

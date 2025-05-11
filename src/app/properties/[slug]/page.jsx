@@ -10,19 +10,7 @@ import axios from "axios";
 
 const Page = () => {
   // Get global properties data
-  const { allPropts, ApiUrl } = useGlobalContext();
-   const [userToken, setUserToken] = useState("");
-
-   useEffect(()=>{
-   if(typeof window !== "undefined"){
-     const token = localStorage.getItem("token");
-    if(token){
-      setUserToken(token);
-    }
-   }
-   },[]);
-
-   console.log("userToken:", userToken)
+  const { allPropts, ApiUrl, userToken } = useGlobalContext();
 
   // Get property ID from URL params
   const { slug } = useParams();
@@ -109,7 +97,6 @@ const Page = () => {
        headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer (bookings:submit)`,
-          
         }
       }
     );

@@ -135,7 +135,7 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
                     className='bg-[#23396A] text-sm text-white py-2 px-6 w-fit rounded-md mt-4'
                 >
                     {
-                        loading ?  <FaSpinner className='text-white text-xl animate-spin'/> : "Next"
+                        loading ?  <p className='flex gap-5'><FaSpinner className='text-white text-xl animate-spin'/> Loading...</p> : "Next"
                     }
                 </button>
             </form>

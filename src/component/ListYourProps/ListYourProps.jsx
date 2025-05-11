@@ -8,7 +8,7 @@ const ListYourProps = () => {
 
     return (
         <section className="relative w-full min-h-screen md:pb-20 pt-15">
-            <div className="relative w-full min-h-[90vh] flex items-center md:items-end justify-center md:justify-start md:pb-20">
+            <div className="relative w-full min-h-[90vh] flex items-center justify-center md:pb-20">
                 {/* Background Image */}
                 <Image
                     priority={true}
@@ -18,14 +18,14 @@ const ListYourProps = () => {
                     style={{ objectFit: "cover" }}
                     className="absolute z-[-1] top-0 left-0 w-full h-full"
                 />
-                <div className='flex flex-col gap-5 md:px-16 px-6 md:text-left text-center pt-45 h-screen bg-gradient-to-b from-black/40 via-black/50 to-transparent'>
-                    <h1 className="text-2xl md:text-4xl md:max-w-[80%] font-bold text-white">
+                <div className='flex flex-col gap-10 md:px-16 px-6 text-center pt-45 h-screen bg-gradient-to-b from-black/40 via-black/50 to-transparent'>
+                    <h1 className="text-2xl md:text-4xl md:max-w-[80%] mx-auto font-bold text-white">
                         Turn your space into a set and start earning by sharing it with the creative community.
 
                         Book. Shoot. Create.
                         It all starts here.
                     </h1>
-                    <Link href="/add-listing" onClick={() => {window.scrollTo(0, 0) }} className="w-full md:w-[40%] bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
+                    <Link href="/add-listing" onClick={() => {window.scrollTo(0, 0) }} className="w-full max-w-[50%] mx-auto bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
                         Get Started Now
                     </Link>
                 </div>

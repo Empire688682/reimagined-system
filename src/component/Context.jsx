@@ -12,6 +12,18 @@ export const AppProvider = ({ children }) => {
   //Authenticational States//
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
+   const [userToken, setUserToken] = useState("");
+  
+     useEffect(()=>{
+     if(typeof window !== "undefined"){
+       const token = localStorage.getItem("AccessToken");
+      if(token){
+        setUserToken(token);
+      }
+     }
+     },[]);
+  
+     console.log("userToken:", userToken);
 
   useEffect(() => {
     handlePropsSearch()
@@ -262,6 +274,7 @@ export const AppProvider = ({ children }) => {
       handleInitateSignup,
       handleCompleteSignup,
       handleGoogleSignup,
+      userToken,
       loading,
       handleOnchange,
       formData,
