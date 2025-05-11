@@ -90,7 +90,7 @@ const Navbar = () => {
                         )}
                     </li>
                     <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
-                    <a href='#faq' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>FAQ'S</a>
+                    <a href='/booking#faqs' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>FAQ'S</a>
                     <a href='#contact' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                 </ul>
 
@@ -148,7 +148,7 @@ const Navbar = () => {
                                 )}
                             </li>
                             <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
-                            <a href='#faq' onClick={() => setIsOpen(false)} className={`text-white cursor-pointer text-[14px]`}>FAQ'S</a>
+                            <a href='/booking#faqs' onClick={() => setIsOpen(false)} className={`text-white cursor-pointer text-[14px]`}>FAQ'S</a>
                             <a href='#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                         </ul>
                         {/** Auth buttons */}

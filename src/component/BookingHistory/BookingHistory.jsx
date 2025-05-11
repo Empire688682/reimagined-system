@@ -10,27 +10,16 @@ import { useGlobalContext } from "../Context";
 import axios from "axios";
 
 const BookingHistory = () => {
-    const { ApiUrl } = useGlobalContext();
+    const { ApiUrl, userToken } = useGlobalContext();
     // State to store all bookings
     const [allBooking, setAllBooking] = useState([]);
 
     // State to manage loading state
     const [loading, setLoading] = useState(true);
 
-    const [userToken, setUserToken] = useState("");
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const token = localStorage.getItem("AccessToken");
-            if (token) {
-                setUserToken(token);
-            }
-        }
-    }, []);
-
     // Fetch listing data on component mount
     useEffect(() => {
-        const fetchListing = async () => {
+        const fetchBookings = async () => {
             if (!userToken) {
                 console.log("No user token found!");
                 return;
@@ -55,7 +44,7 @@ const BookingHistory = () => {
             }
         };
 
-        fetchListing();
+        fetchBookings();
     }, [userToken]);
 
     return (

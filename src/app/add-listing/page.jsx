@@ -84,7 +84,8 @@ const Page = () => {
             );
 
             if (response.status === 200) {
-                console.log("Listing successfully submitted", formData);
+                console.log("Listing successfully submitted", response);
+                window.scrollTo(0,0);
                 setModals("listingSent");
             } else {
                 console.log("Unexpected response:", response);

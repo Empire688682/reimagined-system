@@ -11,22 +11,17 @@ const BookingFAQ = () => {
 
   const handleShowQuestion = (id) =>{
     setShowQst((prev)=>({...prev, [id] : !prev[id]}));
-    console.log("showQst:",showQst[id])
   }
 
-
-  const fetchFaqs = async () => {
-    setFaqs(allFaqs);
-  }
 
   useEffect(()=>{
-    fetchFaqs();
+    setFaqs(allFaqs);
   },[]);
 
 
 
   return (
-    <div className="bg-gradient-to-b md:p-16 p-4 from-[#F1F9FF] to-white w-full">
+    <div id='faqs' className="bg-gradient-to-b md:p-16 p-4 from-[#F1F9FF] to-white w-full">
       {/* Content goes here */}
       <div className='grid grid-cols-1 md:grid-cols-2 justify-between gap-4'>
         <div className='text-[#23396A] text-center md:text-left md:w-[50%] w-full'>

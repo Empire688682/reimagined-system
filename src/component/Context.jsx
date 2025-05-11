@@ -22,8 +22,6 @@ export const AppProvider = ({ children }) => {
       }
      }
      },[]);
-  
-     console.log("userToken:", userToken);
 
   useEffect(() => {
     handlePropsSearch()

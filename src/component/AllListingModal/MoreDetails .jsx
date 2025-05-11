@@ -58,7 +58,7 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
             !formData.property_type ||
             formData.size_sqft <=1 ||
             formData.price_kobo <=1 ||
-            !formData.amenity_slugs.length
+            formData.amenity_slugs.length < 1
         ) {
             setErrorMsg("Please fill in all fields before proceeding.");
             return;
