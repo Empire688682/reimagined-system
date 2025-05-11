@@ -19,7 +19,7 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formLoading, setFormLoading] = useState(false)
-  const [errorMsg, setErrorMsg] =  useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [relatedProps, setRelatedProps] = useState([]);
   // Modals for booking process
   const [addressModal, setAddressModal] = useState(false);
@@ -30,8 +30,8 @@ const Page = () => {
     end_date: "",
     start_time: "",
     end_time: "",
-    crew_member_count: 0,
-    setup_day_count: 0,
+    crew_member_count: "0",
+    setup_day_count: "0",
     requires_cleanup: false,
     requires_inspection: false,
   });
@@ -44,15 +44,14 @@ const Page = () => {
     const fetchProptsData = async () => {
       try {
         const response = await axios.get(`${ApiUrl}/api/v1/listings/${slug}/public`);
-        if(response){
-           setData(response.data.listing || null);
+        if (response) {
+          setData(response.data.listing || null);
         }
-        console.log("Response:", response);
       } catch (error) {
         console.log("Fetching-Error:", error)
       }
-      finally{
-      setLoading(false);
+      finally {
+        setLoading(false);
       }
     };
 
@@ -65,59 +64,58 @@ const Page = () => {
 
   // Handle form submission for booking
   const handleFormSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (
-    !formData.start_date ||
-    !formData.end_date ||
-    !formData.start_time ||
-    !formData.end_time ||
-    !formData.crew_member_count ||
-    !formData.setup_day_count ||
-    !slug
-  ) {
-    return setErrorMsg("Please fill all fields");
-  }
-
-  setFormLoading(true);
-  try {
-    const response = await axios.post(
-      `${ApiUrl}/api/v1/listings/${slug}/bookings`,
-      {
-        start_date: formData.start_date,
-        end_date: formData.end_date,
-        start_time: formData.start_time,
-        end_time: formData.end_time,
-        crew_member_count: formData.crew_member_count,
-        setup_day_count: formData.setup_day_count,
-        requires_cleanup: formData.requires_cleanup,
-        requires_inspection: formData.requires_inspection,
-      },
-      {
-       headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer (bookings:submit)`,
-        }
-      }
-    );
-
-    if (response.status === 201) {
-      alert("Booking successful");
-      setAddressModal(false);
-      setRequestSentModal(true);
-      window.scrollTo(0, 0);
+    if (
+      !formData.start_date ||
+      !formData.end_date ||
+      !formData.start_time ||
+      !formData.end_time ||
+      !formData.crew_member_count ||
+      !formData.setup_day_count ||
+      !slug
+    ) {
+      return setErrorMsg("Please fill all fields");
     }
-  } catch (error) {
-    console.error("Booking error:", error);
-    setErrorMsg(
-      error.response?.data?.error_code ||
+    setFormLoading(true);
+    try {
+      const response = await axios.post(
+        `${ApiUrl}/api/v1/listings/${slug}/bookings`,
+        {
+          start_date: formData.start_date,
+          end_date: formData.end_date,
+          start_time: formData.start_time,
+          end_time: formData.end_time,
+          crew_member_count: formData.crew_member_count,
+          setup_day_count: formData.setup_day_count,
+          requires_cleanup: formData.requires_cleanup,
+          requires_inspection: formData.requires_inspection,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userToken}`,
+          }
+        }
+      );
+
+      if (response.status === 201) {
+        console.log("Response:", response);
+        setAddressModal(false);
+        setRequestSentModal(true);
+        window.scrollTo(0, 0);
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      setErrorMsg(
+        error.response?.data?.error_code ||
         error.response?.data?.message ||
         "An error occurred"
-    );
-  } finally {
-    setFormLoading(false);
-  }
-};
+      );
+    } finally {
+      setFormLoading(false);
+    }
+  };
 
 
   return (

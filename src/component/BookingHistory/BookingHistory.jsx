@@ -30,33 +30,33 @@ const BookingHistory = () => {
 
     // Fetch listing data on component mount
     useEffect(() => {
-  const fetchListing = async () => {
-    if (!userToken) {
-      console.log("No user token found!");
-      return;
-    }
+        const fetchListing = async () => {
+            if (!userToken) {
+                console.log("No user token found!");
+                return;
+            }
 
-    setLoading(true);
+            setLoading(true);
 
-    try {
-      const response = await axios.get(`${ApiUrl}/api/v1/bookings`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${userToken}`
-        }
-      });
-      if(response.status === 200){
-        setAllBooking(response.data)
-      }
-    } catch (error) {
-      console.log("BookingH-Error:", error.response?.data || error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+            try {
+                const response = await axios.get(`${ApiUrl}/api/v1/bookings`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${userToken}`
+                    }
+                });
+                if (response.status === 200) {
+                    setAllBooking(response.data)
+                }
+            } catch (error) {
+                console.log("BookingH-Error:", error.response?.data || error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  fetchListing();
-}, [userToken]);
+        fetchListing();
+    }, [userToken]);
 
     return (
         <>
@@ -102,17 +102,25 @@ const BookingHistory = () => {
                                             <td className="p-4">{booking.created_at.split("T")[0]}</td>
                                             <td className="p-4">
                                                 {/* Status badge with dynamic styling */}
-                                                <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${booking.status === "Cancelled"
-                                                    ? "bg-red-100 text-red-600 border border-red-500"
-                                                    : "bg-green-100 text-green-600 border border-green-500"
-                                                    }`}>
-                                                    {
-                                                        booking.status === "Approved"
-                                                            ? <IoMdCheckmark className="mr-2" />
-                                                            : <IoReturnDownBack className="mr-2 text-lg" />
-                                                    }
+                                                <div
+                                                    className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                                                       ${booking.status === "cancelled"
+                                                            ? "bg-red-100 text-red-600 border border-red-500"
+                                                            : booking.status === "pending"
+                                                                ? "bg-blue-100 text-blue-600 border border-blue-500"
+                                                                : "bg-green-100 text-green-600 border border-green-500"
+                                                        }`}
+                                                >
+                                                    {booking.status === "approved" ? (
+                                                        <IoMdCheckmark className="mr-2" />
+                                                    ) : booking.status === "Pending" ? (
+                                                        <IoArrowForward className="mr-2 text-lg" />
+                                                    ) : (
+                                                        <IoReturnDownBack className="mr-2 text-lg" />
+                                                    )}
                                                     {booking.status}
                                                 </div>
+
                                             </td>
                                             <td className="p-4 flex items-center gap-2">
                                                 <span>{booking.user.first_name}</span>

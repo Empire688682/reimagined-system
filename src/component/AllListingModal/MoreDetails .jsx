@@ -4,7 +4,7 @@ import { FaSpinner } from 'react-icons/fa6';
 import axios from "axios";
 import { useGlobalContext } from '@/component/Context';
 
-const typeOfProps = ["Apartment", "House", "Condo"];
+const typeOfProps = ["apartment", "house"];
 const amenities = ["Pool", "Gym", "Parking"];
 
 const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, setErrorMsg, errorMsg}) => {
@@ -27,6 +27,7 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
     },[]);
 
     console.log("allAmineties:", allAmineties);
+    console.log("formData:", formData);
 
     const toggleArrayValue = (name, value) => {
         setFormData((prevData) => {
@@ -39,13 +40,15 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
         });
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+     const handleChange = (e) => {
+  const { name, value, type, checked } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: type === 'number'
+      ? parseInt(value) || ""
+      : value,
+  }));
+};
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -53,7 +56,8 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
         // Basic check for required fields
         if (
             !formData.property_type ||
-            !formData.size_sqft.length > 0 ||
+            formData.size_sqft <=1 ||
+            formData.price_kobo <=1 ||
             !formData.amenity_slugs.length
         ) {
             setErrorMsg("Please fill in all fields before proceeding.");
@@ -75,6 +79,20 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
                 <div>
                     <h1 className='font-semibold md:text-lg'>Property Details</h1>
                     <p className='text-sm'>More detailed information about your property</p>
+                </div>
+
+                {/* Property Price */}
+                <div className='flex flex-col gap-2'>
+                    <label className='text-sm font-medium'>Price</label>
+                    <input
+                        type="number"
+                        id="price_kobo"
+                        name="price_kobo"
+                        value={formData.price_kobo}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md p-2"
+                        required
+                    />
                 </div>
 
                 {/* Property Type */}

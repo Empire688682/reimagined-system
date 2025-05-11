@@ -12,12 +12,17 @@ const BookingAddressModal = ({
 
   //Onchange handler
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+  const { name, value, type, checked } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: type === 'checkbox'
+      ? checked
+      : type === 'number'
+      ? parseInt(value) || ""
+      : value,
+  }));
+};
+
 
 
   return (
