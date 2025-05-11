@@ -81,14 +81,14 @@ const Properties = () => {
                 </div>
               </div>
             ))}
-            <div className="flex md:justify-end mb-8 justify-center mt-10">
-              <span className="flex items-center gap-2 bg-[#23396A] px-4 py-2 text-gray-700 cursor-pointer rounded-sm text-white"
-                onClick={() => route.push("/properties")}>
-                All Listings <FaArrowRight />
-              </span>
-            </div>
           </div>
       }
+      <div className="flex md:justify-end mb-8 justify-center mt-10">
+        <span className="flex items-center gap-2 bg-[#23396A] px-4 py-2 text-gray-700 cursor-pointer rounded-sm text-white"
+          onClick={() => route.push("/properties")}>
+          All Listings <FaArrowRight />
+        </span>
+      </div>
     </section>
   );
 };
