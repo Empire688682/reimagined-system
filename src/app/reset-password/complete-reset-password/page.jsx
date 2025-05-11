@@ -1,10 +1,13 @@
 import CompleteResetPwd from '@/component/Auth/CompleteResetPwd'
-import React from 'react'
+import React from 'react';
+import { Suspense } from 'react';
 
 const Page = () => {
   return (
     <div>
-      <CompleteResetPwd />
+      <Suspense fallback={<div>Loading...</div>}>
+        <CompleteResetPwd />
+      </Suspense>
     </div>
   )
 }
