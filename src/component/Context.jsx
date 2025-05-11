@@ -231,12 +231,7 @@ export const AppProvider = ({ children }) => {
       }
       );
       if (response.status === 200) {
-        console.log("response:", response);
         setAllPropts(response.data)
-      }
-      else {
-        console.log("response:", response);
-        alert("Data not fetched");
       }
     } catch (error) {
       console.error("Error during data fetching:", error);
@@ -258,7 +253,6 @@ export const AppProvider = ({ children }) => {
     handlePropsSearch();
   }, [page]);
   
-
   return (
     <AppContext.Provider value={{
       route,

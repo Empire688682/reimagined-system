@@ -11,6 +11,18 @@ import axios from "axios";
 const Page = () => {
   // Get global properties data
   const { allPropts, ApiUrl } = useGlobalContext();
+   const [userToken, setUserToken] = useState("");
+
+   useEffect(()=>{
+   if(typeof window !== "undefined"){
+     const token = localStorage.getItem("token");
+    if(token){
+      setUserToken(token);
+    }
+   }
+   },[]);
+
+   console.log("userToken:", userToken)
 
   // Get property ID from URL params
   const { slug } = useParams();
@@ -65,12 +77,25 @@ const Page = () => {
 
   // Handle form submission for booking
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if(!formData.start_date || !formData.end_date || !formData.start_time || !formData.end_time || !formData.crew_member_count || !formData.setup_day_count) 
-      return setErrorMsg("Please fill all fields");
-    setFormLoading(true);
-    try {
-      const response = await axios.post(`/api/v1/listings/${slug}/bookings`, {
+  e.preventDefault();
+
+  if (
+    !formData.start_date ||
+    !formData.end_date ||
+    !formData.start_time ||
+    !formData.end_time ||
+    !formData.crew_member_count ||
+    !formData.setup_day_count ||
+    !slug
+  ) {
+    return setErrorMsg("Please fill all fields");
+  }
+
+  setFormLoading(true);
+  try {
+    const response = await axios.post(
+      `${ApiUrl}/api/v1/listings/${slug}/bookings`,
+      {
         start_date: formData.start_date,
         end_date: formData.end_date,
         start_time: formData.start_time,
@@ -78,32 +103,35 @@ const Page = () => {
         crew_member_count: formData.crew_member_count,
         setup_day_count: formData.setup_day_count,
         requires_cleanup: formData.requires_cleanup,
-        requires_inspection: formData.requires_inspection
+        requires_inspection: formData.requires_inspection,
       },
-        {
-          headers: {
-            "Content-Type": "aplication/json"
-          }
+      {
+       headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer (bookings:submit)`,
+          
         }
-      );
-      if (response.status === 201) {
-        console.log(response);
-        alert("Booking successful");
-        setAddressModal(false);
-        setRequestSentModal(true);
-        window.scrollTo(0, 0);
       }
-    } catch (error) {
-      console.error("Error during signup:", error);
-      setErrorMsg(error.response?.data?.error_code || error.message || "An error occurred");
-    }
-    finally{
-      setFormLoading(false)
-    }
+    );
 
-  };
+    if (response.status === 201) {
+      alert("Booking successful");
+      setAddressModal(false);
+      setRequestSentModal(true);
+      window.scrollTo(0, 0);
+    }
+  } catch (error) {
+    console.error("Booking error:", error);
+    setErrorMsg(
+      error.response?.data?.error_code ||
+        error.response?.data?.message ||
+        "An error occurred"
+    );
+  } finally {
+    setFormLoading(false);
+  }
+};
 
-  console.log("Data:", data)
 
   return (
     <>

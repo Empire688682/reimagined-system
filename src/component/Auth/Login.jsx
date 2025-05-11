@@ -7,7 +7,7 @@ import axios from "axios";
 import { FaSpinner } from 'react-icons/fa6';
 
 const Login = () => {
-    const { route, ApiUrl, googleUrl } = useGlobalContext();
+    const { route, ApiUrl, googleUrl, userToken, setUserToken } = useGlobalContext();
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
     //TODO:comming back
@@ -99,6 +99,7 @@ const Login = () => {
                 if (typeof window !== "undefined" && remindMe) {
                     // Update stored values in case user edited them
                     localStorage.setItem("rememberedEmail", formData.email);
+                    localStorage.setItem("AccessToken", response.data.access_token);
                 }
 
                 alert("User Login successful");

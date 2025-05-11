@@ -2,12 +2,13 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa6';
 
-const BookingAddressModal = ({formData,
-   setFormData,
-    handleFormSubmit,
-    errorMsg,
-    formLoading
-  }) => {
+const BookingAddressModal = ({
+  formData,
+  setFormData,
+  handleFormSubmit,
+  errorMsg,
+  formLoading
+}) => {
 
   //Onchange handler
   const handleChange = (e) => {
@@ -135,7 +136,7 @@ const BookingAddressModal = ({formData,
 
         <button type='submit' disabled={formLoading} className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
           {
-            formLoading?<FaSpinner className='text-white text-xl animate-spin'/>:"Submit"
+            formLoading ? <FaSpinner className='text-white text-xl animate-spin' /> : "Submit"
           }
         </button>
       </form>
