@@ -14,7 +14,7 @@ const BookingTopLocation = () => {
   return (
     <section className='bg-[#F1F9FF] md:p-16 p-4'>
       {/* Section Header */}
-      <div className='flex justify-between items-center mb-12 pt-10'>
+      <div className='flex justify-between items-center mb-10 pt-10'>
         <p className='md:text-lg text-base sm:text-1xl font-bold'>Top Locations</p>
         <span className='md:text-lg text-base cursor-pointer sm:text-1xl font-bold' onClick={() => route.push("/properties")}>More Listing</span>
       </div>
