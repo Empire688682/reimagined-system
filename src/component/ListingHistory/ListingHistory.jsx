@@ -92,7 +92,7 @@ const ListingHistory = () => {
                                                 {/* Status badge with dynamic styling */}
                                                 <div
                                                     className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
-                                                                               ${listing.status === "cancelled"
+                                                                               ${listing.status === "rejected"
                                                             ? "bg-red-100 text-red-600 border border-red-500"
                                                             : listing.status === "pending"
                                                                 ? "bg-blue-100 text-blue-600 border border-blue-500"
