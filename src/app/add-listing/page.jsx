@@ -6,36 +6,43 @@ import UploadModal from '@/component/AllListingModal/UploadModal';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from '@/component/Context';
+import ListingTerms from '@/component/AllListingModal/ListingTerms/ListingTerms';
 
 const Page = () => {
 
     const { ApiUrl, userToken } = useGlobalContext();
-    const [modals, setModals] = useState("address");
+    const [modals, setModals] = useState("terms");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("")
 
-    const [formData, setFormData] = useState({
-        name: "",
-        description: "",
-        state: "",
-        local_government_area: "",
-        contact_phone_number: "",
-        address: "",
-        property_type: "",
-        size_sqft: 0,
-        tags: [],
-        image_urls: [],
-        thumbnail_url: "",
-        amenity_slugs: [],
-        price_kobo: 0
-    });
+   const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    state: "",
+    local_government_area: "",
+    contact_phone_number: "",
+    address: "",
+    property_type: "", 
+    size_sqft: 0,
+    tags: [], 
+    image_urls: [],
+    thumbnail_url: "",
+    amenity_slugs: [], 
+    price_kobo: 0,
+    purpose_of_listing: "",
+    host_rules: "",
+    usage_guidelines: "",
+    overtime_policy: "", 
+    afl_terms_accepted: false, 
+});
+
 
     //Onchange handler
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({
             ...prev,
-            [name]: value,
+            [name]: type === 'checkbox' ? checked : value
         }));
     };
 
@@ -85,7 +92,7 @@ const Page = () => {
 
             if (response.status === 200) {
                 console.log("Listing successfully submitted", response);
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 setModals("listingSent");
             } else {
                 console.log("Unexpected response:", response);
@@ -100,6 +107,9 @@ const Page = () => {
 
     return (
         <div className='min-h-[70vh]'>
+            {
+                modals === "terms" && <ListingTerms setModals={setModals} formData={formData} handleChange={handleChange} />
+            }
             {
                 modals === "address" && <ListingAddress setModals={setModals} formData={formData} handleChange={handleChange} />
             }

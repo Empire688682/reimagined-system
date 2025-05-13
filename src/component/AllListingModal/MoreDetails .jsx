@@ -72,7 +72,7 @@ const MoreDetails = ({ formData, setFormData, handleFinalSubmission, loading, se
             <div className="flex justify-between items-center">
                 <h1 className="md:font-semibold">New Listing</h1>
                 <p className="text-center text-sm border py-1 px-6 border-gray-300">
-                    3
+                    4 of 4
                 </p>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col justify-center gap-5 mx-auto">

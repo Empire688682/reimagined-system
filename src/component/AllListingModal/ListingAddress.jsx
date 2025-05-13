@@ -41,7 +41,7 @@ const ListingAddress = ({setModals, formData, handleChange}) => {
     return (
         <section className='grid relative grid-cols-1 sm:grid-cols-1 md:grid-cols-2 mt-20 items-center gap-10 py-10 '>
             <span className='absolute right-6 md-right-16 top-3 text-center text-sm border py-1 px-6 border-gray-300'>
-                1
+                2 of 4
             </span>
             {/** Col one */}
             <div className='bg-white flex w-full flex-col gap-3 max-w-[300px] md:max-w-[400px] m-auto rounded-lg'>

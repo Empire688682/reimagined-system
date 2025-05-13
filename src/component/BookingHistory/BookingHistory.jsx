@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { IoSquareOutline } from "react-icons/io5";
 import { IoMdArrowDown, IoMdCheckmark } from "react-icons/io";
-import Image from "next/image";
-import { bookings } from "../Data";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { IoReturnDownBack } from "react-icons/io5";
 import { useGlobalContext } from "../Context";
@@ -93,7 +91,7 @@ const BookingHistory = () => {
                                                 {/* Status badge with dynamic styling */}
                                                 <div
                                                     className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
-                                                       ${booking.status === "cancelled"
+                                                       ${booking.status === "rejected"
                                                             ? "bg-red-100 text-red-600 border border-red-500"
                                                             : booking.status === "pending"
                                                                 ? "bg-blue-100 text-blue-600 border border-blue-500"
@@ -115,7 +113,7 @@ const BookingHistory = () => {
                                                 <span>{booking.user.first_name}</span>
                                                 <span>{booking.user.last_name}</span>
                                             </td>
-                                            <td className="p-4">{booking.property}</td>
+                                            <td className="p-4">{booking.listing_slug}</td>
                                         </tr>
                                     ))}
                                 </tbody>

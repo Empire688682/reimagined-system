@@ -92,7 +92,7 @@ const UploadModal = ({ setModals, handleChange }) => {
         <section className="min-h-screen md:p-16 p-4 mt-20 flex flex-col gap-16">
             <div className="flex justify-between items-center">
                 <h1 className="md:font-semibold text-xl">New Listing</h1>
-                <p className="text-center text-sm border py-1 px-6 border-gray-300">1</p>
+                <p className="text-center text-sm border py-1 px-6 border-gray-300">3 of 4</p>
             </div>
 
             <form className="flex flex-col items-center gap-10 mx-auto w-full max-w-2xl">

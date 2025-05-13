@@ -1,89 +1,117 @@
 "use client"
 import React from 'react';
 import Image from "next/image";
-import { FaLayerGroup } from "react-icons/fa6";
 import Link from 'next/link';
+import { FaCheckCircle, FaCamera, FaRegHandshake, FaMoneyBillWave } from "react-icons/fa";
 
 const ListYourProps = () => {
-
     return (
-        <section className="relative w-full min-h-screen md:pb-20 pt-15">
-            <div className="relative w-full min-h-[90vh] flex items-center justify-center md:pb-20">
-                {/* Background Image */}
+        <section className="w-full text-gray-800">
+            {/* HERO SECTION */}
+            <div className="relative w-full h-[90vh] flex items-center justify-center">
                 <Image
-                    priority={true}
+                    priority
                     fill
                     src="/listing-yourspace-hero.png"
-                    alt="Hero Image"
-                    style={{ objectFit: "cover" }}
-                    className="absolute z-[-1] top-0 left-0 w-full h-full"
+                    alt="Creative studio"
+                    className="absolute inset-0 w-full h-full object-cover z-[-1]"
                 />
-                <div className='flex flex-col gap-10 md:px-16 px-6 text-center pt-45 h-screen bg-gradient-to-b from-black/40 via-black/50 to-transparent'>
-                    <h1 className="text-2xl md:text-4xl md:max-w-[80%] mx-auto font-bold text-white">
-                        Turn your space into a set and start earning by sharing it with the creative community.
+                <div className="bg-black/50 w-full h-full absolute inset-0 z-[-1]" />
 
-                        Book. Shoot. Create.
-                        It all starts here.
+                <div className="z-10 text-center px-6 md:px-16 max-w-4xl mx-auto">
+                    <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight mb-4">
+                        List Your Space. Unlock New Income.
                     </h1>
-                    <Link href="/add-listing" onClick={() => {window.scrollTo(0, 0) }} className="w-full max-w-[50%] mx-auto bg-[#23396A] py-3 px-6 text-white text-sm font-semibold rounded-sm cursor-pointer">
-                        Get Started Now
+                    <p className="text-gray-200 text-lg md:text-xl mb-8">
+                        Earn effortlessly by renting out your space to photographers, filmmakers, and creatives near you.
+                    </p>
+                    <Link
+                        href="/add-listing"
+                        onClick={() => window.scrollTo(0, 0)}
+                        className="bg-[#23396A] hover:bg-blue-700 text-white py-3 px-8 rounded-md text-sm font-semibold transition-all duration-300"
+                    >
+                        Get Started for Free
                     </Link>
                 </div>
             </div>
-            <div className='px-6 md:px-16 py-10 flex flex-col gap-4'>
-                <p className='text-center text-[12px] border m-auto max-w-30 rounded-full border-blue-400 text-gray-500 px-2 py-3'>DUMMY TEXT</p>
-                <h1 className='text-center text-2xl font-semibold'>How it Works</h1>
-                <p className='text-center pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, numquam!</p>
-                {/** Two Col Content */}
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-20'>
-                    {/** Col one */}
-                    <div className='relative w-full min-h-[300px]'>
-                        <Image
-                            priority={true}
-                            fill
-                            src="/listing-yourspace-2-img.png"
-                            alt="Hero Image"
-                            className="rounded-2xl"
-                            style={{ objectFit: "cover" }}
-                        />
+
+            {/* WHY LIST SECTION */}
+            <section className="py-20 px-6 md:px-20 bg-white text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Why List with Us?</h2>
+                <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
+                    We make it simple to turn your space into a revenue-generating creative set. Whether it’s a cozy apartment, rustic backyard, or modern studio — creators are always looking for their next location.
+                </p>
+                <div className="grid md:grid-cols-3 gap-10">
+                    <div className="flex flex-col items-center gap-4">
+                        <FaCamera className="text-4xl text-blue-600" />
+                        <h3 className="text-xl font-semibold">Creative Visibility</h3>
+                        <p className="text-gray-500">Expose your property to thousands of photographers, filmmakers, and brands.</p>
                     </div>
-                    {/** Col two */}
-                    <div className='relative w-full min-h-[300px]'>
-                        <div className='flex flex-col gap-5'>
-                            <div className='flex gap-3'>
-                                <FaLayerGroup className='text-2xl' />
-                                <div className='flex flex-2 flex-col gap-3'>
-                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
-                                </div>
-                            </div>
-                            <div className='flex gap-3'>
-                                <FaLayerGroup className='text-2xl' />
-                                <div className='flex flex-2 flex-col gap-3'>
-                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
-                                </div>
-                            </div>
-                            <div className='flex gap-3'>
-                                <FaLayerGroup className='text-2xl' />
-                                <div className='flex flex-2 flex-col gap-3'>
-                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
-                                </div>
-                            </div>
-                            <div className='flex gap-3'>
-                                <FaLayerGroup className='text-2xl' />
-                                <div className='flex flex-2 flex-col gap-3'>
-                                    <h2 className='font-semibold'>Sign Up As A Host</h2>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sapiente laborum adipisci nemo delectus dicta libero voluptate maiores debitis maxime. Architecto voluptate eos.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="flex flex-col items-center gap-4">
+                        <FaRegHandshake className="text-4xl text-blue-600" />
+                        <h3 className="text-xl font-semibold">Simple Process</h3>
+                        <p className="text-gray-500">Listing takes minutes. Approve bookings based on your availability and comfort.</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-4">
+                        <FaMoneyBillWave className="text-4xl text-blue-600" />
+                        <h3 className="text-xl font-semibold">Earn with Ease</h3>
+                        <p className="text-gray-500">Set your own pricing and get paid securely after every booking.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-    )
-}
+            </section>
 
-export default ListYourProps
+            {/* HOW IT WORKS */}
+            <section className="bg-gray-100 py-20 px-6 md:px-20 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-10">How It Works</h2>
+                <div className="grid md:grid-cols-3 gap-10 text-left">
+                    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                        <h4 className="text-lg font-semibold mb-2">1. List Your Space</h4>
+                        <p className="text-gray-600">Add photos, details, and availability. It only takes a few minutes.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                        <h4 className="text-lg font-semibold mb-2">2. Receive Bookings</h4>
+                        <p className="text-gray-600">Creators can request to book your space for specific dates and times.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                        <h4 className="text-lg font-semibold mb-2">3. Host & Get Paid</h4>
+                        <p className="text-gray-600">Approve bookings, host on your terms, and receive fast payouts.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* TRUST SECTION */}
+            <section className="py-20 px-6 md:px-20 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Trusted by the Creative Community</h2>
+                <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
+                    Join a growing network of local property owners who’ve made over $500,000 combined through our platform. From home studios to industrial warehouses, your space has value.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                    <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                        <FaCheckCircle /> Verified Listings
+                    </span>
+                    <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                        <FaCheckCircle /> Safe & Secure Payments
+                    </span>
+                    <span className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                        <FaCheckCircle /> Full Booking Control
+                    </span>
+                </div>
+            </section>
+
+            {/* FINAL CTA */}
+            <section className="bg-[#23396A] py-20 text-center text-white px-6">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Start Earning From Your Space Today</h2>
+                <p className="text-lg mb-8">It's free to list, simple to manage, and your next booking could be just days away.</p>
+                <Link
+                    href="/add-listing"
+                    onClick={() => window.scrollTo(0, 0)}
+                    className="bg-white text-blue-600 py-3 px-8 rounded-md font-semibold hover:bg-gray-100 transition"
+                >
+                    List My Space
+                </Link>
+            </section>
+        </section>
+    );
+};
+
+export default ListYourProps;
