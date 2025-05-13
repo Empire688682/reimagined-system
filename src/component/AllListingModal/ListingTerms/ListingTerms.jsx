@@ -1,12 +1,15 @@
 "use"
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import { useGlobalContext } from '@/component/Context';
+import { dummytermsData } from '@/component/Data';
 
 const ListingTerms = ({ setModals, formData, handleChange }) => {
     const { ApiUrl } = useGlobalContext();
 
     const [errorMsg, setErrorMsg] = useState('');
+    const [terms, setTerms] = useState(dummytermsData);
+
+    console.log("Terms:", terms);
     // Handle form submission for booking
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +19,7 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
             || !formData.overtime_policy
             || !formData.afl_terms_accepted) {
             console.log("Form:", formData);
-            setErrorMsg("Please fill in all fields before proceeding.");
+            setErrorMsg("Please fill in all fields and terms before proceeding.");
             return;
         };
         console.log('Form Data Submitted:', formData);
@@ -95,20 +98,24 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
                         </textarea>
                     </label>
 
-                    <label className='flex flex-col text-gray-700 text-sm'>
-                        Platform Terms & Conditions
-                        <textarea
-                            readOnly
-                            value={`1. You confirm that all property information is accurate and honest.
-2. The property is suitable for the purpose selected (filming, events, etc.).
-3. Host Rules must be clearly provided and will be publicly visible.
-4. Any overtime charges must be disclosed and pre-approved.
-5. You agree that your property is legal, safe, and properly maintained.
-6. You accept AFL (Access For Location) platform terms, and understand that listings may be removed if found in violation.`}
-                            className='border resize-none border-gray-300 text-gray-600 bg-gray-100 w-full outline-none rounded-md p-2 text-sm'
-                            rows={7}
-                        />
-                    </label>
+                    {
+                        errorMsg && (
+                            <p className='text-red-500 text-sm'>{errorMsg}</p>
+                        )
+                    }
+
+                    <button type='submit' className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
+                        Next
+                    </button>
+
+                    <div className='text-sm text-gray-700'>
+                        <h2 className='font-semibold mt-4 mb-2'>Platform Terms</h2>
+                        <ul className='list-disc list-inside space-y-1'>
+                            {terms.platform_terms_and_conditions?.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
 
                     <div className='flex items-center gap-2'>
                         <input
@@ -122,16 +129,6 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
                             I accept the platform terms and conditions
                         </label>
                     </div>
-
-                    {
-                        errorMsg && (
-                            <p className='text-red-500 text-sm'>{errorMsg}</p>
-                        )
-                    }
-
-                    <button type='submit' className='bg-[#23396A] text-sm text-white py-2 cursor-pointer w-full flex justify-center border rounded-md'>
-                        Next
-                    </button>
                 </form>
             </div>
         </section>

@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa6';
+import { dummytermsData } from '../Data';
+import TermsAndCondition from './TermsAndCondition/TermsAndCondition';
 
 const BookingAddressModal = ({
   formData,
@@ -26,14 +28,17 @@ const BookingAddressModal = ({
 
 
   return (
-    <div className='my-22 bg-white flex flex-col gap-3 max-w-[300px] md:max-w-[450px] m-auto rounded-lg p-5'>
+    <div className='my-15 bg-white flex flex-col gap-3 m-auto rounded-lg p-5'>
       <div>
         <h1 className='font-semibold md:text-lg'>Booking Details</h1>
         <p className='text-sm'>Fill in the following details to schedule your booking.</p>
       </div>
-      <hr className='text-gray-300' />
+      <hr className='text-gray-300 mb-5' />
 
-      <form className='flex flex-col gap-3' onSubmit={handleFormSubmit}>
+      <div className='grid grid-cols-1 gap-5 md:grid-cols-2 w-full items-center'>
+        {/**first col */}
+      <div className='min-w-[300px] shadow-md p-3 h-full rounded-md'>
+      <form className='flex flex-col gap-3 w-full' onSubmit={handleFormSubmit}>
         <label htmlFor='start_date' className='flex flex-col text-gray-700 text-sm'>
           Start Date
           <input
@@ -43,7 +48,7 @@ const BookingAddressModal = ({
             name='start_date'
             value={formData.start_date}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
           />
         </label>
 
@@ -56,7 +61,7 @@ const BookingAddressModal = ({
             name='end_date'
             value={formData.end_date}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
           />
         </label>
 
@@ -69,7 +74,7 @@ const BookingAddressModal = ({
             name='start_time'
             value={formData.start_time}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
           />
         </label>
 
@@ -82,7 +87,7 @@ const BookingAddressModal = ({
             name='end_time'
             value={formData.end_time}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
           />
         </label>
 
@@ -95,7 +100,7 @@ const BookingAddressModal = ({
             name='crew_member_count'
             value={formData.crew_member_count}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
             min='1'
           />
         </label>
@@ -108,7 +113,7 @@ const BookingAddressModal = ({
             name='setup_day_count'
             value={formData.setup_day_count}
             onChange={handleChange}
-            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-1'
+            className='border border-gray-300 text-gray-600 placeholder-black w-full outline-none rounded-md p-3'
             min='1'
           />
         </label>
@@ -145,6 +150,13 @@ const BookingAddressModal = ({
           }
         </button>
       </form>
+      </div>
+
+      {/**Second col */}
+      <div className='min-w-[300px] p-3 h-full shadow-md rounded-md'>
+        <TermsAndCondition termsData={dummytermsData} handleChange={handleChange} formData={formData} />
+      </div>
+      </div>
     </div>
   );
 };

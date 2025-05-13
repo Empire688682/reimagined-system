@@ -34,6 +34,7 @@ const Page = () => {
     setup_day_count: "0",
     requires_cleanup: false,
     requires_inspection: false,
+    accept_terms_condition: false
   });
 
   // Fetch property data and related properties on mount or when slug changes
@@ -73,9 +74,10 @@ const Page = () => {
       !formData.end_time ||
       !formData.crew_member_count ||
       !formData.setup_day_count ||
-      !slug
+      !slug || 
+      !formData.accept_terms_condition
     ) {
-      return setErrorMsg("Please fill all fields");
+      return setErrorMsg("Please fill all fields and accept terms");
     }
     setFormLoading(true);
     try {
@@ -132,7 +134,7 @@ const Page = () => {
               <div>
                 {
                   // Show Booking Address Modal if active
-                  addressModal && <div className='md:py-10 mt-15 w-full bg-gray-600 top-0 flex items-center min-h-screen'>
+                  addressModal && <div className='md:py-10 mt-15 w-full bg-white top-0 flex items-center min-h-screen'>
                     <BookingAddressModal
                       formData={formData}
                       setFormData={setFormData}

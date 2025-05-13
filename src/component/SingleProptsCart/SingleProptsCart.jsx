@@ -7,6 +7,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa";
 import { FaToilet } from "react-icons/fa";
 import { MdSquareFoot } from "react-icons/md";
+import TermsAndCondition from "../BookingModals/TermsAndCondition/TermsAndCondition";
+import { dummytermsData } from "../Data";
 
 const SingleProptsCart = ({ title, 
    relatedProperties, 
@@ -103,6 +105,11 @@ const SingleProptsCart = ({ title,
             <p className="text-gray-500">No amenities listed.</p>
           )}
         </div>
+      </div>
+
+      {/**Terms and condition */}
+      <div className="mt-15 border border-gray-200 text-gray-700 p-6 flex flex-col gap-6">
+        <TermsAndCondition termsData={dummytermsData}/>
       </div>
 
       {/* Gallery Section */}

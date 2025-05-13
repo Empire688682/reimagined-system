@@ -18,7 +18,7 @@ const ListYourProps = () => {
                 />
                 <div className="bg-black/50 w-full h-full absolute inset-0 z-[-1]" />
 
-                <div className="z-10 text-center px-6 md:px-16 max-w-4xl mx-auto">
+                <div className="z-1 text-center px-6 md:px-16 max-w-4xl mx-auto">
                     <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight mb-4">
                         List Your Space. Unlock New Income.
                     </h1>
