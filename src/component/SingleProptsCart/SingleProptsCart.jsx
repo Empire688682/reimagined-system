@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
