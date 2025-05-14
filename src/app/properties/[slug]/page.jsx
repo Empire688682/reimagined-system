@@ -111,10 +111,9 @@ const Page = () => {
       }
     } catch (error) {
       console.error("Booking error:", error);
-      console.error("FormData:", formData);
       setErrorMsg(
-        error.response?.data?.error_code ||
         error.response?.data?.message ||
+        error.response?.data?.error_code ||
         "An error occurred"
       );
     } finally {
