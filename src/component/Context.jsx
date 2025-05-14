@@ -17,18 +17,24 @@ export const AppProvider = ({ children }) => {
   
      useEffect(()=>{
      if(typeof window !== "undefined"){
-      const now = new Date().getDate
+      const now = new Date().getTime()
        const parseToken = localStorage.getItem("AccessToken");
        if(parseToken){
          const token = JSON.parse(parseToken);
-         const expireAt = token.expire_at
+         const expireIn = token.expireIn;
 
-         setUserToken(token.token);
+         console.log("now:", now, ":", Number(expireIn));
+          
+         if(now > Number(expireIn)){
+          localStorage.removeItem("AccessToken");
+          localStorage.removeItem("UserName");
+         }
+         else{
+          setUserToken(token.token);
+         }
        }
      }
      },[]);
-
-       console.log("now:", userToken);
 
      useEffect(()=>{
      if(typeof window !== "undefined"){

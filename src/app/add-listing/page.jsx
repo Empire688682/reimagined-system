@@ -3,7 +3,7 @@ import ListingAddress from '@/component/AllListingModal/ListingAddress';
 import ListingSent from '@/component/AllListingModal/ListingSent';
 import MoreDetails from '@/component/AllListingModal/MoreDetails ';
 import UploadModal from '@/component/AllListingModal/UploadModal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useGlobalContext } from '@/component/Context';
 import ListingTerms from '@/component/AllListingModal/ListingTerms/ListingTerms';
@@ -105,9 +105,11 @@ const Page = () => {
         }
     };
 
+    useEffect(()=>{
     if(!userToken){
         route.push("/signin");
     }
+    }, [userToken]);
 
     return (
         <div className='min-h-[70vh]'>

@@ -81,8 +81,8 @@ const Login = () => {
 
         try {
             const response = await axios.post(`${ApiUrl}/api/v1/auth/login`, {
-                email: formData.email,
-                password: formData.password
+                email: email,
+                password: password
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -98,16 +98,18 @@ const Login = () => {
                 })
 
                 console.log("User:", response.data);
+                const now = new Date().getTime();
+                const expiredIn = 3 * 24 * 60 * 60 * 1000 + now
 
                 if (typeof window !== "undefined" && remindMe) {
                     // Update stored values in case user edited them
                     localStorage.setItem("rememberedEmail", formData.email);
-                    localStorage.setItem("AccessToken", JSON.stringify({token:response.data.access_token, expireAt:response.data.token_expires_at}));
+                    localStorage.setItem("AccessToken", JSON.stringify({token:response.data.access_token, expireIn:expiredIn}));
                     localStorage.setItem("UserName", JSON.stringify(response.data.user.first_name));
                 }
 
                 toast.success("Succes & Redirecting user.......");
-                //route.push('/');
+                window.location.reload();
             } else {
                 console.log("Unexpected response:", response);
             }
