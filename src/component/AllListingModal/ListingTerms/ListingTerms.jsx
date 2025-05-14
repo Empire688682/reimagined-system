@@ -27,7 +27,7 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
     };
 
     return (
-        <section className='flex relative mt-20 items-center gap-10 py-15 '>
+        <section className='flex relative mt-20 items-center gap-10 pt-30 '>
             <span className='absolute right-6 md-right-16 top-3 text-center text-sm border py-1 px-6 border-gray-300'>
                 1 of 4
             </span>
