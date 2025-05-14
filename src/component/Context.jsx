@@ -12,38 +12,37 @@ export const AppProvider = ({ children }) => {
   //Authenticational States//
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
-   const [userToken, setUserToken] = useState("");
-   const [userName, setUserName] = useState("")
-  
-     useEffect(()=>{
-     if(typeof window !== "undefined"){
-      const now = new Date().getTime()
-       const parseToken = localStorage.getItem("AccessToken");
-       if(parseToken){
-         const token = JSON.parse(parseToken);
-         const expireIn = token.expireIn;
+  const [userToken, setUserToken] = useState("");
+  const [userName, setUserName] = useState("")
 
-         console.log("now:", now, ":", Number(expireIn));
-          
-         if(now > Number(expireIn)){
-          localStorage.removeItem("AccessToken");
-          localStorage.removeItem("UserName");
-         }
-         else{
-          setUserToken(token.token);
-         }
-       }
-     }
-     },[]);
+ useEffect(() => {
+  if (typeof window !== "undefined") {
+    const now = new Date().getTime();
+    const token = localStorage.getItem("AccessToken");
+    const expireIn = localStorage.getItem("ExpireIn");
 
-     useEffect(()=>{
-     if(typeof window !== "undefined"){
-       const parseUser = localStorage.getItem("UserName");
-      if(parseUser){
+    if (token && expireIn) {
+      if (now > Number(expireIn)) {
+        localStorage.removeItem("AccessToken");
+        localStorage.removeItem("ExpireIn");
+        localStorage.removeItem("UserName");
+      } else {
+        setUserToken(token);
+      }
+    }
+  }
+}, []);
+
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const parseUser = localStorage.getItem("UserName");
+      if (parseUser) {
         setUserName(JSON.parse(parseUser));
       }
-     }
-     },[]);
+    }
+  }, []);
 
   useEffect(() => {
     handlePropsSearch()
@@ -269,13 +268,13 @@ export const AppProvider = ({ children }) => {
       console.error("Error during data fetching:", error);
       alert(error.response?.data?.error_code || error.message || "An error occurred");
     }
-    finally{
+    finally {
       setSeachLoading(false)
     }
   };
 
-  const fireSearch = () =>{
-    if(!searchQuery){
+  const fireSearch = () => {
+    if (!searchQuery) {
       return
     }
     handlePropsSearch();
@@ -285,12 +284,14 @@ export const AppProvider = ({ children }) => {
     handlePropsSearch();
   }, [page]);
 
-  const handleNotUserListingAndBooking = () =>{
-    if(userToken){
+  const handleNotUserListingAndBooking = () => {
+    if (userToken) {
       route.push("signin");
     }
   };
-  
+
+  console.log("user:", userToken)
+
   return (
     <AppContext.Provider value={{
       route,
@@ -312,7 +313,7 @@ export const AppProvider = ({ children }) => {
       handleEmailVerification,
       searchQuery,
       setSearchQuery,
-      page, 
+      page,
       setPage,
       fireSearch,
       searchLoading,

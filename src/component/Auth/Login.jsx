@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
 import axios from "axios";
 import { FaSpinner } from 'react-icons/fa6';
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -98,14 +98,14 @@ const Login = () => {
                 })
 
                 console.log("User:", response.data);
-                const now = new Date().getTime();
-                const expiredIn = 3 * 24 * 60 * 60 * 1000 + now
+                const accessToken = response.data.access_token;
+                const userName = response.data.user.first_name;
 
                 if (typeof window !== "undefined" && remindMe) {
-                    // Update stored values in case user edited them
                     localStorage.setItem("rememberedEmail", formData.email);
-                    localStorage.setItem("AccessToken", JSON.stringify({token:response.data.access_token, expireIn:expiredIn}));
-                    localStorage.setItem("UserName", JSON.stringify(response.data.user.first_name));
+                    localStorage.setItem("AccessToken",accessToken);
+                    localStorage.setItem("ExpireIn", String(Date.now() + 3 * 24 * 60 * 60 * 1000));
+                    localStorage.setItem("UserName", JSON.stringify(userName));
                 }
 
                 toast.success("Succes & Redirecting user.......");
