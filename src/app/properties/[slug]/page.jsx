@@ -75,7 +75,8 @@ const Page = () => {
       !formData.crew_member_count ||
       !formData.setup_day_count ||
       !slug || 
-      !formData.accept_terms_condition
+      !formData.accept_terms_condition ||
+      !accept_terms_condition
     ) {
       return setErrorMsg("Please fill all fields and accept terms");
     }
@@ -92,6 +93,7 @@ const Page = () => {
           setup_day_count: formData.setup_day_count,
           requires_cleanup: formData.requires_cleanup,
           requires_inspection: formData.requires_inspection,
+          accept_terms_condition: formData.accept_terms_condition
         },
         {
           headers: {
@@ -109,6 +111,7 @@ const Page = () => {
       }
     } catch (error) {
       console.error("Booking error:", error);
+      console.error("FormData:", formData);
       setErrorMsg(
         error.response?.data?.error_code ||
         error.response?.data?.message ||

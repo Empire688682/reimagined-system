@@ -290,8 +290,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  console.log("user:", userToken)
-
   return (
     <AppContext.Provider value={{
       route,
