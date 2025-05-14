@@ -10,7 +10,7 @@ import ListingTerms from '@/component/AllListingModal/ListingTerms/ListingTerms'
 
 const Page = () => {
 
-    const { ApiUrl, userToken } = useGlobalContext();
+    const { ApiUrl, userToken, route } = useGlobalContext();
     const [modals, setModals] = useState("terms");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("")
@@ -104,6 +104,10 @@ const Page = () => {
             setLoading(false);
         }
     };
+
+    if(!userToken){
+        route.push("/signin");
+    }
 
     return (
         <div className='min-h-[70vh]'>

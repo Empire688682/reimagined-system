@@ -13,12 +13,28 @@ export const AppProvider = ({ children }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
    const [userToken, setUserToken] = useState("");
+   const [userName, setUserName] = useState("")
   
      useEffect(()=>{
      if(typeof window !== "undefined"){
-       const token = localStorage.getItem("AccessToken");
-      if(token){
-        setUserToken(token);
+      const now = new Date().getDate
+       const parseToken = localStorage.getItem("AccessToken");
+       if(parseToken){
+         const token = JSON.parse(parseToken);
+         const expireAt = token.expire_at
+
+         setUserToken(token.token);
+       }
+     }
+     },[]);
+
+       console.log("now:", userToken);
+
+     useEffect(()=>{
+     if(typeof window !== "undefined"){
+       const parseUser = localStorage.getItem("UserName");
+      if(parseUser){
+        setUserName(JSON.parse(parseUser));
       }
      }
      },[]);
@@ -262,6 +278,12 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     handlePropsSearch();
   }, [page]);
+
+  const handleNotUserListingAndBooking = () =>{
+    if(userToken){
+      route.push("signin");
+    }
+  };
   
   return (
     <AppContext.Provider value={{
@@ -287,7 +309,9 @@ export const AppProvider = ({ children }) => {
       page, 
       setPage,
       fireSearch,
-      searchLoading
+      searchLoading,
+      handleNotUserListingAndBooking,
+      userName
     }}>
       {children}
     </AppContext.Provider>

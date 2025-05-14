@@ -6,12 +6,21 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoMenuOutline } from "react-icons/io5";
 import Link from 'next/link';
 import { useGlobalContext } from '../Context';
+import { IoIosLogOut } from "react-icons/io";
+import { FaHeart } from "react-icons/fa";
 
 const Navbar = () => {
-    const { route, userToken } = useGlobalContext();
+    const { userName, userToken } = useGlobalContext();
     const [isOpen, setIsOpen] = useState(false);
     const [openSubMenu, setOpenSubMenu] = useState({});
-    const [user, setUser] = useState("")
+
+    const logoutUser = () => {
+        if(typeof window !== "undefined") {
+            localStorage.removeItem("AccessToken");
+            localStorage.removeItem("UserName");
+            window.location.reload();
+        }
+    }
 
     // Get current route
     const pathname = usePathname();
@@ -90,19 +99,22 @@ const Navbar = () => {
                     </li>
                     <li className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
                     <a href='/booking#faqs' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>FAQ'S</a>
-                    <a href='#contact' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
+                    <a href='/#contact' className={`text-white cursor-pointertext-white p-2 rounded-sm text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                 </ul>
 
-                <div className='flex gap-3 mt-6'>
+                {/** Auth buttons */}
+                <div className='flex gap-3 mt-6 flex items-center py-2 justify-center'>
                     {
-                        userToken ? <div className='flex flex-col gap-2 justify-center itmems-center'>
-                            <Image src="/profile-img.png" alt="logo" width={80} height={50} className="object-contain rounded-full" />
-                            <p>Juwon</p>
-                        </div> :
-                            <div>
-                                <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
-                                <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
-                            </div>
+                        userToken && <div className='flex gap-2 flex-col justify-center items-center'>
+                            <Image src="/profile-img.png" alt="logo" width={40} height={40} className="object-contain rounded-full" />
+                            <p className='text-white flex gap-1 items-center text-[15px] py-1 px-3 rounded-sm bg-[#0C111D] hover:bg-[#0C112D] cursor-pointer' onClick={logoutUser}>Logout <IoIosLogOut className='text-[15px]' /> </p>
+                        </div>
+                    }
+                    {
+                        !userToken && <div className='flex gap-3 pb-3'>
+                            <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
+                            <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
+                        </div>
                     }
                 </div>
             </div>
@@ -155,19 +167,22 @@ const Navbar = () => {
                             </li>
                             <li className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>About Us</li>
                             <a href='/booking#faqs' onClick={() => setIsOpen(false)} className={`text-white cursor-pointer text-[14px]`}>FAQ'S</a>
-                            <a href='#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
+                            <a href='/#contact' className={`text-white cursor-pointer text-[14px]`} onClick={() => setIsOpen(false)}>Contact</a>
                         </ul>
                         {/** Auth buttons */}
                         <div className='flex gap-3 mt-6 flex items-center justify-center'>
                             {
-                                userToken ? <div className='flex flex-col gap-2 justify-center items-center'>
+                                userToken && <div className='flex flex-col gap-2 justify-center items-center'>
                                     <Image src="/profile-img.png" alt="logo" width={40} height={40} className="object-contain rounded-full" />
-                                    <p className='text-gray-500'>Juwon</p>
-                                </div> :
-                                    <div>
-                                        <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
-                                        <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
-                                    </div>
+                                    <p className='text-white font-semibold flex gap-2 items-center'><FaHeart className='text-red-700' />{userName}</p>
+                                    <p className='text-white flex gap-1 items-center text-[15px] py-1 px-3 rounded-sm bg-[#0C111D] hover:bg-[#23396A] cursor-pointer' onClick={logoutUser}>Logout <IoIosLogOut className='text-[15px]' /> </p>
+                                </div>
+                            }
+                            {
+                                !userToken && <div className='flex gap-3 pb-3'>
+                                    <Link href="/signin" className="px-6 py-3 text-white cursor-pointer rounded-sm bg-[#0C111D] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign In</Link>
+                                    <Link href="/signup" className="px-6 py-3 cursor-pointer bg-white rounded-sm text-[#23396A] text-[14px]" onClick={() => { setIsOpen(false) }}>Sign Up</Link>
+                                </div>
                             }
                         </div>
                     </div>

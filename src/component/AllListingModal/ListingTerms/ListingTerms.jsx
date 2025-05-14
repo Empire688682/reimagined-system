@@ -2,14 +2,13 @@
 import React, { useState } from 'react';
 import { useGlobalContext } from '@/component/Context';
 import { dummytermsData } from '@/component/Data';
+import { FaHeart } from "react-icons/fa";
 
 const ListingTerms = ({ setModals, formData, handleChange }) => {
-    const { ApiUrl } = useGlobalContext();
+    const { userName } = useGlobalContext();
 
     const [errorMsg, setErrorMsg] = useState('');
     const [terms, setTerms] = useState(dummytermsData);
-
-    console.log("Terms:", terms);
     // Handle form submission for booking
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,9 +33,10 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
             </span>
             {/** Col one */}
             <div className='bg-white flex shadow-md p-10 w-full flex-col gap-3 max-w-[400px] md:min-w-[500px] m-auto rounded-lg'>
-                <div>
-                    <h1 className='font-semibold md:text-lg'>Terms and condition</h1>
+                <div className='flex flex-col gap-2'>
+                    <h1 className='font-semibold text-2xl'>Terms and condition</h1>
                     <p className='text-sm'>Fill in the following details to schedule your listing.</p>
+                    <p className='font-semibold flex gap-2 items-center'>You are on the right Track <FaHeart className='text-red-700' /><span className='font-semibold'>{userName}</span></p>
                 </div>
                 <hr className='text-gray-300' />
 

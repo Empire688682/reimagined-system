@@ -3,6 +3,8 @@ import React from 'react';
 import { FaSpinner } from 'react-icons/fa6';
 import { dummytermsData } from '../Data';
 import TermsAndCondition from './TermsAndCondition/TermsAndCondition';
+import { useGlobalContext } from '../Context';
+import { FaHeart } from "react-icons/fa";
 
 const BookingAddressModal = ({
   formData,
@@ -11,6 +13,7 @@ const BookingAddressModal = ({
   errorMsg,
   formLoading
 }) => {
+  const {userName} = useGlobalContext()
 
   //Onchange handler
   const handleChange = (e) => {
@@ -29,9 +32,10 @@ const BookingAddressModal = ({
 
   return (
     <div className='my-15 bg-white flex flex-col gap-3 m-auto rounded-lg p-5'>
-      <div>
-        <h1 className='font-semibold md:text-lg'>Booking Details</h1>
+      <div className='flex flex-col gap-2'>
+        <h1 className='font-semibold text-2xl'>Booking Details</h1>
         <p className='text-sm'>Fill in the following details to schedule your booking.</p>
+        <p className='font-semibold flex gap-2 items-center'>You are on the right Track <FaHeart className='text-red-700' /><span className='font-semibold'>{userName}</span></p>
       </div>
       <hr className='text-gray-300 mb-5' />
 

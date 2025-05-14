@@ -15,7 +15,7 @@ const SingleProptsCart = ({ title,
    data,
    setAddressModal
 }) => {
-  const { route } = useGlobalContext();
+  const { route, userToken } = useGlobalContext();
 
   return (
     <div className="md:px-16 px-4 pt-16 mt-20">
@@ -65,9 +65,16 @@ const SingleProptsCart = ({ title,
             <p className="py-3 px-6 border border-gray-200 text-gray-400 text-sm">{data.size} Size</p>
           </div>
 
-          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>{setAddressModal(true); window.scrollTo(0,0)}}>
+          {
+            userToken ?
+            <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>{setAddressModal(true); window.scrollTo(0,0)}}>
             Book Now
           </button>
+          :
+          <button className="bg-[#23396A] text-sm cursor-pointer py-3 px-6 text-white" onClick={()=>{route.push("/signin"); window.scrollTo(0,0)}}>
+            Book Now
+          </button>
+          }
         </div>
       </div>
 

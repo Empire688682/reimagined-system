@@ -7,6 +7,7 @@ import Features from '@/component/Features/Features';
 import Journey from '@/component/Journey/Journey';
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaPauseCircle } from "react-icons/fa";
+import ContactPage from '@/component/Contact/Contact';
 
 const Page = () => {
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -51,6 +52,7 @@ const Page = () => {
       </div>
       <Features />
       <Journey />
+      <ContactPage />
     </div>
   );
 };

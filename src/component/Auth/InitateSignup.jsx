@@ -17,12 +17,10 @@ const InitateSignup = () => {
     } = useGlobalContext();
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-30 md:px-16 px-4">
+        <div className="min-h-screen flex items-center justify-center pb-15 pt-40 md:px-16 px-4">
             <ToastContainer />
             <div className="flex flex-col gap-4 items-center">
-                {/* Logo */}
-                <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
-                <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">Initial Sign Up </h1>
+                <h1 className="md:text-3xl text-2xl text-gray-700 font-semibold">Initiate Sign Up </h1>
                 <form onSubmit={handleInitateSignup} className="flex min-w-[300px] max-w-[500px] flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
                         {/* Email Field */}

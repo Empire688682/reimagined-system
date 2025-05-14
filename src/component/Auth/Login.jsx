@@ -5,13 +5,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useGlobalContext } from "../Context";
 import axios from "axios";
 import { FaSpinner } from 'react-icons/fa6';
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
     const { route, ApiUrl, googleUrl, userToken, setUserToken } = useGlobalContext();
     const [errorMsg, setErrorMsg] = useState("");
     const [loading, setLoading] = useState(false);
-    //TODO:comming back
-    const [success, setSuccess] = useState(false);
 
     // ✅ State to manage "Remember me" checkbox
     const [remindMe, setRemindMe] = useState(false);
@@ -77,6 +77,7 @@ const Login = () => {
         };
 
         setLoading(true);
+        toast.info("Signing in........");
 
         try {
             const response = await axios.post(`${ApiUrl}/api/v1/auth/login`, {
@@ -96,15 +97,17 @@ const Login = () => {
                     password: "",
                 })
 
+                console.log("User:", response.data);
+
                 if (typeof window !== "undefined" && remindMe) {
                     // Update stored values in case user edited them
                     localStorage.setItem("rememberedEmail", formData.email);
-                    localStorage.setItem("AccessToken", response.data.access_token);
+                    localStorage.setItem("AccessToken", JSON.stringify({token:response.data.access_token, expireAt:response.data.token_expires_at}));
+                    localStorage.setItem("UserName", JSON.stringify(response.data.user.first_name));
                 }
 
-                alert("User Login successful");
-                setSuccess(false)
-                route.push('/');
+                toast.success("Succes & Redirecting user.......");
+                //route.push('/');
             } else {
                 console.log("Unexpected response:", response);
             }
@@ -138,11 +141,10 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex grid grid-cols-1 gap-24 md:grid-cols-2 py-30 md:px-16 px-4">
-            <div className="flex flex-col max-w-[500px] min-w-[300px] md:min-w-[350px] m-auto gap-4 items-center">
-                {/* Logo */}
-                <Image src="/ayinla-logo-1.PNG" alt="Ayinla Logo" priority width={100} height={100} />
-                <h1 className="md:text-2xl text-1xl text-gray-700 font-semibold">Login</h1>
+        <div className="min-h-[70vh] flex items-center justify-center pb-15 pt-40 md:px-16 px-4">
+            <ToastContainer />
+            <div className="flex flex-col max-w-[550px] min-w-[300px] md:min-w-[350px] m-auto gap-4 items-center">
+                <h1 className="md:text-4xl text-3xl text-gray-700 font-semibold">Login</h1>
                 <p className="text-gray-700">Welcome back! Please enter your details</p>
                 <form onSubmit={handleLogin} className="flex w-full flex-col gap-4">
                     <div className="flex flex-col w-full gap-4">
@@ -174,7 +176,7 @@ const Login = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
+                    <button disabled={loading} type="submit" className="flex items-center bg-[#23396A] text-sm text-white p-3 cursor-pointer text w-full justify-center border rounded-md">
                         {loading ? <FaSpinner className="animate-spin text-lg text-white" /> : "Login"}
                     </button>
                 </form>
@@ -201,17 +203,6 @@ const Login = () => {
                     <p className="flex text-gray-700 gap-2 items-center">Don't have an account?</p>
                     <span className="text-blue-500 cursor-pointer" onClick={() => route.push("/signup")}>Sign up</span>
                 </div>
-            </div>
-
-            {/* Right Side Image */}
-            <div className='relative hidden h-full md:block w-full'>
-                <Image
-                    priority={true}
-                    fill
-                    src="/service-img.png"
-                    alt="Hero Image"
-                    style={{ objectFit: "cover" }}
-                />
             </div>
         </div>
     );
