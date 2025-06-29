@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    handlePropsSearch()
+    handlePropsSearch();
   }, []);
 
   const BaseUrl = "https://ayinla.vercel.app";

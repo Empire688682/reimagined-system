@@ -106,7 +106,6 @@ const Navbar = () => {
                 <div className='flex gap-3 mt-6 flex items-center py-2 justify-center'>
                     {
                         userToken && <div className='flex gap-2 flex-col justify-center items-center'>
-                            <Image src="/profile-img.png" alt="logo" width={40} height={40} className="object-contain rounded-full" />
                             <p className='text-white flex gap-1 items-center text-[15px] py-1 px-3 rounded-sm bg-[#0C111D] hover:bg-[#0C112D] cursor-pointer' onClick={logoutUser}>Logout <IoIosLogOut className='text-[15px]' /> </p>
                         </div>
                     }

@@ -27,16 +27,19 @@ const ListingTerms = ({ setModals, formData, handleChange }) => {
     };
 
     return (
-        <section className='flex relative mt-20 items-center gap-10 pt-30 '>
+        <section className='flex relative mt-20 items-center gap-10 pt15 '>
             <span className='absolute right-6 md-right-16 top-3 text-center text-sm border py-1 px-6 border-gray-300'>
                 1 of 4
             </span>
             {/** Col one */}
             <div className='bg-white flex shadow-md p-10 w-full flex-col gap-3 max-w-[400px] md:min-w-[500px] m-auto rounded-lg'>
                 <div className='flex flex-col gap-2'>
-                    <h1 className='font-semibold text-2xl'>Terms and condition</h1>
-                    <p className='text-sm'>Fill in the following details to schedule your listing.</p>
-                    <p className='font-semibold flex gap-2 items-center'>You are on the right Track <FaHeart className='text-red-700' /><span className='font-semibold'>{userName}</span></p>
+                    <h1 className='font-semibold text-2xl'>Listing Guidelines</h1>
+                    <p className='text-sm'>Please review the following details to successfully post your listing.</p>
+                    <p className='font-semibold flex gap-2 items-center'>
+                        You're doing great <FaHeart className='text-red-700' />
+                        <span className='font-semibold'>{userName}</span>
+                    </p>
                 </div>
                 <hr className='text-gray-300' />
 
